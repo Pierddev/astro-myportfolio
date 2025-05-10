@@ -1,0 +1,21 @@
+---
+const { currentPath } = Astro.props;
+const currentPage = currentPath.split("/").filter(Boolean)[0] || "home";
+---
+<div class="ml-20 xl:mr-20 mt-120">
+	<div
+		class="flex flex-col text-center bg-card border-card-border border-1 p-10 rounded-30 w-350"
+	>
+		<div class="flex flex-col space-y-15 text-[15px] font-semibold w-full">
+			<a href="/privacy" class={`navbar-item justify-center ${currentPage === "privacy" ? "navbar-active" : "navbar-non-active"}`}>
+				Politique de Confidentialité
+			</a>
+			<a href="/legal" class={`navbar-item justify-center ${currentPage === "legal" ? "navbar-active" : "navbar-non-active"}`}>
+				Mentions Légales
+			</a>
+			<a href="/terms" class={`navbar-item justify-center ${currentPage === "terms" ? "navbar-active" : "navbar-non-active"}`}>
+				Conditions Générales d'Utilisation
+			</a>
+		</div>
+	</div>
+</div>
