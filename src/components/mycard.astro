@@ -1,12 +1,13 @@
+---
+import { Image } from 'astro:assets'
+import Me from '@assets/me.webp'
+---
+
 <div class="lg:ml-50 lg:mr-20 pt-120 h-fit flex justify-center">
    <div
       class="flex lg:flex-col space-x-10 lg:space-x-0 items-center bg-card border-card-border border-1 p-15 rounded-40 lg:max-w-260"
    >
-      <img
-         src="/assets/images/me.png"
-         alt="DUAULT Pierre"
-         class="w-150 lg:w-300 rounded-25 bg-card border-card-border border-1"
-      />
+      <Image src={Me} alt="Auteur du Portfolio" class="w-150 lg:w-300 rounded-25 bg-card border-card-border border-1" loading="eager" />
       <p class="hidden lg:inline text-[20px] font-semibold my-10">
          Pierre DUAULT
       </p>

@@ -1,7 +1,82 @@
 ---
-import Layout from '@layouts/Layout.astro';
+import Layout from "@layouts/Layout.astro";
+import Mycard from "@components/mycard.astro";
 ---
 
 <Layout>
-	
+   <!-- Peut être utiliser Grid au lieu de Flex, pour plus de souplesse vis à vis de la page About -->
+   <section class="flex justify-center w-full">
+      <Mycard />
+      <div class="flex flex-col items-center w-1000 mt-20 lg:mt-170">
+         <p class="text-[80px] lg:text-[100px] font-semibold">Bonjour,</p>
+         <p
+            class="text-[15px] text-white/80 text-center font-medium pt-40 w-600 max-w-[80%]"
+         >
+            Passionné d’informatique, je me spécialise en informatique réseau et
+            cybersécurité. Curieux et rigoureux, j’aime comprendre et optimiser
+            les systèmes. Découvrez mon parcours !
+         </p>
+         <a
+            href="/contact"
+            class="group flex space-x-15 items-center bg-card border-card-border border-1 hover:text-white text-white/60 mt-60 px-20 rounded-full transition-colors"
+         >
+            <span class="relative flex size-10">
+               <span
+                  class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"
+               ></span>
+               <span
+                  class="relative inline-flex size-10 rounded-full bg-red-600"
+               ></span>
+            </span>
+            <p class="text-[12px] lg:text-[16px]">
+               Je recherche actuellement une alternance
+            </p>
+            <div class="flex items-center relative size-20">
+               <svg
+                  class="absolute size-20 left-0 group-hover:left-10 transition-all ease-in-out"
+                  height="21"
+                  viewBox="0 0 21 21"
+                  width="21"
+                  xmlns="http://www.w3.org/2000/svg"
+               >
+                  <g
+                     fill="none"
+                     fill-rule="evenodd"
+                     stroke="currentColor"
+                     stroke-linecap="round"
+                     stroke-linejoin="round"
+                     transform="translate(4 6)"
+                  >
+                     <path d="m9.5.497 4 4.002-4 4.001"></path>
+                     <path d="m.5 4.5h13"></path>
+                  </g>
+               </svg>
+            </div>
+         </a>
+         <a
+            href="/about"
+            class="relative flex items-center group size-60 mt-80 mb-200"
+         >
+            <svg
+               class="absolute size-60 mt-0 group-hover:mt-20 text-white/80 transition-all ease-in-out"
+               height="21"
+               viewBox="0 0 21 21"
+               width="21"
+               xmlns="http://www.w3.org/2000/svg"
+            >
+               <g
+                  fill="none"
+                  fill-rule="evenodd"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  transform="translate(6 4)"
+               >
+                  <path d="m.5 9.499 4 4.001 4-4.001"></path>
+                  <path d="m4.5.5v13" transform="matrix(-1 0 0 -1 9 14)"></path>
+               </g>
+            </svg>
+         </a>
+      </div>
+   </section>
 </Layout>
