@@ -37,9 +37,9 @@ const {
       <div class="absolute size-10 rounded-full bg-white/70"></div>
     </div>
     <div>
-      <div class="text-[12px] text-white/70">{date}</div>
-      <div class="text-[20px] font-semibold">{poste}</div>
-      <div class="text-[15px] text-white/70">{entreprise}</div>
+      <div class="text-12 text-white/70">{date}</div>
+      <div class="text-20 font-semibold">{poste}</div>
+      <div class="text-15 text-white/70">{entreprise}</div>
       <div class="flex items-center justify-center md:justify-start space-x-5">
         <!-- Icône de localisation -->
         <svg
@@ -63,7 +63,7 @@ const {
             <circle cx="6.5" cy="6.5" r="2.5"></circle>
           </g>
         </svg>
-        <div class="text-[12px] text-white/70">{lieu}</div>
+        <div class="text-12 text-white/70">{lieu}</div>
       </div>
     </div>
   </div>
@@ -77,7 +77,7 @@ const {
 
   <!-- Liste des missions -->
   <ul
-    class="col-start-1 col-end-11 md:col-start-4 md:col-end-11 text-[15px] list-disc space-y-10 max-w-800"
+    class="col-start-1 col-end-11 md:col-start-4 md:col-end-11 text-15 list-disc space-y-10 max-w-800"
   >
     {
       missions.map((mission) => (

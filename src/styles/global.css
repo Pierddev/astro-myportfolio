@@ -1,71 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@config "./tailwind.config.js";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import "tailwindcss";
 
 @theme {
-        --font-sans: 'Poppins', sans-serif, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-                'Segoe UI Symbol', 'Noto Color Emoji';
-        --color-background: #0D0C17;
-        --color-gradient-pink: #350e35;
-        --color-gradient-blue: #070045;
-        --color-card: #FFFFFF0D;
-        --color-card-border: #FFFFFF1A;
-        --color-bleu-glacier: #8AB4F8;
-        --color-lavande-fonce: #B39DDB;
-        --drop-shadow-summary: 0 0 10px rgba(255, 255, 255, 0.10);
+  --font-sans: "Poppins", sans-serif, ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --color-background: #0d0c17;
+  --color-gradient-pink: #350e35;
+  --color-gradient-blue: #070045;
+  --color-card: #ffffff0d;
+  --color-card-border: #ffffff1a;
+  --color-bleu-glacier: #8ab4f8;
+  --color-lavande-fonce: #b39ddb;
+  --drop-shadow-summary: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .navbar-item {
-        @apply flex items-center space-x-10 py-8 px-15 hover:bg-card/50 hover:border-card-border/50 border-1 rounded-full transition-colors duration-75 ease-in-out;
+  @apply flex items-center space-x-10 py-8 px-15 hover:bg-card/50 hover:border-card-border/50 border-1 rounded-full transition-colors duration-75 ease-in-out;
 }
 
 .navbar-active {
-        @apply bg-card/100 border-card-border/100;
+  @apply bg-card/100 border-card-border/100;
 }
 
 .navbar-non-active {
-        @apply bg-white/0 border-white/0;
+  @apply bg-white/0 border-white/0;
 }
 
 .card-item {
-        @apply flex items-center space-x-5 p-6 lg:bg-card lg:border-card-border lg:border-1 lg:rounded-full;
+  @apply flex items-center space-x-5 p-6 lg:bg-card lg:border-card-border lg:border-1 lg:rounded-full;
 }
 
 .bloc-card {
-        @apply bg-card border-1 border-card-border;
+  @apply bg-card border-1 border-card-border;
 }
 
 .summary-bloc {
-        @apply border-1 border-card-border py-5 px-50 bg-linear-to-r hover:drop-shadow-summary bg-white/10 hover:bg-white/20;
+  @apply border-1 border-card-border py-5 px-50 bg-linear-to-r hover:drop-shadow-summary bg-white/10 hover:bg-white/20;
 }
 
 .spacer {
-        @apply h-1 w-full max-w-[80%] bg-card-border;
+  @apply h-1 w-full max-w-[80%] bg-card-border;
 }
 
-.rounded-5 {
-        border-radius: 5px;
+.legal-text {
+  @apply text-white/80 text-15;
 }
 
-.rounded-10 {
-        border-radius: 10px;
-}
-
-.rounded-20 {
-        border-radius: 20px;
-}
-
-.rounded-25 {
-        border-radius: 25px;
-}
-
-.rounded-30 {
-        border-radius: 30px;
-}
-
-.rounded-40 {
-        border-radius: 40px;
-}
-
-.rounded-45 {
-        border-radius: 45px;
+.legal-title {
+  @apply text-20 font-semibold;
 }

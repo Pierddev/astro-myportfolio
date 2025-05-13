@@ -32,7 +32,7 @@ const icon = pageLabels[currentPage]?.icon ?? "default";
       {icon === "home" && <IconHome />}
       {icon === "about" && <IconAbout />}
       {icon === "contact" && <IconContact />}
-      <div class="text-[16px] lg:text-[20px] font-medium">{label}</div>
+      <div class="text-16 lg:text-20 font-medium">{label}</div>
     </div>
   </button>
 </div>
@@ -76,7 +76,7 @@ const icon = pageLabels[currentPage]?.icon ?? "default";
 <div
   class="hidden lg:block lg:fixed text-white/80 mt-35 bg-[#0d0c1786] border-card-border border-1 size-fit rounded-full p-5 backdrop-blur-sm z-40"
 >
-  <li class="flex space-x-15 text-[15px]">
+  <li class="flex space-x-15 text-15">
     <a
       href="/"
       class={`navbar-item ${currentPage === "home" ? "navbar-active" : "navbar-non-active"}`}

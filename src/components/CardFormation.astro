@@ -16,11 +16,11 @@ const { date, formation, ecole, lieu } = Astro.props as Props;
       <div class="absolute size-10 rounded-full bg-white/70"></div>
     </div>
     <div>
-      <div class="text-[12px] text-white/70">
+      <div class="text-12 text-white/70">
         {date}
       </div>
-      <div class="text-[20px] font-semibold">{formation}</div>
-      <div class="text-[15px] text-white/70">{ecole}</div>
+      <div class="text-20 font-semibold">{formation}</div>
+      <div class="text-15 text-white/70">{ecole}</div>
       <div class="flex items-center space-x-5">
         <svg
           class="size-17 -ml-2"
@@ -43,7 +43,7 @@ const { date, formation, ecole, lieu } = Astro.props as Props;
             <circle cx="6.5" cy="6.5" r="2.5"></circle>
           </g>
         </svg>
-        <div class="text-[12px] text-white/70">{lieu}</div>
+        <div class="text-12 text-white/70">{lieu}</div>
       </div>
     </div>
   </div>
