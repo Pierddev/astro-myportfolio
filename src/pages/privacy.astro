@@ -1,99 +1,102 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import Summary from "@components/summary-legal.astro";
+import Summary from "@components/SummaryLegal.astro";
 const pathname = Astro.url.pathname;
 ---
 
 <Layout>
-   <div
-      class="relative flex flex-col lg:flex-row justify-center lg:items-baseline"
-   >
-      <div class="flex lg:inline justify-center w-full lg:w-350">
-         <Summary currentPath={pathname} />
+  <div
+    class="relative flex flex-col lg:flex-row justify-center lg:items-baseline"
+  >
+    <div class="flex lg:inline justify-center w-full lg:w-350">
+      <Summary currentPath={pathname} />
+    </div>
+    <section
+      class="flex flex-col space-y-20 w-full max-w-1300 pt-50 lg:pt-170 font-light px-50 text-center lg:text-left"
+    >
+      <div class="text-[30px] text-center font-semibold">
+        Politique de confidentialité
       </div>
-      <section
-         class="flex flex-col space-y-20 w-full max-w-1300 pt-50 lg:pt-170 font-semibold px-50 text-center lg:text-left"
-      >
-         <div class="text-[30px] text-center">Politique de confidentialité</div>
-         <div class="text-white/80 text-[15px]">
-            Cette politique de confidentialité décrit comment vos informations
-            personnelles sont collectées, utilisées et protégées lorsque vous
-            visitez le site de Pi-Code Studio.
-         </div>
-         <div class="text-[20px]">1. Informations collectées</div>
-         <div class="text-white/80 text-[15px]">
-            <div>
-               Ce site ne collecte aucune donnée personnelle sans votre
-               consentement explicite. Toutefois, certaines informations
-               techniques peuvent être collectées automatiquement à des fins de
-               statistiques anonymes :
-            </div>
-            <ul class="list-inside list-disc my-20 ml-20">
-               <li>Adresse IP anonymisée</li>
-               <li>Type de navigateur</li>
-               <li>Système d’exploitation</li>
-               <li>Pages visitées et durée de navigation</li>
-            </ul>
-            <div>
-               Aucune de ces informations n’est utilisée pour vous identifier
-               personnellement.
-            </div>
-         </div>
-         <div class="text-[20px]">2. Utilisation des données</div>
-         <div class="text-white/80 text-[15px]">
-            <div>
-               Les données collectées automatiquement sont utilisées uniquement
-               pour :
-            </div>
-            <ul class="list-inside list-disc my-20 ml-20">
-               <li>Améliorer l’expérience utilisateur</li>
-               <li>Analyser les performances du site</li>
-               <li>Assurer la sécurité du site</li>
-            </ul>
-            <div>Aucune donnée n’est utilisée à des fins commerciales.</div>
-         </div>
-         <div class="text-[20px]">3. Partage des données</div>
-         <div class="text-white/80 text-[15px]">
-            Les données collectées ne sont ni vendues, ni partagées avec des
-            tiers, sauf en cas d’obligation légale ou de détection d’un
-            comportement malveillant.
-         </div>
-         <div class="text-[20px]">4. Cookies</div>
-         <div class="text-white/80 text-[15px]">
-            Ce site peut utiliser des cookies techniques ou de mesure d’audience
-            afin d’optimiser son fonctionnement. Vous pouvez désactiver les
-            cookies dans les paramètres de votre navigateur à tout moment.
-         </div>
-         <div class="text-[20px]">5. Sécurité des données</div>
-         <div class="text-white/80 text-[15px]">
-            Toutes les mesures techniques raisonnables sont mises en œuvre pour
-            protéger les données contre tout accès non autorisé. Néanmoins,
-            aucune transmission sur Internet n’est totalement sécurisée.
-         </div>
-         <div class="text-[20px]">6. Droits des utilisateurs (RGPD)</div>
-         <div class="text-white/80 text-[15px]">
-            <div>
-               Conformément au Règlement Général sur la Protection des Données
-               (RGPD), vous disposez des droits suivants :
-            </div>
-            <ul class="list-inside list-disc my-20 ml-20">
-               <li>Accès à vos données personnelles</li>
-               <li>Rectification ou suppression</li>
-               <li>Limitation ou opposition au traitement</li>
-            </ul>
-            <div>
-               Pour exercer vos droits, contactez Pi-Code Studio à l’adresse
-               suivante : picode.studio@gmail.com
-            </div>
-         </div>
-         <div class="text-[20px]">7. Modifications</div>
-         <div class="text-white/80 text-[15px]">
-            Cette politique peut être mise à jour à tout moment. La date de la
-            dernière mise à jour figure ci-dessous.
-         </div>
-         <div class="text-white/80 text-[12px]">
-            Dernière mise à jour : 6 mai 2025
-         </div>
-      </section>
-   </div>
+      <div class="text-white/80 text-[15px]">
+        Cette politique de confidentialité décrit comment vos informations
+        personnelles sont collectées, utilisées et protégées lorsque vous
+        visitez le site de Pi-Code Studio.
+      </div>
+      <div class="text-[20px] font-semibold">1. Informations collectées</div>
+      <div class="text-white/80 text-[15px]">
+        <div>
+          Ce site ne collecte aucune donnée personnelle sans votre consentement
+          explicite. Toutefois, certaines informations techniques peuvent être
+          collectées automatiquement à des fins de statistiques anonymes :
+        </div>
+        <ul class="list-inside list-disc my-20 ml-20">
+          <li>Adresse IP anonymisée</li>
+          <li>Type de navigateur</li>
+          <li>Système d’exploitation</li>
+          <li>Pages visitées et durée de navigation</li>
+        </ul>
+        <div>
+          Aucune de ces informations n’est utilisée pour vous identifier
+          personnellement.
+        </div>
+      </div>
+      <div class="text-[20px] font-semibold">2. Utilisation des données</div>
+      <div class="text-white/80 text-[15px]">
+        <div>
+          Les données collectées automatiquement sont utilisées uniquement pour
+          :
+        </div>
+        <ul class="list-inside list-disc my-20 ml-20">
+          <li>Améliorer l’expérience utilisateur</li>
+          <li>Analyser les performances du site</li>
+          <li>Assurer la sécurité du site</li>
+        </ul>
+        <div>Aucune donnée n’est utilisée à des fins commerciales.</div>
+      </div>
+      <div class="text-[20px] font-semibold">3. Partage des données</div>
+      <div class="text-white/80 text-[15px]">
+        Les données collectées ne sont ni vendues, ni partagées avec des tiers,
+        sauf en cas d’obligation légale ou de détection d’un comportement
+        malveillant.
+      </div>
+      <div class="text-[20px] font-semibold">4. Cookies</div>
+      <div class="text-white/80 text-[15px]">
+        Ce site peut utiliser des cookies techniques ou de mesure d’audience
+        afin d’optimiser son fonctionnement. Vous pouvez désactiver les cookies
+        dans les paramètres de votre navigateur à tout moment.
+      </div>
+      <div class="text-[20px] font-semibold">5. Sécurité des données</div>
+      <div class="text-white/80 text-[15px]">
+        Toutes les mesures techniques raisonnables sont mises en œuvre pour
+        protéger les données contre tout accès non autorisé. Néanmoins, aucune
+        transmission sur Internet n’est totalement sécurisée.
+      </div>
+      <div class="text-[20px] font-semibold">
+        6. Droits des utilisateurs (RGPD)
+      </div>
+      <div class="text-white/80 text-[15px]">
+        <div>
+          Conformément au Règlement Général sur la Protection des Données
+          (RGPD), vous disposez des droits suivants :
+        </div>
+        <ul class="list-inside list-disc my-20 ml-20">
+          <li>Accès à vos données personnelles</li>
+          <li>Rectification ou suppression</li>
+          <li>Limitation ou opposition au traitement</li>
+        </ul>
+        <div>
+          Pour exercer vos droits, contactez Pi-Code Studio à l’adresse suivante
+          : picode.studio@gmail.com
+        </div>
+      </div>
+      <div class="text-[20px] font-semibold">7. Modifications</div>
+      <div class="text-white/80 text-[15px]">
+        Cette politique peut être mise à jour à tout moment. La date de la
+        dernière mise à jour figure ci-dessous.
+      </div>
+      <div class="text-white/80 text-[12px]">
+        Dernière mise à jour : 6 mai 2025
+      </div>
+    </section>
+  </div>
 </Layout>

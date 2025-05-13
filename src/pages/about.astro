@@ -1,7 +1,73 @@
 ---
+import CardExperience from "@components/CardExperience.astro";
+import CardValue from "@components/CardValue.astro";
+import Mycard from "@components/MyCard.astro";
+import Spacer from "@components/Spacer.astro";
 import Layout from "@layouts/Layout.astro";
+import { experiences } from "@data/experiences";
+import { formations } from "@data/formations";
+import CardFormation from "@components/CardFormation.astro";
 ---
 
 <Layout>
-   
+  <div class="flex justify-center w-full px-20">
+    <div class="hidden lg:inline">
+      <Mycard />
+    </div>
+    <section class="flex flex-col items-center w-full lg:w-1200">
+      <div class="mt-135">
+        <ul class="flex flex-col space-y-10 text-center text-[15px] mx-20">
+          <a href="#valeurs" class="summary-bloc transition-colors rounded-10"
+            >Mes valeurs</a
+          >
+          <a href="#pro" class="summary-bloc rounded-10"
+            >Expériences professionnelles</a
+          >
+          <a href="#formations" class="summary-bloc rounded-10">Formations</a>
+        </ul>
+      </div>
+      <Spacer id="valeurs" />
+      <div class="mx-20">
+        <h2
+          class="text-[30px] md:text-[40px] lg:text-[50px] text-center font-semibold mb-30"
+        >
+          Mes valeurs
+        </h2>
+        <div
+          class="flex flex-col md:flex-row items-center md:space-x-20 xl:space-x-40 space-y-20 md:space-y-0"
+        >
+          <CardValue
+            title="Rigueur"
+            description="Je sais garder mon sang-froid et faire preuve de professionnalisme en toutes circonstances."
+          />
+          <CardValue
+            title="Ouverture d’esprit"
+            description="J’aime me tenir informé des dernières nouveautés et enrichir continuellement mes connaissances."
+          />
+          <CardValue
+            title="Agilité"
+            description="Je fais preuve d’une grande adaptabilité et suis capable de m’ajuster rapidement à toute nouvelle situation."
+          />
+        </div>
+      </div>
+      <Spacer id="pro" />
+      <div>
+        <h2
+          class="text-[30px] md:text-[40px] lg:text-[50px] text-center font-semibold"
+        >
+          Expériences professionnelles
+        </h2>
+        {experiences.map((exp) => <CardExperience {...exp} />)}
+      </div>
+      <Spacer id="formations" />
+      <h2
+        class="text-[30px] md:text-[40px] lg:text-[50px] text-center font-semibold"
+      >
+        Formations
+      </h2>
+      <div class="flex flex-col space-y-40 mt-20 lg:mt-50">
+        {formations.map((formation) => <CardFormation {...formation} />)}
+      </div>
+    </section>
+  </div>
 </Layout>

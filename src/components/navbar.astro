@@ -1,120 +1,110 @@
 ---
-import IconHome from "@icons/IconHome.astro"
+import IconHome from "@icons/IconHome.astro";
 import IconAbout from "@icons/IconAbout.astro";
 import IconContact from "@icons/IconContact.astro";
-import IconClose from "@icons/IconClose.astro"
+import IconClose from "@icons/IconClose.astro";
 import IconProject from "@icons/IconProject.astro";
 import IconStack from "@icons/IconStack.astro";
+import IconBurger from "@icons/IconBurger.astro";
 
 const { currentPath } = Astro.props;
 const currentPage = (currentPath.split("/").filter(Boolean)[0] ||
-   "home") as keyof typeof pageLabels;
+  "home") as keyof typeof pageLabels;
 
 const pageLabels = {
-   home: { label: "Accueil", icon: "home" },
-   about: { label: "À propos", icon: "about" },
-   contact: { label: "Contact", icon: "contact" },
+  home: { label: "Accueil", icon: "home" },
+  about: { label: "À propos", icon: "about" },
+  contact: { label: "Contact", icon: "contact" },
 };
 
-const label = pageLabels[currentPage]?.label ?? currentPage;
+const label = pageLabels[currentPage]?.label ?? "Navigation";
 const icon = pageLabels[currentPage]?.icon ?? "default";
 ---
 
-<!-- NAVBAR - mobile + pc version -->
+<!-- NAVBAR Label -->
 <div class="fixed top-35 z-50 lg:hidden">
-   <button
-      id="burger"
-      class="text-white bg-[#0d0c1786] px-50 py-10 rounded-full backdrop-blur-sm border border-card-border"
-   >
-      <div class="flex items-center space-x-5">
-         {
-            icon === "home" && (
-               <IconHome />
-            )
-         }
-         {
-            icon === "about" && (
-               <IconAbout />
-            )
-         }
-         {
-            icon === "contact" && (
-               <IconContact />
-            )
-         }
-         <div class="text-[16px] lg:text-[20px] font-medium">{label}</div>
-      </div>
-   </button>
+  <button
+    id="burger"
+    class="text-white bg-[#0d0c1786] px-50 py-10 rounded-full backdrop-blur-sm border border-card-border"
+  >
+    <div class="flex items-center space-x-5">
+       {icon === "default" && <IconBurger />}
+      {icon === "home" && <IconHome />}
+      {icon === "about" && <IconAbout />}
+      {icon === "contact" && <IconContact />}
+      <div class="text-[16px] lg:text-[20px] font-medium">{label}</div>
+    </div>
+  </button>
 </div>
 
 <!-- MENU mobile -->
 <div
-   id="mobileMenu"
-   class="hidden fixed inset-0 bg-black/80 z-40 flex flex-col items-center justify-center space-y-6 text-white text-lg lg:hidden backdrop-blur-sm"
+  id="mobileMenu"
+  class="hidden fixed inset-0 bg-black/80 z-40 flex flex-col items-center justify-center space-y-6 text-white text-lg lg:hidden backdrop-blur-sm"
 >
-   <button id="closeBurger">
-      <div
-         class="text-white bg-[#0d0c1786] mb-30 p-10 rounded-full border border-card-border"
-      >
-         <IconClose class="size-40" />
-      </div>
-   </button>
-   <a
-      href="/"
-      class={`navbar-item ${currentPage === "home" ? "navbar-active" : "navbar-non-active"}`}
-      >Accueil</a
-   >
-   <a
-      href="/about"
-      class={`navbar-item ${currentPage === "about" ? "navbar-active" : "navbar-non-active"}`}
-      >À propos</a
-   >
-   <span class="navbar-item navbar-non-active cursor-not-allowed text-white/50"
-      >⏳Stack</span
-   >
-   <span class="navbar-item navbar-non-active cursor-not-allowed text-white/50"
-      >⏳Projets</span
-   >
-   <a
-      href="/contact"
-      class={`navbar-item ${currentPage === "contact" ? "navbar-active" : "navbar-non-active"}`}
-      >Contact</a
-   >
+  <button id="closeBurger">
+    <div
+      class="text-white bg-[#0d0c1786] mb-30 p-10 rounded-full border border-card-border"
+    >
+      <IconClose class="size-40" />
+    </div>
+  </button>
+  <a
+    href="/"
+    class={`navbar-item ${currentPage === "home" ? "navbar-active" : "navbar-non-active"}`}
+    >Accueil</a
+  >
+  <a
+    href="/about"
+    class={`navbar-item ${currentPage === "about" ? "navbar-active" : "navbar-non-active"}`}
+    >À propos</a
+  >
+  <span class="navbar-item navbar-non-active cursor-not-allowed text-white/50"
+    >⏳Stack</span
+  >
+  <span class="navbar-item navbar-non-active cursor-not-allowed text-white/50"
+    >⏳Projets</span
+  >
+  <a
+    href="/contact"
+    class={`navbar-item ${currentPage === "contact" ? "navbar-active" : "navbar-non-active"}`}
+    >Contact</a
+  >
 </div>
 
 <!-- NAVBAR - PC Version -->
 <div
-   class="hidden lg:block lg:fixed text-white/80 mt-35 bg-[#0d0c1786] border-card-border border-1 size-fit rounded-full p-5 backdrop-blur-sm z-40"
+  class="hidden lg:block lg:fixed text-white/80 mt-35 bg-[#0d0c1786] border-card-border border-1 size-fit rounded-full p-5 backdrop-blur-sm z-40"
 >
-   <li class="flex space-x-15 text-[15px]">
-      <a
-         href="/"
-         class={`navbar-item ${currentPage === "home" ? "navbar-active" : "navbar-non-active"}`}
-      >
-         <IconHome />
-         <span>Accueil</span>
-      </a>
-      <a
-         href="/about"
-         class={`navbar-item ${currentPage === "about" ? "navbar-active" : "navbar-non-active"}`}
-      >
-         <IconAbout />
-         <span>À propos</span>
-      </a>
-      <span class="navbar-item navbar-non-active cursor-not-allowed">
-         <IconStack />
-         <span class="text-white/50">⏳Stack</span>
-      </span>
-      <span class="navbar-item navbar-non-active cursor-not-allowed">
-         <IconProject />
-         <span class="text-white/50">⏳Projets</span>
-      </span>
-      <a
-         href="/contact"
-         class={`navbar-item ${currentPage === "contact" ? "navbar-active" : "navbar-non-active"}`}
-      >
-         <IconContact />
-         <span>Contact</span>
-      </a>
-   </li>
+  <li class="flex space-x-15 text-[15px]">
+    <a
+      href="/"
+      class={`navbar-item ${currentPage === "home" ? "navbar-active" : "navbar-non-active"}`}
+    >
+      <IconHome />
+      <span>Accueil</span>
+    </a>
+    <a
+      href="/about"
+      class={`navbar-item ${currentPage === "about" ? "navbar-active" : "navbar-non-active"}`}
+    >
+      <IconAbout />
+      <span>À propos</span>
+    </a>
+    <span class="navbar-item navbar-non-active cursor-not-allowed">
+      <IconStack />
+      <span class="text-white/50">⏳Stack</span>
+    </span>
+    <span class="navbar-item navbar-non-active cursor-not-allowed">
+      <IconProject />
+      <span class="text-white/50">⏳Projets</span>
+    </span>
+    <a
+      href="/contact"
+      class={`navbar-item ${currentPage === "contact" ? "navbar-active" : "navbar-non-active"}`}
+    >
+      <IconContact />
+      <span>Contact</span>
+    </a>
+  </li>
 </div>

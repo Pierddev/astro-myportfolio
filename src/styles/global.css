@@ -35,7 +35,7 @@
 }
 
 .summary-bloc {
-        @apply border-1 border-card-border py-5 px-50 bg-linear-to-r hover:drop-shadow-summary from-gradient-blue/30 hover:from-gradient-blue via-background to-gradient-pink/30 hover:to-gradient-pink transition-colors;
+        @apply border-1 border-card-border py-5 px-50 bg-linear-to-r hover:drop-shadow-summary bg-white/10 hover:bg-white/20;
 }
 
 .spacer {
