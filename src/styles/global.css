@@ -50,3 +50,7 @@
 .legal-title {
   @apply text-20 font-semibold;
 }
+
+.form-input {
+  @apply bg-background rounded-10 pl-20 py-10 border-1 border-card-border;
+}

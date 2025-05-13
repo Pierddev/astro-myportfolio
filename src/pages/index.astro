@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Mycard from "../components/mycard.astro";
+import IconArrowRight from "../components/icons/IconArrowRight.astro";
 ---
 
 <Layout>
@@ -29,25 +30,9 @@ import Mycard from "../components/mycard.astro";
           Je recherche actuellement une alternance
         </p>
         <div class="flex items-center relative size-20">
-          <svg
+          <IconArrowRight
             class="absolute size-20 left-0 group-hover:left-10 transition-all ease-in-out"
-            height="21"
-            viewBox="0 0 21 21"
-            width="21"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g
-              fill="none"
-              fill-rule="evenodd"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              transform="translate(4 6)"
-            >
-              <path d="m9.5.497 4 4.002-4 4.001"></path>
-              <path d="m.5 4.5h13"></path>
-            </g>
-          </svg>
+          />
         </div>
       </a>
       <a

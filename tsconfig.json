@@ -5,12 +5,12 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@assets/*": ["src/assets/*"],
-      "@styles/*": ["src/styles/*"],
-      "@icons/*": ["src/components/icons/*"],
-      "@data/*": ["src/data/*"]
+      "@components/*": ["../components/*"],
+      "@layouts/*": ["../layouts/*"],
+      "@assets/*": ["../assets/*"],
+      "@styles/*": ["../styles/*"],
+      "@icons/*": ["../components/icons/*"],
+      "@data/*": ["../data/*"]
     }
   }
 }
