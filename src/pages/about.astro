@@ -1,7 +1,7 @@
 ---
 import CardExperience from "@components/CardExperience.astro";
 import CardValue from "@components/CardValue.astro";
-import Mycard from "@components/MyCard.astro";
+import Mycard from "@components/mycard.astro";
 import Spacer from "@components/Spacer.astro";
 import Layout from "@layouts/Layout.astro";
 import { experiences } from "@data/experiences";
@@ -10,11 +10,11 @@ import CardFormation from "@components/CardFormation.astro";
 ---
 
 <Layout>
-  <div class="flex justify-center w-full px-20">
+  <section class="flex justify-center w-full">
     <div class="hidden lg:inline">
       <Mycard />
     </div>
-    <section class="flex flex-col items-center w-full lg:w-1200">
+    <div class="flex flex-col items-center w-full lg:w-1200 mx-20">
       <div class="mt-135">
         <ul class="flex flex-col space-y-10 text-center text-[15px] mx-20">
           <a href="#valeurs" class="summary-bloc transition-colors rounded-10"
@@ -68,6 +68,6 @@ import CardFormation from "@components/CardFormation.astro";
       <div class="flex flex-col space-y-40 mt-20 lg:mt-50">
         {formations.map((formation) => <CardFormation {...formation} />)}
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </Layout>
