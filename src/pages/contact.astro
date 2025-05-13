@@ -2,15 +2,18 @@
 import LinkedInIcon from '@assets/icon-linkedin.svg'
 import Layout from "@layouts/Layout.astro";
 import Mycard from "@components/mycard.astro";
+import IconMail from '@icons/IconMail.astro';
 ---
 
 <Layout>
    <section class="flex justify-center w-full">
-      <Mycard />
-      <div class="flex flex-col items-center w-1000 pt-100 lg:pt-170">
+      <div class="hidden lg:inline">
+         <Mycard />
+      </div>
+      <div class="flex flex-col items-center w-1200 pt-100 lg:pt-170">
          <p class="text-[40px] lg:text-[50px] font-semibold">Me contacter,</p>
          <p
-            class="text-[12px] lg:text-[15px] font-semibold text-center text-white/70 mt-30 w-600 max-w-[80%]"
+            class="text-[12px] lg:text-[15px] text-center text-white/70 mt-30 w-600 max-w-[80%]"
          >
             Intéressé par mon profil ? N’hésitez pas à me contacter pour
             échanger ensemble !
@@ -19,27 +22,7 @@ import Mycard from "@components/mycard.astro";
             href="mailto:pierre.duault.pro@gmail.com"
             class="flex space-x-10 px-10 items-center bg-card hover:bg-white/10 border-1 border-card-border rounded-10 mt-30"
          >
-            <svg
-               class="size-40 text-white/80"
-               height="21"
-               viewBox="0 0 21 21"
-               width="21"
-               xmlns="http://www.w3.org/2000/svg"
-            >
-               <g
-                  fill="none"
-                  fill-rule="evenodd"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  transform="translate(3.5 4.5)"
-               >
-                  <path
-                     d="m0 2v8c0 1.1045695.8954305 2 2 2h10c1.1045695 0 2-.8954305 2-2v-8c0-1.1045695-.8954305-2-2-2h-10c-1.1045695 0-2 .8954305-2 2z"
-                  ></path>
-                  <path d="m2 3 5 3 5-3"></path>
-               </g>
-            </svg>
+            <IconMail class="size-40 text-white/80" />
             <div class="px-10 text-[15px] my-5">
                <p>Par mail à l'adresse suivante :</p>
                <p class="italic underline">pierre.duault.pro@gmail.com</p>

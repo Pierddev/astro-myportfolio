@@ -1,6 +1,23 @@
 ---
+import IconHome from "@icons/IconHome.astro"
+import IconAbout from "@icons/IconAbout.astro";
+import IconContact from "@icons/IconContact.astro";
+import IconClose from "@icons/IconClose.astro"
+import IconProject from "@icons/IconProject.astro";
+import IconStack from "@icons/IconStack.astro";
+
 const { currentPath } = Astro.props;
-const currentPage = currentPath.split("/").filter(Boolean)[0] || "home";
+const currentPage = (currentPath.split("/").filter(Boolean)[0] ||
+   "home") as keyof typeof pageLabels;
+
+const pageLabels = {
+   home: { label: "Accueil", icon: "home" },
+   about: { label: "À propos", icon: "about" },
+   contact: { label: "Contact", icon: "contact" },
+};
+
+const label = pageLabels[currentPage]?.label ?? currentPage;
+const icon = pageLabels[currentPage]?.icon ?? "default";
 ---
 
 <!-- NAVBAR - mobile + pc version -->
@@ -10,28 +27,22 @@ const currentPage = currentPath.split("/").filter(Boolean)[0] || "home";
       class="text-white bg-[#0d0c1786] px-50 py-10 rounded-full backdrop-blur-sm border border-card-border"
    >
       <div class="flex items-center space-x-5">
-         <svg
-            class="size-21"
-            height="21"
-            viewBox="0 0 21 21"
-            width="21"
-            xmlns="http://www.w3.org/2000/svg"
-         >
-            <g
-               fill="none"
-               fill-rule="evenodd"
-               stroke="currentColor"
-               stroke-linecap="round"
-               stroke-linejoin="round"
-               transform="translate(1 1)"
-            >
-               <path d="m.5 9.5 9-9 9 9"></path>
-               <path
-                  d="m2.5 10.5v4c0 1.1045695.8954305 2 2 2h10c1.1045695 0 2-.8954305 2-2v-4"
-               ></path>
-            </g>
-         </svg>
-         <div class="text-[16px] lg:text-[20px] font-medium">Accueil</div>
+         {
+            icon === "home" && (
+               <IconHome />
+            )
+         }
+         {
+            icon === "about" && (
+               <IconAbout />
+            )
+         }
+         {
+            icon === "contact" && (
+               <IconContact />
+            )
+         }
+         <div class="text-[16px] lg:text-[20px] font-medium">{label}</div>
       </div>
    </button>
 </div>
@@ -45,35 +56,30 @@ const currentPage = currentPath.split("/").filter(Boolean)[0] || "home";
       <div
          class="text-white bg-[#0d0c1786] mb-30 p-10 rounded-full border border-card-border"
       >
-         <svg
-            class="size-40"
-            height="21"
-            viewBox="0 0 21 21"
-            width="21"
-            xmlns="http://www.w3.org/2000/svg"
-         >
-            <g
-               fill="none"
-               fill-rule="evenodd"
-               stroke="currentColor"
-               stroke-linecap="round"
-               stroke-linejoin="round"
-            >
-               <path d="m7.5 7.5 6 6"></path>
-               <path d="m13.5 7.5-6 6"></path>
-            </g>
-         </svg>
+         <IconClose class="size-40" />
       </div>
    </button>
-   <a href="/" class={`navbar-item ${currentPage === "home" ? "navbar-active" : "navbar-non-active"}`}>Accueil</a>
-   <a href="/about" class={`navbar-item ${currentPage === "about" ? "navbar-active" : "navbar-non-active"}`}>À propos</a>
+   <a
+      href="/"
+      class={`navbar-item ${currentPage === "home" ? "navbar-active" : "navbar-non-active"}`}
+      >Accueil</a
+   >
+   <a
+      href="/about"
+      class={`navbar-item ${currentPage === "about" ? "navbar-active" : "navbar-non-active"}`}
+      >À propos</a
+   >
    <span class="navbar-item navbar-non-active cursor-not-allowed text-white/50"
       >⏳Stack</span
    >
    <span class="navbar-item navbar-non-active cursor-not-allowed text-white/50"
       >⏳Projets</span
    >
-   <a href="/contact" class={`navbar-item ${currentPage === "contact" ? "navbar-active" : "navbar-non-active"}`}>Contact</a>
+   <a
+      href="/contact"
+      class={`navbar-item ${currentPage === "contact" ? "navbar-active" : "navbar-non-active"}`}
+      >Contact</a
+   >
 </div>
 
 <!-- NAVBAR - PC Version -->
@@ -81,122 +87,34 @@ const currentPage = currentPath.split("/").filter(Boolean)[0] || "home";
    class="hidden lg:block lg:fixed text-white/80 mt-35 bg-[#0d0c1786] border-card-border border-1 size-fit rounded-full p-5 backdrop-blur-sm z-40"
 >
    <li class="flex space-x-15 text-[15px]">
-      <a href="/" class={`navbar-item ${currentPage === "home" ? "navbar-active" : "navbar-non-active"}`}>
-         <svg
-            class="size-21"
-            height="21"
-            viewBox="0 0 21 21"
-            width="21"
-            xmlns="http://www.w3.org/2000/svg"
-         >
-            <g
-               fill="none"
-               fill-rule="evenodd"
-               stroke="currentColor"
-               stroke-linecap="round"
-               stroke-linejoin="round"
-               transform="translate(1 1)"
-            >
-               <path d="m.5 9.5 9-9 9 9"></path>
-               <path
-                  d="m2.5 10.5v4c0 1.1045695.8954305 2 2 2h10c1.1045695 0 2-.8954305 2-2v-4"
-               ></path>
-            </g>
-         </svg>
-         <div>Accueil</div>
-      </a>
-      <a href="/about" class={`navbar-item ${currentPage === "about" ? "navbar-active" : "navbar-non-active"}`}>
-         <svg
-            class="size-21"
-            height="21"
-            viewBox="0 0 21 21"
-            width="21"
-            xmlns="http://www.w3.org/2000/svg"
-         >
-            <path
-               d="m7.5.5c1.65685425 0 3 1.34314575 3 3v2c0 1.65685425-1.34314575 3-3 3s-3-1.34314575-3-3v-2c0-1.65685425 1.34314575-3 3-3zm7 14v-.7281753c0-3.1864098-3.6862915-5.2718247-7-5.2718247s-7 2.0854149-7 5.2718247v.7281753c0 .5522847.44771525 1 1 1h12c.5522847 0 1-.4477153 1-1z"
-               fill="none"
-               stroke="currentColor"
-               stroke-linecap="round"
-               stroke-linejoin="round"
-               transform="translate(3 2)"></path>
-         </svg>
-         <div>A propos</div>
-      </a>
-      <span
-         class="navbar-item navbar-non-active cursor-not-allowed"
+      <a
+         href="/"
+         class={`navbar-item ${currentPage === "home" ? "navbar-active" : "navbar-non-active"}`}
       >
-         <svg
-            class="size-21"
-            height="21"
-            viewBox="0 0 21 21"
-            width="21"
-            xmlns="http://www.w3.org/2000/svg"
-         >
-            <g
-               fill="none"
-               fill-rule="evenodd"
-               stroke="currentColor"
-               stroke-linecap="round"
-               stroke-linejoin="round"
-               transform="translate(2 2)"
-            >
-               <path d="m.5 8.5 8 4 8.017-4"></path>
-               <path d="m.5 12.5 8 4 8.017-4"></path>
-               <path d="m.5 4.657 8.008 3.843 8.009-3.843-8.009-4.157z"></path>
-            </g>
-         </svg>
-         <div class="text-white/50">⏳Stack</div>
-      </span>
-      <span
-         class="navbar-item navbar-non-active cursor-not-allowed"
+         <IconHome />
+         <span>Accueil</span>
+      </a>
+      <a
+         href="/about"
+         class={`navbar-item ${currentPage === "about" ? "navbar-active" : "navbar-non-active"}`}
       >
-         <svg
-            class="size-21"
-            xmlns="http://www.w3.org/2000/svg"
-            width="21"
-            height="21"
-            viewBox="0 0 21 21"
-         >
-            <g
-               fill="none"
-               fill-rule="evenodd"
-               stroke="currentColor"
-               stroke-linecap="round"
-               stroke-linejoin="round"
-               transform="translate(2 3)"
-            >
-               <line x1="10.5" x2="6.5" y1=".5" y2="14.5"></line>
-               <polyline
-                  points="7.328 2.672 7.328 8.328 1.672 8.328"
-                  transform="rotate(135 4.5 5.5)"></polyline>
-               <polyline
-                  points="15.328 6.672 15.328 12.328 9.672 12.328"
-                  transform="scale(1 -1) rotate(-45 -10.435 0)"></polyline>
-            </g>
-         </svg>
-         <div class="text-white/50">⏳Projets</div>
+         <IconAbout />
+         <span>À propos</span>
+      </a>
+      <span class="navbar-item navbar-non-active cursor-not-allowed">
+         <IconStack />
+         <span class="text-white/50">⏳Stack</span>
       </span>
-      <a href="/contact" class={`navbar-item ${currentPage === "contact" ? "navbar-active" : "navbar-non-active"}`}>
-         <svg
-            class="size-21"
-            height="21"
-            viewBox="0 0 21 21"
-            width="21"
-            xmlns="http://www.w3.org/2000/svg"
-         >
-            <g fill="none" fill-rule="evenodd" transform="translate(2 3)">
-               <path
-                  d="m14.5.5c1.1045695 0 2 .8954305 2 2v10c0 1.1045695-.8954305 2-2 2l-2.999-.001-2.29389322 2.2938932c-.36048396.360484-.92771502.3882135-1.32000622.0831886l-.09420734-.0831886-2.29389322-2.2938932-2.999.001c-1.1045695 0-2-.8954305-2-2v-10c0-1.1045695.8954305-2 2-2z"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-               <path
-                  d="m8.49884033 8.5c.5 0 1-.5 1-1s-.5-1-1-1-.99884033.5-.99884033 1 .49884033 1 .99884033 1zm-4 0c.5 0 1-.5 1-1s-.5-1-1-1-.99884033.5-.99884033 1 .49884033 1 .99884033 1zm7.99999997 0c.5 0 1-.5 1-1s-.5-1-1-1-.9988403.5-.9988403 1 .4988403 1 .9988403 1z"
-                  fill="currentColor"></path>
-            </g>
-         </svg>
-         <div>Contact</div>
+      <span class="navbar-item navbar-non-active cursor-not-allowed">
+         <IconProject />
+         <span class="text-white/50">⏳Projets</span>
+      </span>
+      <a
+         href="/contact"
+         class={`navbar-item ${currentPage === "contact" ? "navbar-active" : "navbar-non-active"}`}
+      >
+         <IconContact />
+         <span>Contact</span>
       </a>
    </li>
 </div>
