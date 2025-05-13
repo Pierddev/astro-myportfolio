@@ -1,11 +1,11 @@
 ---
-import IconHome from "@icons/IconHome.astro";
-import IconAbout from "@icons/IconAbout.astro";
-import IconContact from "@icons/IconContact.astro";
-import IconClose from "@icons/IconClose.astro";
-import IconProject from "@icons/IconProject.astro";
-import IconStack from "@icons/IconStack.astro";
-import IconBurger from "@icons/IconBurger.astro";
+import IconHome from "src/components/icons/IconHome.astro";
+import IconAbout from "src/components/icons/IconAbout.astro";
+import IconContact from "src/components/icons/IconContact.astro";
+import IconClose from "src/components/icons/IconClose.astro";
+import IconProject from "src/components/icons/IconProject.astro";
+import IconStack from "src/components/icons/IconStack.astro";
+import IconBurger from "src/components/icons/IconBurger.astro";
 
 const { currentPath } = Astro.props;
 const currentPage = (currentPath.split("/").filter(Boolean)[0] ||
@@ -28,7 +28,7 @@ const icon = pageLabels[currentPage]?.icon ?? "default";
     class="text-white bg-[#0d0c1786] px-50 py-10 rounded-full backdrop-blur-sm border border-card-border"
   >
     <div class="flex items-center space-x-5">
-       {icon === "default" && <IconBurger />}
+      {icon === "default" && <IconBurger />}
       {icon === "home" && <IconHome />}
       {icon === "about" && <IconAbout />}
       {icon === "contact" && <IconContact />}
