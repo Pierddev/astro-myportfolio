@@ -1,0 +1,55 @@
+---
+import IconArrowRight from "./icons/IconArrowRight.astro";
+---
+
+<div
+	class="bloc-card flex flex-col space-y-20 sm:space-y-30 items-center px-20 sm:px-60 py-20 sm:py-30 rounded-30 sm:rounded-45 mx-20"
+>
+	<span class="font-semibold text-20">Envoyez-moi un message !</span>
+	<form
+		action="https://formspree.io/f/xnndozwr"
+		method="POST"
+		class="flex flex-col space-y-20 sm:space-y-30"
+	>
+		<div class="flex flex-wrap sm:flex-nowrap">
+			<label for="name" class="sr-only">Votre nom et prénom :</label>
+			<input
+				id="name"
+				type="text"
+				name="Name"
+				placeholder="Nom Prenom"
+				class="form-input sm:mr-40 w-full"
+			/>
+			<label for="email" class="sr-only">Votre adresse email :</label>
+			<input
+				id="email"
+				type="email"
+				name="Email"
+				placeholder="example@mail.com"
+				class="form-input w-full mt-20 sm:mt-0"
+			/>
+		</div>
+		<label for="subject" class="sr-only">Sujet de votre message :</label>
+		<input
+			id="subject"
+			type="text"
+			name="Sujet"
+			placeholder="Sujet"
+			class="form-input"
+		/>
+		<label for="message" class="sr-only">Votre message :</label>
+		<textarea
+			id="message"
+			name="Message"
+			placeholder="Message"
+			rows="6"
+			class="form-input focus:outline-none resize-y"></textarea>
+		<button
+			type="submit"
+			class="flex w-fit items-center bg-white/10 hover:bg-white/20 transition-colors px-20 py-5 space-x-10 rounded-10 border-1 cursor-pointer border-card-border"
+		>
+			<span>Envoyer</span>
+			<IconArrowRight />
+		</button>
+	</form>
+</div>

@@ -10,64 +10,64 @@ import CardFormation from "../components/CardFormation.astro";
 ---
 
 <Layout>
-  <section class="flex justify-center w-full">
-    <div class="hidden lg:inline">
-      <Mycard />
-    </div>
-    <div class="flex flex-col items-center w-full lg:w-1200 px-20">
-      <div class="mt-135">
-        <ul class="flex flex-col space-y-10 text-center text-15 mx-20">
-          <a href="#valeurs" class="summary-bloc transition-colors rounded-10"
-            >Mes valeurs</a
-          >
-          <a href="#pro" class="summary-bloc rounded-10"
-            >Expériences professionnelles</a
-          >
-          <a href="#formations" class="summary-bloc rounded-10">Formations</a>
-        </ul>
-      </div>
-      <Spacer id="valeurs" />
-      <div class="mx-20">
-        <h2
-          class="text-30 md:text-40 lg:text-50 text-center font-semibold mb-30"
-        >
-          Mes valeurs
-        </h2>
-        <div
-          class="flex flex-col md:flex-row items-center md:space-x-20 xl:space-x-40 space-y-20 md:space-y-0"
-        >
-          <CardValue
-            title="Rigueur"
-            description="Je sais garder mon sang-froid et faire preuve de professionnalisme en toutes circonstances."
-          />
-          <CardValue
-            title="Ouverture d’esprit"
-            description="J’aime me tenir informé des dernières nouveautés et enrichir continuellement mes connaissances."
-          />
-          <CardValue
-            title="Agilité"
-            description="Je fais preuve d’une grande adaptabilité et suis capable de m’ajuster rapidement à toute nouvelle situation."
-          />
-        </div>
-      </div>
-      <Spacer id="pro" />
-      <div>
-        <h2
-          class="text-30 md:text-40 lg:text-50 text-center font-semibold"
-        >
-          Expériences professionnelles
-        </h2>
-        {experiences.map((exp) => <CardExperience {...exp} />)}
-      </div>
-      <Spacer id="formations" />
-      <h2
-        class="text-30 md:text-40 lg:text-50 text-center font-semibold"
-      >
-        Formations
-      </h2>
-      <div class="flex flex-col space-y-40 mt-20 lg:mt-50">
-        {formations.map((formation) => <CardFormation {...formation} />)}
-      </div>
-    </div>
-  </section>
+	<section class="flex justify-center w-full">
+		<div class="hidden lg:inline">
+			<Mycard />
+		</div>
+		<div class="flex flex-col items-center w-full lg:w-1200 px-20">
+			<div class="mt-135">
+				<ul class="flex flex-col space-y-10 text-center text-15 mx-20">
+					<a
+						href="#valeurs"
+						class="summary-bloc transition-colors rounded-10"
+						>Mes valeurs</a
+					>
+					<a href="#pro" class="summary-bloc rounded-10"
+						>Expériences professionnelles</a
+					>
+					<a href="#formations" class="summary-bloc rounded-10"
+						>Formations</a
+					>
+				</ul>
+			</div>
+			<Spacer id="valeurs" />
+			<div class="mx-20">
+				<h2
+					class="text-30 md:text-40 lg:text-50 text-center font-semibold mb-30"
+				>
+					Mes valeurs
+				</h2>
+				<div
+					class="flex flex-col md:flex-row items-center md:space-x-20 xl:space-x-40 space-y-20 md:space-y-0"
+				>
+					<CardValue
+						title="Rigueur"
+						description="Je sais garder mon sang-froid et faire preuve de professionnalisme en toutes circonstances."
+					/>
+					<CardValue
+						title="Ouverture d’esprit"
+						description="J’aime me tenir informé des dernières nouveautés et enrichir continuellement mes connaissances."
+					/>
+					<CardValue
+						title="Agilité"
+						description="Je fais preuve d’une grande adaptabilité et suis capable de m’ajuster rapidement à toute nouvelle situation."
+					/>
+				</div>
+			</div>
+			<Spacer id="pro" />
+			<div>
+				<h2 class="text-30 md:text-40 lg:text-50 text-center font-semibold">
+					Expériences professionnelles
+				</h2>
+				{experiences.map((exp) => <CardExperience {...exp} />)}
+			</div>
+			<Spacer id="formations" />
+			<h2 class="text-30 md:text-40 lg:text-50 text-center font-semibold">
+				Formations
+			</h2>
+			<div class="flex flex-col space-y-40 mt-20 lg:mt-50">
+				{formations.map((formation) => <CardFormation {...formation} />)}
+			</div>
+		</div>
+	</section>
 </Layout>
