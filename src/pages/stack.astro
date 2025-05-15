@@ -1,0 +1,46 @@
+---
+import Spacer from "src/components/Spacer.astro";
+import Mycard from "../components/mycard.astro";
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import {
+	stackOutils,
+	stackLangages,
+	stackBDD,
+	stackCyber,
+} from "../data/stack";
+import logoVSC from "../assets/stacks/vsc.webp";
+import CardStack from "src/components/CardStack.astro";
+import StackCategorie from "src/components/StackCategorie.astro";
+---
+
+<Layout>
+	<section class="flex flex-col lg:flex-row justify-center w-full">
+		<div class="hidden lg:inline">
+			<Mycard />
+		</div>
+		<div
+			class="flex flex-col space-y-30 items-center text-center w-full lg:w-1200 pt-100 lg:pt-150"
+		>
+			<div class="flex flex-col">
+				<span class="text-50 font-semibold">Stack Technique</span>
+				<span class="text-15 font-medium max-w-600"
+					>Un aperçu des technologies que j’utilise ou ai utilisées pour
+					développer des applications web efficaces et actuelles.</span
+				>
+			</div>
+			<StackCategorie
+				title="Langages & Frameworks"
+				loading="eager"
+				items={stackLangages}
+			/>
+			<StackCategorie
+				title="Outils de développement"
+				loading="eager"
+				items={stackOutils}
+			/>
+			<StackCategorie title="Base de données & Serveurs" items={stackBDD} />
+			<StackCategorie title="Cybersécurité & Réseau" items={stackCyber} />
+		</div>
+	</section>
+</Layout>

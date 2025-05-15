@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+	logoSrc: ImageMetadata;
+	name: string;
+	url: string;
+	loading?: "lazy" | "eager";
+}
+
+const { logoSrc, name, url, loading = "lazy" } = Astro.props;
+---
+
+<a
+	href={url}
+	target="_blank"
+	class="group flex space-x-15 items-center bloc-card rounded-full w-fit py-10 px-20 hover:rotate-5 hover:scale-110 transition-all"
+>
+	<Image
+		src={logoSrc}
+		alt={`Logo de ${name}`}
+		class="h-30 w-auto"
+		loading={loading}
+	/>
+	<span class="group-hover:text-lavande-fonce transition-all">{name}</span>
+</a>

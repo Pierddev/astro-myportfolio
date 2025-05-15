@@ -11,6 +11,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.6",
     "astro": "^5.7.12",
+    "astro-show-tailwindcss-breakpoint": "^1.0.9",
     "concurrently": "^9.1.2",
     "tailwindcss": "^4.1.6"
   }

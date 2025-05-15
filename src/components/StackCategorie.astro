@@ -1,0 +1,22 @@
+---
+import Spacer from "./Spacer.astro";
+import CardStack from "src/components/CardStack.astro";
+
+import type { StackItem } from "../data/stack"; // ou le chemin exact si besoin
+
+interface Props {
+	title: string;
+	items: StackItem[];
+	loading?: "lazy" | "eager";
+}
+
+const { title, items, loading = "lazy" } = Astro.props as Props;
+---
+
+<div class="flex flex-col items-center mt-50">
+	<span class="text-30 font-semibold">{title}</span>
+	<Spacer class="my-20" />
+	<div class="flex gap-15 flex-wrap justify-center">
+		{items.map((item) => <CardStack loading={loading} {...item} />)}
+	</div>
+</div>

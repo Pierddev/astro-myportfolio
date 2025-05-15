@@ -1,5 +1,5 @@
 ---
-const { id } = Astro.props;
+const { id, class: classname = "my-20 lg:my-30 xl:my-70" } = Astro.props;
 ---
 
-<div id={id} class="spacer my-20 lg:my-30 xl:my-70"></div>
+<div id={id} class={`spacer ${classname}`}></div>
