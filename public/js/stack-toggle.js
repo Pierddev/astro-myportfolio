@@ -6,12 +6,15 @@ document.addEventListener("DOMContentLoaded", () => {
 		const id = button.getAttribute("data-stack-toggle");
 		const items = document.querySelectorAll(`.stack-item-${id}`);
 		const label = button.querySelector("span");
-
+		
 		let expanded = false;
-
+		
 		button.addEventListener("click", () => {
 			expanded = !expanded;
 			button.setAttribute("data-expanded", expanded.toString());
+
+			// désactive temporairement le hover
+			button.classList.add("pointer-events-none");
 
 			items.forEach((el, i) => {
 				if (i >= 5) {
@@ -37,6 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
 				chevron.classList.toggle("rotate-180", expanded);
 				chevron.classList.toggle("rotate-0", !expanded);
 			}
+
+			// réactive les événements après la transition
+			setTimeout(() => {
+				button.classList.remove("pointer-events-none");
+			}, 300);
 		});
 	});
 });
