@@ -14,12 +14,12 @@ const { logoSrc, name, url, loading = "lazy" } = Astro.props;
 <a
 	href={url}
 	target="_blank"
-	class="group flex space-x-15 items-center bloc-card rounded-full w-fit py-10 px-20 hover:rotate-5 hover:scale-110 transition-all"
+	class="group flex space-x-15 items-center bloc-card rounded-full w-fit py-10 px-20 ease-spring hover:rotate-5 hover:scale-110 transition-all duration-300"
 >
 	<Image
 		src={logoSrc}
 		alt={`Logo de ${name}`}
-		class="h-30 w-auto"
+		class="h-20 sm:h-30 w-auto"
 		loading={loading}
 	/>
 	<span class="group-hover:text-lavande-fonce transition-all">{name}</span>

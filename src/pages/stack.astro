@@ -15,7 +15,7 @@ import StackCategorie from "src/components/StackCategorie.astro";
 ---
 
 <Layout>
-	<section class="flex flex-col lg:flex-row justify-center w-full">
+	<section class="flex flex-col lg:flex-row justify-center w-full ml-20 lg:ml-0 mr-20">
 		<div class="hidden lg:inline">
 			<Mycard />
 		</div>
@@ -23,8 +23,8 @@ import StackCategorie from "src/components/StackCategorie.astro";
 			class="flex flex-col space-y-30 items-center text-center w-full lg:w-1200 pt-100 lg:pt-150"
 		>
 			<div class="flex flex-col">
-				<span class="text-50 font-semibold">Stack Technique</span>
-				<span class="text-15 font-medium max-w-600"
+				<span class="text-40 sm:text-50 font-semibold">Stack Technique</span>
+				<span class="text-12 sm:text-15 font-medium max-w-600"
 					>Un aperçu des technologies que j’utilise ou ai utilisées pour
 					développer des applications web efficaces et actuelles.</span
 				>
@@ -43,4 +43,5 @@ import StackCategorie from "src/components/StackCategorie.astro";
 			<StackCategorie title="Cybersécurité & Réseau" items={stackCyber} />
 		</div>
 	</section>
+	<script type="module" src="/js/stack-toggle.js"></script>
 </Layout>

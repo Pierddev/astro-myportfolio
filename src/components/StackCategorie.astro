@@ -1,6 +1,7 @@
 ---
 import Spacer from "./Spacer.astro";
 import CardStack from "src/components/CardStack.astro";
+import IconArrowDown from "./icons/IconArrowDown.astro";
 
 import type { StackItem } from "../data/stack"; // ou le chemin exact si besoin
 
@@ -11,12 +12,54 @@ interface Props {
 }
 
 const { title, items, loading = "lazy" } = Astro.props as Props;
+
+const visibleCount = 5;
+
+function slugify(text: string) {
+	return text
+		.toLowerCase()
+		.normalize("NFD")
+		.replace(/[\u0300-\u036f]/g, "")
+		.replace(/\s+/g, "-")
+		.replace(/[^\w\-]+/g, "")
+		.replace(/\-\-+/g, "-")
+		.replace(/^-+/, "")
+		.replace(/-+$/, "");
+}
+
+const id = slugify(title);
 ---
 
-<div class="flex flex-col items-center mt-50">
-	<span class="text-30 font-semibold">{title}</span>
+<div class="flex flex-col items-center mt-50" id={`stack-${id}`}>
+	<span class="text-25 sm:text-30 font-semibold">{title}</span>
 	<Spacer class="my-20" />
-	<div class="flex gap-15 flex-wrap justify-center">
-		{items.map((item) => <CardStack loading={loading} {...item} />)}
-	</div>
+
+	<ul class="flex flex-wrap justify-center gap-15 transition-all duration-300">
+		{
+			items.map((item, index) => (
+				<li
+					class={`stack-item-${id} ${
+						index >= visibleCount
+							? "hidden opacity-0 scale-90 transition-all duration-300"
+							: ""
+					}`}
+				>
+					<CardStack {...item} loading={loading} />
+				</li>
+			))
+		}
+	</ul>
+
+	{
+		items.length > visibleCount && (
+			<button
+				type="button"
+				class="bloc-card group flex space-x-5 rounded-full w-fit py-10 pl-20 pr-15 cursor-pointer hover:opacity-80 hover:scale-105 transition mt-15"
+				data-stack-toggle={id}
+			>
+				<span>Voir plus</span>
+				<IconArrowDown class="transition-transform ease-spring duration-400 group-data-[expanded=true]:rotate-180 group-hover:rotate-180 group-data-[expanded=true]:group-hover:rotate-0" />
+			</button>
+		)
+	}
 </div>

@@ -30,7 +30,6 @@ import logoMongodb from "../assets/stacks/mongodb.webp";
 import logoSynology from "../assets/stacks/synology.webp";
 import logoSqlite from "../assets/stacks/sqlite.webp";
 
-
 export interface StackItem {
 	logoSrc: typeof logoVSC;
 	name: string;

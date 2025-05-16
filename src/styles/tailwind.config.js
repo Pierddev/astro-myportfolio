@@ -7,11 +7,16 @@ const pxRounded = Object.fromEntries(
 );
 
 export default {
-  theme: {
-    spacing: Object.fromEntries(
-      [...Array(9999).keys()].map((i) => [i, `${i}px`])
-    ),
-    fontSize: pxFontSizes,
-    borderRadius: pxRounded,
-  },
+	theme: {
+		extend: {
+			transitionTimingFunction: {
+				spring: "cubic-bezier(0.34, 1.76, 0.64, 1)", // effet ressort
+			},
+		},
+		spacing: Object.fromEntries(
+			[...Array(9999).keys()].map((i) => [i, `${i}px`])
+		),
+		fontSize: pxFontSizes,
+		borderRadius: pxRounded,
+	},
 };
