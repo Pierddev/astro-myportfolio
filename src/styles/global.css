@@ -54,3 +54,7 @@
 .form-input {
   @apply bg-background rounded-10 pl-20 py-10 border-1 border-card-border;
 }
+
+.gradient-button {
+  @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500;
+}

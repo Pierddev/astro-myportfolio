@@ -1,23 +1,77 @@
 ---
 import "../styles/global.css";
-import background from '../assets/background.svg';
-import Navbar from '../components/navbar.astro'
+import background from "../assets/background.svg";
+import Navbar from "../components/navbar.astro";
 import Footer from "../components/footer.astro";
+
 const pathname = Astro.url.pathname;
+const { title = "Développeur Full Stack" } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" href="/picode.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- SEO -->
+		<title>Pierre | {title}</title>
+		<meta
+			name="description"
+			content="Portfolio de Pierre Duault, développeur web full stack freelance basé à Rennes. Découvrez ses projets, compétences, stack et contactez-le pour vos besoins en développement web."
+		/>
+		<meta
+			name="keywords"
+			content="Pierre Duault, développeur web, freelance, Rennes, portfolio, full stack, Pi-Code Studio"
+		/>
+		<meta name="author" content="Pierre Duault" />
+
+		<!-- Open Graph -->
+		<meta
+			property="og:image"
+			content="https://pierre-duault.fr/og-image.jpg"
+		/>
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta
+			name="twitter:image"
+			content="https://pierre-duault.fr/og-image.jpg"
+		/>
+
+		<!-- Twitter Card (facultatif) -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta
+			name="twitter:title"
+			content="Pierre Duault – Développeur Web Freelance"
+		/>
+		<meta
+			name="twitter:description"
+			content="Portfolio de développeur web full stack basé à Rennes."
+		/>
+		<meta
+			name="twitter:image"
+			content="https://pierre-duault.fr/og-image.jpg"
+		/>
+
+		<!-- Favicon -->
+		<link rel="icon" href="/picode.ico" />
+
+		<!-- Générateur (Astro) -->
 		<meta name="generator" content={Astro.generator} />
-		<title>DUAULT Pierre</title>
 	</head>
 	<body class="relative bg-background text-white max-w-screen">
 		<div class="flex justify-center">
-			<img class="blur-[100px] fixed w-full -z-10" id="background" src={background.src} alt="" fetchpriority="high" />
+			<img
+				class="blur-[100px] fixed w-full -z-10"
+				id="background"
+				src={background.src}
+				alt=""
+				fetchpriority="high"
+			/>
 			<Navbar currentPath={pathname} />
 			<slot />
 		</div>

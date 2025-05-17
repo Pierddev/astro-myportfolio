@@ -2,81 +2,113 @@
 import { Image } from "astro:assets";
 
 interface Mission {
-  title: string;
-  description: string;
+	title: string;
+	description: string;
 }
 
 interface Props {
-  date: string;
-  poste: string;
-  entreprise: string;
-  lieu: string;
-  logoSrc: ImageMetadata;
-  logoAlt: string;
-  missions: Mission[];
+	date: string;
+	poste: string;
+	entreprise: string;
+	lieu: string;
+	logoSrc: ImageMetadata;
+	logoAlt: string;
+	missions: Mission[];
 }
 
 const {
-  date,
-  poste,
-  entreprise,
-  lieu,
-  logoSrc,
-  logoAlt,
-  missions = [],
+	date,
+	poste,
+	entreprise,
+	lieu,
+	logoSrc,
+	logoAlt,
+	missions = [],
 } = Astro.props as Props;
 ---
 
 <div class="mt-20 lg:mt-70 grid grid-cols-10 gap-20">
-  <!-- Infos à gauche -->
-  <div
-    class="col-start-1 col-end-11 md:col-span-3 top-0 flex items-center justify-center space-x-15 text-center md:text-left w-full md:w-fit"
-  >
-    <div class="hidden lg:flex items-center justify-center relative">
-      <div class="size-20 rounded-full bg-white/10"></div>
-      <div class="absolute size-10 rounded-full bg-white/70"></div>
-    </div>
-    <div>
-      <div class="text-12 text-white/70">{date}</div>
-      <div class="text-20 font-semibold">{poste}</div>
-      <div class="text-15 text-white/70">{entreprise}</div>
-      <div class="flex items-center justify-center md:justify-start space-x-5">
-        <!-- Icône de localisation -->
-        <svg
-          class="size-17 -ml-2"
-          height="21"
-          viewBox="0 0 21 21"
-          width="21"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g
-            fill="none"
-            fill-rule="evenodd"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            transform="translate(4 2)"
-          >
-            <path
-              d="m6.5 16.5407715.6311176-.7118691c.71585099-.8191184 1.36011688-1.5983525 1.93279767-2.3377022l.4733382-.6239608c1.97516433-2.6615039 2.96274653-4.77276704 2.96274653-6.33378943 0-3.33218241-2.6862915-6.03344997-6-6.03344997s-6 2.70126756-6 6.03344997c0 1.56102239.98758218 3.67228553 2.96274653 6.33378943l.4733382.6239608c.73630387.9505925 1.5909423 1.9671163 2.56391527 3.0495713z"
-            ></path>
-            <circle cx="6.5" cy="6.5" r="2.5"></circle>
-          </g>
-        </svg>
-        <div class="text-12 text-white/70">{lieu}</div>
-      </div>
-    </div>
-  </div>
+	<!-- Infos à gauche -->
+	<div
+		class="col-start-1 col-end-11 md:col-span-3 top-0 flex items-center justify-center space-x-15 text-center md:text-left w-full md:w-fit"
+	>
+		<div class="hidden lg:flex items-center justify-center relative">
+			<div class="size-20 rounded-full bg-white/10"></div>
+			<div class="absolute size-10 rounded-full bg-white/70"></div>
+		</div>
+		<div>
+			<div class="text-12 text-white/70">{date}</div>
+			<div class="text-20 font-semibold">{poste}</div>
+			<div class="text-15 text-white/70">{entreprise}</div>
+			<div
+				class="flex items-center justify-center md:justify-start space-x-5"
+			>
+				<!-- Icône de localisation -->
+				<svg
+					class="size-17 -ml-2"
+					height="21"
+					viewBox="0 0 21 21"
+					width="21"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<g
+						fill="none"
+						fill-rule="evenodd"
+						stroke="currentColor"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						transform="translate(4 2)"
+					>
+						<path
+							d="m6.5 16.5407715.6311176-.7118691c.71585099-.8191184 1.36011688-1.5983525 1.93279767-2.3377022l.4733382-.6239608c1.97516433-2.6615039 2.96274653-4.77276704 2.96274653-6.33378943 0-3.33218241-2.6862915-6.03344997-6-6.03344997s-6 2.70126756-6 6.03344997c0 1.56102239.98758218 3.67228553 2.96274653 6.33378943l.4733382.6239608c.73630387.9505925 1.5909423 1.9671163 2.56391527 3.0495713z"
+						></path>
+						<circle cx="6.5" cy="6.5" r="2.5"></circle>
+					</g>
+				</svg>
+				<div class="text-12 text-white/70">{lieu}</div>
+			</div>
+		</div>
+	</div>
 
-  <!-- Logo -->
-  <div
-    class="col-start-1 col-end-11 md:col-start-4 md:col-end-11 flex items-center justify-center w-full h-160 bg-white rounded-30 overflow-hidden"
-  >
-    <Image src={logoSrc} alt={logoAlt} width={0} height={150} class="" />
-  </div>
+	<!-- Logo -->
+	<div
+		class="col-start-2 col-end-10 md:col-start-5 md:col-end-10 flex items-center justify-center w-full h-160 bg-white rounded-30 overflow-hidden"
+	>
+		<Image src={logoSrc} alt={logoAlt} width={0} height={150} class="" />
+	</div>
 
-  <!-- Liste des missions -->
-  <ul
+	<div
+		class="col-start-1 col-end-11 md:col-start-4 md:col-end-11 text-15 max-w-800"
+	>
+		<!-- Bouton -->
+		<div class="flex w-full justify-center">
+			<button
+				class="group toggle-missions relative flex items-center justify-center overflow-hidden rounded-full py-10 w-200 transition"
+			>
+				<div
+					class="gradient-bg absolute gradient-button h-full w-400 -left-50 group-hover:-left-150 group-[.active]:group-hover:-left-50 transition-all ease-spring duration-400 -z-10"
+				>
+				</div>
+				<span>Voir le détail</span>
+			</button>
+		</div>
+		<!-- Liste des missions -->
+		<ul
+			class="missions-list overflow-hidden max-h-0 transition-[max-height] duration-600 ease-in-out text-15 list-disc space-y-10 max-w-800 mt-10"
+		>
+			{
+				missions.map((mission) => (
+					<li>
+						<span class="font-medium">{mission.title} :</span>
+						<span class="text-white/70"> {mission.description}</span>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</div>
+
+<!-- <ul
     class="col-start-1 col-end-11 md:col-start-4 md:col-end-11 text-15 list-disc space-y-10 max-w-800"
   >
     {
@@ -87,5 +119,4 @@ const {
         </li>
       ))
     }
-  </ul>
-</div>
+  </ul> -->

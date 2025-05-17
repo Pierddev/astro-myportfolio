@@ -18,7 +18,7 @@ import ContactForm from "src/components/ContactForm.astro";
 			</p>
 			<a
 				href="/contact"
-				class="group flex space-x-15 items-center bg-card border-card-border border-1 hover:text-white text-white/60 mt-60 px-20 rounded-full transition-colors"
+				class="group order-first lg:order-0 flex space-x-15 items-center bg-card border-card-border border-1 hover:text-white text-white/60 mt-20 lg:mt-60 mb-20 lg:mb-0 px-20 rounded-full transition-colors"
 			>
 				<span class="relative flex size-10">
 					<span
@@ -37,9 +37,9 @@ import ContactForm from "src/components/ContactForm.astro";
 					/>
 				</div>
 			</a>
-         <div class="mt-30">
-            <ContactForm />
-         </div>
+			<div class="mt-30">
+			   <ContactForm />
+			</div>
 		</div>
 	</section>
 </Layout>
