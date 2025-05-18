@@ -2,7 +2,11 @@
 import Layout from "../layouts/Layout.astro";
 import Mycard from "../components/mycard.astro";
 import IconArrowRight from "../components/icons/IconArrowRight.astro";
+import IconArrowTopRight from "../components/icons/iconArrowTopRight.astro";
 import ContactForm from "src/components/ContactForm.astro";
+import Spacer from "src/components/Spacer.astro";
+import logoAstro from "../assets/stacks/astro.webp";
+import { Image } from "astro:assets";
 ---
 
 <Layout>
@@ -37,8 +41,42 @@ import ContactForm from "src/components/ContactForm.astro";
 					/>
 				</div>
 			</a>
-			<div class="mt-30">
-			   <ContactForm />
+			<div class="flex flex-col w-full justify-center items-center mt-60">
+				<span class="text-30 font-semibold">Mon choix du moment</span>
+				<Spacer class="my-20" />
+				<div class="bloc-card relative flex rounded-45 p-30">
+					<Image
+						src={logoAstro}
+						alt="Logo du Framework Astro"
+						width={100}
+					/>
+					<div class="w-1 h-full bg-card-border mx-30"></div>
+					<div class="text-center">
+						<div class="text-30 font-semibold">Astro</div>
+						<div class="max-w-500">
+							<div>
+								Un framework ultra rapide, simple et moderne pour créer
+								des sites performants avec une structure propre et
+								flexible.
+							</div>
+							<div>
+								Mon portfolio est entièrement construit avec Astro.
+							</div>
+						</div>
+					</div>
+					<div class="w-1 h-full bg-card-border mx-30"></div>
+					<a
+						href="https://astro.build/"
+						class="text-white/50"
+						target="_blank"
+					>
+						<IconArrowTopRight class="size-100" />
+						<span>En savoir plus</span>
+					</a>
+				</div>
+			</div>
+			<div class="mt-50">
+				<ContactForm />
 			</div>
 		</div>
 	</section>
