@@ -44,37 +44,43 @@ import { Image } from "astro:assets";
 			<div class="flex flex-col w-full justify-center items-center mt-60">
 				<span class="text-30 font-semibold">Mon choix du moment</span>
 				<Spacer class="my-20" />
-				<div class="bloc-card relative flex rounded-45 p-30">
-					<Image
-						src={logoAstro}
-						alt="Logo du Framework Astro"
-						width={100}
-					/>
-					<div class="w-1 h-full bg-card-border mx-30"></div>
-					<div class="text-center">
-						<div class="text-30 font-semibold">Astro</div>
-						<div class="max-w-500">
-							<div>
-								Un framework ultra rapide, simple et moderne pour créer
-								des sites performants avec une structure propre et
-								flexible.
-							</div>
-							<div>
-								Mon portfolio est entièrement construit avec Astro.
+				<div
+					class="bloc-card relative flex items-center space-y-20 lg:space-y-0 rounded-45 p-15 xl:p-30 mx-20 xl:mx-0"
+				>
+				<Image
+					class="w-50 h-63 xl:w-100 xl:h-auto ml-15 xl:ml-0"
+					src={logoAstro}
+					alt="Logo du Framework Astro"
+					loading={"eager"}
+				/>
+				<div class="spacer-choice"></div>
+					<div class="flex flex-col lg:flex-row items-center justify-center space-y-30 lg:space-y-0">
+						<div class="text-center">
+							<div class="text-20 lg:text-25 xl:text-30 font-semibold">Astro</div>
+							<div class="text-12 lg:text-15 max-w-320 xl:max-w-500">
+								<div>
+									Un framework ultra rapide, simple et moderne pour
+									créer des sites performants avec une structure propre
+									et flexible.
+								</div>
+								<div>
+									Mon portfolio est entièrement construit avec Astro.
+								</div>
 							</div>
 						</div>
+						<div class="spacer-choice hidden lg:inline"></div>
+						<a
+							href="https://astro.build/"
+							class="flex lg:flex-col justify-center items-center text-white/50 hover:text-white transition bg-card border-1 border-card-border lg:border-none lg:bg-transparent rounded-full pr-20 lg:pr-0 pl-10 lg:pl-0"
+							target="_blank"
+						>
+							<IconArrowTopRight class="size-30 lg:size-50 xl:size-75" />
+							<span class="text-12 xl:text-15">En savoir plus</span>
+						</a>
 					</div>
-					<div class="w-1 h-full bg-card-border mx-30"></div>
-					<a
-						href="https://astro.build/"
-						class="text-white/50"
-						target="_blank"
-					>
-						<IconArrowTopRight class="size-100" />
-						<span>En savoir plus</span>
-					</a>
 				</div>
 			</div>
+			<Spacer class="mt-20" />
 			<div class="mt-50">
 				<ContactForm />
 			</div>

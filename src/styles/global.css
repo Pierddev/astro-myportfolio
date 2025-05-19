@@ -43,6 +43,10 @@
   @apply h-1 w-full max-w-[80%] bg-card-border;
 }
 
+.spacer-choice {
+  @apply w-1 h-150 xl:h-126 bg-card-border mx-30;
+}
+
 .legal-text {
   @apply text-white/80 text-15;
 }
