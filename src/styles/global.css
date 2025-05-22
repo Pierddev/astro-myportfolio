@@ -12,6 +12,14 @@
   --color-card-border: #ffffff1a;
   --color-bleu-glacier: #8ab4f8;
   --color-lavande-fonce: #b39ddb;
+  --color-astro: #E03671;
+  --color-github: #752E9C;
+  --color-tailwindcss: #33BEF8;
+  --color-figma: #F14E1C;
+  --color-django: #092D1F;
+  --color-python: #356D9C;
+  --color-pycharm: #1AD88A;
+  --color-trello: #008FE2;
   --drop-shadow-summary: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 

@@ -16,6 +16,7 @@ const pageLabels = {
 	about: { label: "À propos", icon: "about" },
 	contact: { label: "Contact", icon: "contact" },
 	stack: { label: "Stack", icon: "stack" },
+	projects: { label: "Projets", icon: "projects" },
 };
 
 const label = pageLabels[currentPage]?.label ?? "Navigation";
@@ -34,6 +35,7 @@ const icon = pageLabels[currentPage]?.icon ?? "default";
 			{icon === "about" && <IconAbout />}
 			{icon === "contact" && <IconContact />}
 			{icon === "stack" && <IconStack />}
+			{icon === "projects" && <IconProject />}
 			<div class="text-16 lg:text-20 font-medium">{label}</div>
 		</div>
 	</button>
@@ -66,8 +68,10 @@ const icon = pageLabels[currentPage]?.icon ?? "default";
 		class={`navbar-item ${currentPage === "stack" ? "navbar-active" : "navbar-non-active"}`}
 		>Stack</a
 	>
-	<span class="navbar-item navbar-non-active cursor-not-allowed text-white/50"
-		>⏳Projets</span
+	<a
+		href="/projects"
+		class={`navbar-item ${currentPage === "projects" ? "navbar-active" : "navbar-non-active"}`}
+		>Projets</a
 	>
 	<a
 		href="/contact"
@@ -102,10 +106,13 @@ const icon = pageLabels[currentPage]?.icon ?? "default";
 			<IconStack />
 			<span>Stack</span>
 		</a>
-		<span class="navbar-item navbar-non-active cursor-not-allowed">
+		<a
+			href="/projects"
+			class={`navbar-item ${currentPage === "projects" ? "navbar-active" : "navbar-non-active"}`}
+		>
 			<IconProject />
-			<span class="text-white/50">⏳Projets</span>
-		</span>
+			<span>Projets</span>
+		</a>
 		<a
 			href="/contact"
 			class={`navbar-item ${currentPage === "contact" ? "navbar-active" : "navbar-non-active"}`}
