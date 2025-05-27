@@ -29,7 +29,7 @@ const { title = "Développeur Full Stack" } = Astro.props;
 		<!-- Open Graph -->
 		<meta
 			property="og:image"
-			content="https://pierre-duault.fr/og-image.jpg"
+			content="https://pierre-duault.fr/public/op-image.jpg"
 		/>
 		<meta property="og:image:type" content="image/jpeg" />
 		<meta property="og:image:width" content="1200" />
@@ -39,7 +39,7 @@ const { title = "Développeur Full Stack" } = Astro.props;
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta
 			name="twitter:image"
-			content="https://pierre-duault.fr/og-image.jpg"
+			content="https://pierre-duault.fr/public/op-image.jpg"
 		/>
 
 		<!-- Twitter Card (facultatif) -->
@@ -54,7 +54,7 @@ const { title = "Développeur Full Stack" } = Astro.props;
 		/>
 		<meta
 			name="twitter:image"
-			content="https://pierre-duault.fr/og-image.jpg"
+			content="https://pierre-duault.fr/public/og-image.jpg"
 		/>
 
 		<!-- Favicon -->
@@ -71,6 +71,7 @@ const { title = "Développeur Full Stack" } = Astro.props;
 				src={background.src}
 				alt=""
 				fetchpriority="high"
+				aria-hidden="true"
 			/>
 			<Navbar currentPath={pathname} />
 			<slot />

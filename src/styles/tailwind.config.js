@@ -7,6 +7,12 @@ const pxRounded = Object.fromEntries(
 );
 
 export default {
+	safelist: [
+		{
+			pattern:
+				/bg-(astro|github|tailwindcss|figma|django|python|pycharm|trello)\/30/,
+		},
+	],
 	theme: {
 		extend: {
 			transitionTimingFunction: {

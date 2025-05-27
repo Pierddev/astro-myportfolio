@@ -27,7 +27,8 @@ import logoCss from "../assets/stacks/css.webp";
 import logoTailwindcss from "../assets/stacks/tailwindcss.webp";
 import logoDjango from "../assets/stacks/django.webp";
 
-import type { ProjectMyPortfolio, ProjectShopJO2024 } from "../data/projects";
+import CardProject from "../components/CardProject.astro";
+import { MyProjects } from "../data/projects";
 import { Image } from "astro:assets";
 import { Picture } from "astro:assets";
 ---
@@ -48,129 +49,23 @@ import { Picture } from "astro:assets";
 					développement web.</span
 				>
 			</div>
-			<div class="flex space-x-30">
-				<div class="bloc-card rounded-30 p-15">
-					<div
-						class="flex items-center w-370 h-208 overflow-hidden rounded-15 border-1 border-card-border mb-10"
-					>
-						<Picture
-							src={myPortfolio}
-							alt="Représentation du projet"
-							class={`aspect-[${myPortfolio.format}]`}
-						/>
-					</div>
-					<span class="text-20 font-semibold">Mon Portfolio</span>
-					<div class="flex justify-center space-x-5 text-12 mb-20">
-						<div
-							class="border-1 border-card-border flex items-center space-x-5 py-3 px-10 leading-none rounded-full bg-astro/30"
-						>
-							<div class="size-11">
-								<Image src={logoAstro} alt="Logo de Django" />
-							</div>
-							<span>Astro</span>
-						</div>
-						<div
-							class="border-1 border-card-border flex items-center space-x-5 py-3 px-10 leading-none rounded-full bg-github/30"
-						>
-							<div class="size-11">
-								<Image src={logoGithub} alt="Logo de Django" />
-							</div>
-							<span>GitHub</span>
-						</div>
-						<div
-							class="border-1 border-card-border flex items-center space-x-5 py-3 px-10 leading-none rounded-full bg-tailwindcss/30"
-						>
-							<div class="size-11">
-								<Image src={logoTailwindcss} alt="Logo de Django" />
-							</div>
-							<span>TailwindCSS</span>
-						</div>
-						<div
-							class="border-1 border-card-border flex items-center space-x-5 py-3 px-10 leading-none rounded-full bg-figma/30"
-						>
-							<div class="flex size-11 items-center">
-								<Image src={logoFigma} alt="Logo de Django" />
-							</div>
-							<span>Figma</span>
-						</div>
-					</div>
-					<div class="flex w-full justify-center">
-						<a
-							href="https://github.com/Pierddev/studi-billetterie-jo2024"
-							target="_blank"
-							class="flex items-center w-fit bg-card border-1 border-card-border hover:bg-white/10 rounded-full text-white/70 hover:text-white leading-none py-5 pl-20 pr-10 transition"
-						>
-							<span>Voir sur GitHub</span>
-							<IconChevronRight />
-						</a>
-					</div>
-				</div>
-				<div class="bloc-card rounded-30 p-15">
-					<div
-						class="flex items-center w-370 h-208 overflow-hidden rounded-15 border-1 border-card-border mb-10"
-					>
-						<Picture
-							src={ShopJO}
-							alt="Représentation du projet"
-							class={`aspect-[${myPortfolio.format}]`}
-						/>
-					</div>
-					<span class="text-20 font-semibold"
-						>Billetterie JO 2024 - Studi</span
-					>
-					<div class="flex justify-center space-x-5 text-12 mb-20">
-						<div
-							class="border-1 border-card-border flex items-center space-x-5 py-3 px-10 leading-none rounded-full bg-django/30"
-						>
-							<div class="size-11">
-								<Image src={logoDjango} alt="Logo de Django" />
-							</div>
-							<span>Django</span>
-						</div>
-						<div
-							class="border-1 border-card-border flex items-center space-x-5 py-3 px-10 leading-none rounded-full bg-python/30"
-						>
-							<div class="size-11">
-								<Image src={logoPython} alt="Logo de Django" />
-							</div>
-							<span>Python</span>
-						</div>
-						<div
-							class="border-1 border-card-border flex items-center space-x-5 py-3 px-10 leading-none rounded-full bg-pycharm/30"
-						>
-							<div class="size-11">
-								<Image src={logoPycharm} alt="Logo de Django" />
-							</div>
-							<span>PyCharm</span>
-						</div>
-						<div
-							class="border-1 border-card-border flex items-center space-x-5 py-3 px-10 leading-none rounded-full bg-trello/30"
-						>
-							<div class="size-11">
-								<Image src={logoTrello} alt="Logo de Django" />
-							</div>
-							<span>Trello</span>
-						</div>
-					</div>
-					<div class="flex w-full justify-center">
-						<a
-							href="https://github.com/Pierddev/studi-billetterie-jo2024"
-							target="_blank"
-							class="flex items-center w-fit bg-card border-1 border-card-border hover:bg-white/10 rounded-full text-white/70 hover:text-white leading-none py-5 pl-20 pr-10 transition"
-						>
-							<span>Voir sur GitHub</span>
-							<IconChevronRight />
-						</a>
-					</div>
-				</div>
+			<div class="flex flex-wrap gap-30 mx-20 sm:mx-30 justify-center">
+				{MyProjects.project.map((p) => <CardProject {...p} />)}
 			</div>
-			<div></div>
 			<div class="flex flex-col">
 				<span class="text-40 sm:text-50 font-semibold">À Suivre...</span>
 				<span class="text-12 sm:text-15 font-medium max-w-600"
 					>D’autres projets sont en cours et arriveront prochainement.</span
 				>
 			</div>
+			<!-- <div class="bg-tailwindcss/30"></div> -->
+			<!-- <div class="bg-figma/30"></div> -->
+			<!-- <div class="bg-github/30"></div> -->
+			<!-- <div class="bg-astro/30"></div> -->
+			<!-- <div class="bg-django/30"></div> -->
+			<!-- <div class="bg-python/30"></div> -->
+			<!-- <div class="bg-pycharm/30"></div> -->
+			<!-- <div class="bg-trello/30"></div> -->
 		</div>
 	</section>
 </Layout>

@@ -23,6 +23,35 @@
   --drop-shadow-summary: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
+
+@layer utilities {
+  @keyframes gradientBorder {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-gradient-border {
+    animation: gradientBorder 5s ease infinite;
+  }
+
+  @keyframes glowGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .animate-glow {
+    animation: glowGradient 4s ease infinite;
+  }
+}
+
 .navbar-item {
   @apply flex items-center space-x-10 py-8 px-15 hover:bg-card/50 hover:border-card-border/50 border-1 rounded-full transition-colors duration-75 ease-in-out;
 }

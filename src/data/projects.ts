@@ -29,72 +29,77 @@ import logoPostgresql from "../assets/stacks/postgresql.webp";
 import logoMongodb from "../assets/stacks/mongodb.webp";
 import logoSynology from "../assets/stacks/synology.webp";
 import logoSqlite from "../assets/stacks/sqlite.webp";
-import shopJO from "../assets/project-shopjo.webp"
-import myPortfolio from "../assets/project-portfolio.webp"
+import shopJO from "../assets/project-shopjo.webp";
+import myPortfolio from "../assets/project-portfolio.webp";
 
 export interface ProjectItem {
-	title: string;
-	url: string;
-    thumbnail: typeof myPortfolio;
-	items: {
-		logoSrc: typeof logoAstro;
-		name: string;
-		colorName: string;
+	project: {
+		title: string;
+		url: string;
+		thumbnail: typeof myPortfolio;
+		items: {
+			name: string;
+			logoSrc: typeof logoAstro;
+			colorName: string;
+		}[];
 	}[];
 }
 
-export const ProjectMyPortfolio: ProjectItem = {
-	title: "Billetterie JO 2024 - Studi",
-	url: "https://github.com/Pierddev/studi-billetterie-jo2024",
-    thumbnail: myPortfolio,
-	items: [
+export const MyProjects: ProjectItem = {
+	project: [
 		{
-			logoSrc: logoAstro,
-			name: "Astro",
-			colorName: "astro",
+			title: "Mon Portfolio",
+			url: "https://github.com/Pierddev/astro-myportfolio",
+			thumbnail: myPortfolio,
+			items: [
+				{
+					name: "Astro",
+					logoSrc: logoAstro,
+					colorName: "astro",
+				},
+				{
+					name: "GitHub",
+					logoSrc: logoGithub,
+					colorName: "github",
+				},
+				{
+					name: "TailwindCSS",
+					logoSrc: logoTailwindcss,
+					colorName: "tailwindcss",
+				},
+				{
+					name: "Figma",
+					logoSrc: logoFigma,
+					colorName: "figma",
+				},
+			],
 		},
 		{
-			logoSrc: logoGithub,
-			name: "GitHub",
-			colorName: "github",
-		},
-		{
-			logoSrc: logoTailwindcss,
-			name: "TailwindCSS",
-			colorName: "tailwindcss",
-		},
-		{
-			logoSrc: logoFigma,
-			name: "Figma",
-			colorName: "figma",
-		}
-	]
-};
-
-export const ProjectShopJO2024: ProjectItem = {
-	title: "Mon Portfolio",
-	url: "https://github.com/Pierddev/astro-myportfolio",
-    thumbnail: shopJO,
-	items: [
-		{
-			logoSrc: logoDjango,
-			name: "Django",
-			colorName: "django",
-		},
-		{
-			logoSrc: logoPython,
-			name: "Python",
-			colorName: "python",
-		},
-		{
-			logoSrc: logoPycharm,
-			name: "PyCharm",
-			colorName: "pycharm",
-		},
-		{
-			logoSrc: logoTrello,
-			name: "Trello",
-			colorName: "trello",
+			title: "Billetterie JO 2024 - Studi",
+			url: "https://github.com/Pierddev/studi-billetterie-jo2024",
+			thumbnail: shopJO,
+			items: [
+				{
+					name: "Django",
+					logoSrc: logoDjango,
+					colorName: "django",
+				},
+				{
+					name: "Python",
+					logoSrc: logoPython,
+					colorName: "python",
+				},
+				{
+					name: "PyCharm",
+					logoSrc: logoPycharm,
+					colorName: "pycharm",
+				},
+				{
+					name: "Trello",
+					logoSrc: logoTrello,
+					colorName: "trello",
+				},
+			],
 		},
 	],
 };
