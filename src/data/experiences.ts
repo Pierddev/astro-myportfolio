@@ -3,8 +3,44 @@ import logoCA from "@assets/logo-creditagricole.webp";
 import logoKingup from "@assets/logo-kingup.webp";
 import logoLAG from "@assets/logo-lag.webp";
 import logoPythagore from "@assets/logo-pythagore.webp";
+import logoBretim from "@assets/logo-bretim.webp";
 
 export const experiences = [
+  {
+    date: "SEPTEMBRE 2025 - AUJOURD'HUI",
+    poste: "Assistant Service Informatique (Alternance)",
+    entreprise: "BRETIM",
+    lieu: "Pluméliau (56)",
+    logoSrc: logoBretim,
+    logoAlt: "Logo de Bretim",
+    missions: [
+      {
+        title: "Maintenance et développement ERP",
+        description:
+          "Assister le responsable informatique dans le maintien et le développement de l'ERP interne avec l'AGL Windev. (Modules pour postes de travail Windows et mobiles Android)",
+      },
+      {
+        title: "Documentation technique et utilisateur",
+        description:
+          "Rédiger des documents techniques et des guides utilisateurs pour faciliter l'utilisation de l'ERP.",
+      },
+      {
+        title: "Maintenance préventive (systèmes & antivirus)",
+        description:
+          "Mettre en place des procédures de maintenance préventive pour les systèmes et les antivirus afin d'assurer la sécurité et la performance des postes de travail.",
+      },
+      {
+        title: "Résolution d’incidents techniques (N2)",
+        description:
+          "Diagnostiquer et résoudre les incidents techniques de niveau 2 pour garantir la continuité des services informatiques.",
+      },
+      {
+        title: "Déploiement et configuration de matériel",
+        description:
+          "Assurer le déploiement et la configuration du matériel informatique (postes de travail, imprimantes, etc.) pour les utilisateurs.",
+      },
+    ],
+  },
   {
     date: "AVRIL 2025 - AUJOURD'HUI",
     poste: "Développeur Web Freelance",
@@ -102,7 +138,7 @@ export const experiences = [
   },
   {
     date: "SEPTEMBRE 2022 - SEPTEMBRE 2023",
-    poste: "Apprenti Acheteur",
+    poste: "Acheteur (Alternance)",
     entreprise: "Pythagore",
     lieu: "Laniscat (22)",
     logoSrc: logoPythagore,
@@ -133,7 +169,7 @@ export const experiences = [
   },
   {
     date: "SEPTEMBRE 2021 - SEPTEMBRE 2022",
-    poste: "Apprenti Acheteur",
+    poste: "Acheteur (Alternance)",
     entreprise: "Les Ateliers du Goût",
     lieu: "Noyal-Pontivy (56)",
     logoSrc: logoLAG,
@@ -173,7 +209,7 @@ export const experiences = [
   },
   {
     date: "SEPTEMBRE 2020 - SEPTEMBRE 2021",
-    poste: "Apprenti en Logistique",
+    poste: "Assistant Logistique (Alternance)",
     entreprise: "Pythagore",
     lieu: "Laniscat (22)",
     logoSrc: logoPythagore,

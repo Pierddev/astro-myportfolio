@@ -2,8 +2,8 @@ export const formations = [
   {
     date: "SEPTEMBRE 2025 - SEPTEMBRE 2027",
     formation: "BTS SIO, Option SLAM",
-    ecole: "ESNA",
-    lieu: "Bruz (35)",
+    ecole: "MDS (My Digital School)",
+    lieu: "Rennes (35)",
   },
   {
     date: "SEPTEMBRE 2023 - AOUT 2024",
