@@ -29,6 +29,7 @@ import logoPostgresql from "../assets/stacks/postgresql.webp";
 import logoMongodb from "../assets/stacks/mongodb.webp";
 import logoSynology from "../assets/stacks/synology.webp";
 import logoSqlite from "../assets/stacks/sqlite.webp";
+import logoVMware from "../assets/stacks/vmware.webp";
 
 export interface StackItem {
 	logoSrc: typeof logoVSC;
@@ -200,5 +201,10 @@ export const stackCyber = [
 		logoSrc: logoVirtualbox,
 		name: "VirtualBox",
 		url: "https://www.virtualbox.org/",
+	},
+	{
+		logoSrc: logoVMware,
+		name: "VMware",
+		url: "https://vmware.com/",
 	},
 ];
