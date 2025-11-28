@@ -30,6 +30,8 @@ import logoMongodb from "../assets/stacks/mongodb.webp";
 import logoSynology from "../assets/stacks/synology.webp";
 import logoSqlite from "../assets/stacks/sqlite.webp";
 import logoVMware from "../assets/stacks/vmware.webp";
+import logoFlask from "../assets/stacks/flask.webp";
+import logoJinja from "../assets/stacks/jinja.webp"
 
 export interface StackItem {
 	logoSrc: typeof logoVSC;
@@ -102,6 +104,16 @@ export const stackLangages: StackItem[] = [
 		logoSrc: logoPowershell,
 		name: "PowerShell",
 		url: "https://learn.microsoft.com/fr-fr/powershell/scripting/overview?view=powershell-7.5",
+	},
+	{
+		logoSrc: logoFlask,
+		name: "Flask",
+		url: "https://flask.palletsprojects.com/en/stable/",
+	},
+	{
+		logoSrc: logoJinja,
+		name: "Jinja",
+		url: "https://jinja.palletsprojects.com/en/stable/",
 	},
 ];
 

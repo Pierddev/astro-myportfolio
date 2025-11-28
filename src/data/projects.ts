@@ -31,6 +31,9 @@ import logoSynology from "../assets/stacks/synology.webp";
 import logoSqlite from "../assets/stacks/sqlite.webp";
 import shopJO from "../assets/project-shopjo.webp";
 import myPortfolio from "../assets/project-portfolio.webp";
+import tableauMission from "../assets/project-tableaumission.webp"
+import logoFlask from "../assets/stacks/flask.webp";
+import logoJinja from "../assets/stacks/jinja.webp"
 
 export interface ProjectItem {
 	project: {
@@ -47,6 +50,33 @@ export interface ProjectItem {
 
 export const MyProjects: ProjectItem = {
 	project: [
+		{
+			title: "BTS Tableau Missions",
+			url: "https://btssio-tableau.vercel.app/",
+			thumbnail: tableauMission,
+			items: [
+				{
+					name: "Flask",
+					logoSrc: logoFlask,
+					colorName: "django",
+				},
+				{
+					name: "Jinja",
+					logoSrc: logoJinja,
+					colorName: "figma",
+				},
+				{
+					name: "Vercel",
+					logoSrc: logoVercel,
+					colorName: "github",
+				},
+				{
+					name: "PostgreSQL",
+					logoSrc: logoPostgresql,
+					colorName: "tailwindcss",
+				},
+			],
+		},
 		{
 			title: "Mon Portfolio",
 			url: "https://github.com/Pierddev/astro-myportfolio",
