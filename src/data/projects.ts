@@ -31,7 +31,8 @@ import logoSynology from "../assets/stacks/synology.webp";
 import logoSqlite from "../assets/stacks/sqlite.webp";
 import shopJO from "../assets/project-shopjo.webp";
 import myPortfolio from "../assets/project-portfolio.webp";
-import tableauMission from "../assets/project-tableaumission.webp"
+import tableauMission from "../assets/project-tableaumission.webp";
+import SioDash from "../assets/project-siodash.webp";
 import logoFlask from "../assets/stacks/flask.webp";
 import logoJinja from "../assets/stacks/jinja.webp"
 
@@ -51,9 +52,9 @@ export interface ProjectItem {
 export const MyProjects: ProjectItem = {
 	project: [
 		{
-			title: "BTS Tableau Missions",
-			url: "https://btssio-tableau.vercel.app/",
-			thumbnail: tableauMission,
+			title: "SioDash",
+			url: "https://siodash.fr/",
+			thumbnail: SioDash,
 			items: [
 				{
 					name: "Flask",
