@@ -33,6 +33,7 @@ import shopJO from "../assets/project-shopjo.webp";
 import myPortfolio from "../assets/project-portfolio.webp";
 import tableauMission from "../assets/project-tableaumission.webp";
 import SioDash from "../assets/project-siodash.webp";
+import SuperviseurDossiers from "../assets/project-superviseurdossiers.webp";
 import logoFlask from "../assets/stacks/flask.webp";
 import logoJinja from "../assets/stacks/jinja.webp"
 
@@ -51,6 +52,28 @@ export interface ProjectItem {
 
 export const MyProjects: ProjectItem = {
 	project: [
+		{
+			title: "Superviseur Dossiers",
+			url: "https://github.com/Pierddev/SuperviseurDossiers",
+			thumbnail: SuperviseurDossiers,
+			items: [
+				{
+					name: "Python",
+					logoSrc: logoPython,
+					colorName: "python",
+				},
+				{
+					name: "MySQL",
+					logoSrc: logoMysql,
+					colorName: "pycharm",
+				},
+				{
+					name: "GitHub",
+					logoSrc: logoGithub,
+					colorName: "github",
+				},
+			],
+		},
 		{
 			title: "SioDash",
 			url: "https://siodash.fr/",
