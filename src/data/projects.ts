@@ -31,6 +31,11 @@ import logoSynology from "../assets/stacks/synology.webp";
 import logoSqlite from "../assets/stacks/sqlite.webp";
 import shopJO from "../assets/project-shopjo.webp";
 import myPortfolio from "../assets/project-portfolio.webp";
+import tableauMission from "../assets/project-tableaumission.webp";
+import SioDash from "../assets/project-siodash.webp";
+import SuperviseurDossiers from "../assets/project-superviseurdossiers.webp";
+import logoFlask from "../assets/stacks/flask.webp";
+import logoJinja from "../assets/stacks/jinja.webp"
 
 export interface ProjectItem {
 	project: {
@@ -47,6 +52,55 @@ export interface ProjectItem {
 
 export const MyProjects: ProjectItem = {
 	project: [
+		{
+			title: "Superviseur Dossiers",
+			url: "https://github.com/Pierddev/SuperviseurDossiers",
+			thumbnail: SuperviseurDossiers,
+			items: [
+				{
+					name: "Python",
+					logoSrc: logoPython,
+					colorName: "python",
+				},
+				{
+					name: "MySQL",
+					logoSrc: logoMysql,
+					colorName: "pycharm",
+				},
+				{
+					name: "GitHub",
+					logoSrc: logoGithub,
+					colorName: "github",
+				},
+			],
+		},
+		{
+			title: "SioDash",
+			url: "https://siodash.fr/",
+			thumbnail: SioDash,
+			items: [
+				{
+					name: "Flask",
+					logoSrc: logoFlask,
+					colorName: "django",
+				},
+				{
+					name: "Jinja",
+					logoSrc: logoJinja,
+					colorName: "figma",
+				},
+				{
+					name: "Vercel",
+					logoSrc: logoVercel,
+					colorName: "github",
+				},
+				{
+					name: "PostgreSQL",
+					logoSrc: logoPostgresql,
+					colorName: "tailwindcss",
+				},
+			],
+		},
 		{
 			title: "Mon Portfolio",
 			url: "https://github.com/Pierddev/astro-myportfolio",
