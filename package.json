@@ -11,8 +11,8 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.4.0",
     "@tailwindcss/vite": "^4.1.6",
-    "astro": "^5.18.1",
-    "astro-show-tailwindcss-breakpoint": "^1.0.9",
+    "astro": "^6.1.8",
+    "astro-show-tailwindcss-breakpoint": "^2.0.0",
     "concurrently": "^9.1.2",
     "tailwindcss": "^4.1.6"
   }
