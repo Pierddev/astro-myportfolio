@@ -12,12 +12,14 @@
 
 ## Apercu
 
-<!-- TODO: Ajouter ici des captures d'ecran du portfolio -->
-<!-- Placeholder: remplacer les chemins ci-dessous par les vraies images -->
+### Accueil
+![Accueil](.github/screenshots/home.png)
 
-| Accueil | Projets | Stack |
-|---------|---------|-------|
-| ![Accueil](.github/screenshots/home.png) | ![Projets](.github/screenshots/projects.png) | ![Stack](.github/screenshots/stack.png) |
+### Projets
+![Projets](.github/screenshots/projects.png)
+
+### Stack
+![Stack](.github/screenshots/stack.png)
 
 ---
 
