@@ -1,48 +1,114 @@
-# Astro Starter Kit: Basics
+# Pierre Duault — Portfolio
 
-```sh
-npm create astro@latest -- --template basics
-```
+[![Site en ligne](https://img.shields.io/badge/Site-pierre--duault.fr-0ea5e9?style=flat-square&logo=astro&logoColor=white)](https://pierre-duault.fr)
+[![Astro](https://img.shields.io/badge/Astro-6.x-BC52EE?style=flat-square&logo=astro)](https://astro.build)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.x-06B6D4?style=flat-square&logo=tailwindcss)](https://tailwindcss.com)
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+> Portfolio personnel de **Pierre Duault**, développeur web full stack & administrateur systèmes, basé à Rennes.
+>
+> Découvrez mes projets, mon parcours, ma stack technique et contactez-moi pour vos besoins en développement web.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+---
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## Apercu
 
-## 🚀 Project Structure
+<!-- TODO: Ajouter ici des captures d'ecran du portfolio -->
+<!-- Placeholder: remplacer les chemins ci-dessous par les vraies images -->
 
-Inside of your Astro project, you'll see the following folders and files:
+| Accueil | Projets | Stack |
+|---------|---------|-------|
+| ![Accueil](.github/screenshots/home.png) | ![Projets](.github/screenshots/projects.png) | ![Stack](.github/screenshots/stack.png) |
+
+---
+
+## Fonctionnalites
+
+- **Page d'accueil** — Presentation, carte de profil, projet mis en avant et formulaire de contact rapide
+- **Projets** — Galerie de projets personnels et professionnels avec fiches detaillees
+- **Stack** — Inventaire complet des technologies, outils et environnements maitrises
+- **A propos** — Parcours, experiences professionnelles et formations
+- **Contact** — Formulaire de contact fonctionnel
+- **Pages legales** — Mentions legales, politique de confidentialite et CGU
+- **SEO optimise** — Meta tags, Open Graph, Twitter Cards, sitemap
+- **Design responsive** — Interface adaptee mobile, tablette et desktop (Tailwind CSS)
+
+---
+
+## Stack technique
+
+| Categorie | Technologie |
+|-----------|-------------|
+| Framework | [Astro](https://astro.build) v6 |
+| Styling | [Tailwind CSS](https://tailwindcss.com) v4 |
+| Langage | TypeScript |
+| Deploiement | [Vercel](https://vercel.com) |
+| Domaine | [pierre-duault.fr](https://pierre-duault.fr) |
+
+---
+
+## Structure du projet
 
 ```text
 /
-├── public/
-│   └── favicon.svg
+├── public/               # Assets statiques (favicon, fonts, images, scripts)
 ├── src/
+│   ├── assets/           # Images et logos (projets, stack, background)
+│   ├── components/       # Composants Astro reutilisables
+│   │   ├── icons/        # Icones SVG custom
+│   │   ├── Card*.astro   # Cartes (projet, experience, formation, stack)
+│   │   ├── navbar.astro
+│   │   ├── footer.astro
+│   │   └── ContactForm.astro
+│   ├── data/             # Donnees statiques (experiences, formations, projets, stack)
 │   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
+│   │   └── Layout.astro  # Layout principal (SEO, meta, nav, footer)
+│   ├── pages/            # Routes du site
+│   │   ├── index.astro
+│   │   ├── projects.astro
+│   │   ├── stack.astro
+│   │   ├── about.astro
+│   │   ├── contact.astro
+│   │   └── legal*.astro
+│   └── styles/
+│       └── global.css
+├── astro.config.mjs
+├── tailwind.config.js
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+---
 
-## 🧞 Commands
+## Commandes
 
-All commands are run from the root of the project, from a terminal:
+Toutes les commandes s'executent depuis la racine du projet :
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+| Commande            | Action                                      |
+| :------------------ | :------------------------------------------ |
+| `npm install`       | Installe les dependances                    |
+| `npm run dev`       | Lance le serveur de dev (`localhost:4321`)  |
+| `npm run build`     | Build le site de production (`./dist/`)     |
+| `npm run preview`   | Preview du build en local                   |
+| `npm run astro ...` | Commandes CLI Astro (`add`, `check`, etc.)  |
 
-## 👀 Want to learn more?
+---
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Deploiement
+
+Le site est automatiquement deploye sur **Vercel** a chaque push sur la branche principale.
+
+URL de production : [https://pierre-duault.fr](https://pierre-duault.fr)
+
+---
+
+## Auteur
+
+**Pierre Duault** — Developpeur web full stack & administrateur systèmes
+
+- Site : [pierre-duault.fr](https://pierre-duault.fr)
+- Studio : [Pi-Code Studio](https://pi-code-studio.fr)
+
+---
+
+## License
+
+Ce projet est sous licence [MIT](LICENSE).
