@@ -107,10 +107,4 @@ URL de production : [https://pierre-duault.fr](https://pierre-duault.fr)
 **Pierre Duault** — Developpeur web full stack & administrateur systèmes
 
 - Site : [pierre-duault.fr](https://pierre-duault.fr)
-- Studio : [Pi-Code Studio](https://pi-code-studio.fr)
-
----
-
-## License
-
-Ce projet est sous licence [MIT](LICENSE).
+- Studio : Pi-Code Studio
