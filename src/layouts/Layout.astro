@@ -9,7 +9,7 @@ const { title = "Développeur Full Stack" } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -63,20 +63,22 @@ const { title = "Développeur Full Stack" } = Astro.props;
 		<!-- Générateur (Astro) -->
 		<meta name="generator" content={Astro.generator} />
 	</head>
-	<body class="relative bg-background text-white max-w-screen">
-		<div class="flex justify-center">
-			<img
-				class="blur-[100px] fixed w-full -z-10"
-				id="background"
-				src={background.src}
-				alt=""
-				fetchpriority="high"
-				aria-hidden="true"
-			/>
+	<body class="relative bg-background text-white antialiased max-w-screen">
+		<img
+			class="blur-[100px] fixed w-full -z-10"
+			id="background"
+			src={background.src}
+			alt=""
+			fetchpriority="high"
+			aria-hidden="true"
+		/>
+		<header class="flex justify-center">
 			<Navbar currentPath={pathname} />
+		</header>
+		<main>
 			<slot />
-		</div>
+		</main>
+		<Footer />
+		<script src="/js/script.js" defer></script>
 	</body>
-	<Footer />
-	<script src="/js/script.js" defer></script>
 </html>
