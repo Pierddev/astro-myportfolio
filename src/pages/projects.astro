@@ -1,67 +1,77 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import IconChevronRight from "../components/icons/IconChevronRight.astro";
-
-import ShopJO from "../assets/project-shopjo.webp";
-import myPortfolio from "../assets/project-portfolio.webp";
-
-import logoFigma from "../assets/stacks/figma.webp";
-import logoGithub from "../assets/stacks/github.webp";
-import logoHerd from "../assets/stacks/herd.webp";
-import logoWireshark from "../assets/stacks/wireshark.webp";
-import logoPycharm from "../assets/stacks/pycharm.webp";
-import LogoPhpstorm from "../assets/stacks/phpstorm.webp";
-import logoPhotoshop from "../assets/stacks/photoshop.webp";
-import logoNotion from "../assets/stacks/notion.webp";
-import logoVercel from "../assets/stacks/vercel.webp";
-import logoTrello from "../assets/stacks/trello.webp";
-import logoPhp from "../assets/stacks/php.webp";
-import logoMysql from "../assets/stacks/mysql.webp";
-import logoLaravel from "../assets/stacks/laravel.webp";
-import logoAstro from "../assets/stacks/astro.webp";
-import logoPython from "../assets/stacks/python.webp";
-import logoJavascript from "../assets/stacks/javascript.webp";
-import logoHtml from "../assets/stacks/html.webp";
-import logoCss from "../assets/stacks/css.webp";
-import logoTailwindcss from "../assets/stacks/tailwindcss.webp";
-import logoDjango from "../assets/stacks/django.webp";
-
+import PageHeader from "../components/PageHeader.astro";
 import CardProject from "../components/CardProject.astro";
-import { MyProjects } from "../data/projects";
-import { Image } from "astro:assets";
-import { Picture } from "astro:assets";
+import CtaBanner from "../components/CtaBanner.astro";
+import IconArrowTopRight from "../components/icons/iconArrowTopRight.astro";
+import { projects } from "../data/projects";
+import { contact } from "../data/contact";
+
+// auto-fit + minmax : autant de colonnes de 460px minimum que la largeur le permet (2 sur desktop),
+// une seule sur mobile ; min(100%, 460px) évite qu'une carte déborde sur un écran plus étroit.
+const count = projects.length;
 ---
 
-<Layout>
-	<section class="flex flex-col lg:flex-row justify-center w-full">
-		<div
-			class="flex flex-col space-y-30 items-center text-center w-full lg:w-1200 pt-100 lg:pt-150"
+<Layout title="Projets">
+	<section class="mx-auto max-w-1200 px-24 pt-88">
+		<PageHeader
+			eyebrow="// Projets"
+			title="Mes"
+			highlight="Projets"
+			intro="Voici quelques projets sur lesquels j’ai travaillé pour mettre en pratique mes compétences techniques et ma passion pour le développement web."
 		>
-			<div class="flex flex-col">
-				<span class="text-40 sm:text-50 font-semibold">Mes Projets</span>
-				<span class="text-12 sm:text-15 font-medium max-w-600"
-					>Voici quelques projets sur lesquels j’ai travaillé pour mettre
-					en pratique mes compétences techniques et ma passion pour le
-					développement web.</span
-				>
-			</div>
-			<div class="flex flex-wrap gap-30 mx-20 sm:mx-30 justify-center">
-				{MyProjects.project.map((p) => <CardProject {...p} />)}
-			</div>
-			<div class="flex flex-col">
-				<span class="text-40 sm:text-50 font-semibold">À Suivre...</span>
-				<span class="text-12 sm:text-15 font-medium max-w-600"
-					>D’autres projets sont en cours et arriveront prochainement.</span
-				>
-			</div>
-			<!-- <div class="bg-tailwindcss/30"></div> -->
-			<!-- <div class="bg-figma/30"></div> -->
-			<!-- <div class="bg-github/30"></div> -->
-			<!-- <div class="bg-astro/30"></div> -->
-			<!-- <div class="bg-django/30"></div> -->
-			<!-- <div class="bg-python/30"></div> -->
-			<!-- <div class="bg-pycharm/30"></div> -->
-			<!-- <div class="bg-trello/30"></div> -->
+			<span
+				class="rounded-full border border-card-border bg-card px-14 py-6 font-mono text-13 text-white/70"
+			>
+				{count} projet{count > 1 && "s"}
+			</span>
+		</PageHeader>
+	</section>
+
+	<section class="mx-auto max-w-1200 px-24 pt-48">
+		<div
+			class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,460px),1fr))] gap-24"
+		>
+			{projects.map((project) => <CardProject {...project} />)}
 		</div>
+
+		<!-- À suivre : bordure pointillée pour un emplacement « vide », point qui pulse (animate-ping) -->
+		<div
+			class="mt-24 flex flex-wrap items-center gap-20 rounded-32 border-[1.5px] border-dashed border-white/18 bg-white/2 px-32 py-28"
+		>
+			<span
+				aria-hidden="true"
+				class="flex size-52 flex-none items-center justify-center rounded-16 border border-white/12 bg-white/6"
+			>
+				<span class="relative flex size-10">
+					<span
+						class="absolute inset-0 animate-ping rounded-full bg-bleu-glacier opacity-70"
+					></span>
+					<span class="relative size-10 rounded-full bg-bleu-glacier"></span>
+				</span>
+			</span>
+			<div class="min-w-0 flex-[1_1_300px]">
+				<h2 class="text-22 font-semibold">À suivre…</h2>
+				<p class="mt-4 text-15 text-white/72">
+					D’autres projets sont en cours et arriveront prochainement.
+				</p>
+			</div>
+			<a
+				href={contact.github}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="text-link inline-flex min-h-44 items-center gap-8 text-14 text-white/70"
+			>
+				<span>Suivre sur GitHub</span>
+				<IconArrowTopRight class="size-18" />
+			</a>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-1200 px-24 pt-120">
+		<CtaBanner
+			title="Un projet en tête ?"
+			text="Site vitrine, application métier ou outil interne : parlons-en."
+		/>
 	</section>
 </Layout>
