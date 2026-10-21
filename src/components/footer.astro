@@ -1,79 +1,132 @@
-<footer
-	class="mt-50 text-15 lg:text-[15px] font-medium z-10 text-center lg:text-left"
->
-	<div class="flex justify-center w-full">
-		<div class="w-[80%] h-1 bg-white/10"></div>
-	</div>
+---
+import IconArrowUp from "./icons/IconArrowUp.astro";
+import IconCode from "./icons/IconCode.astro";
+import IconLinkedin from "./icons/IconLinkedin.astro";
+import IconMail from "./icons/IconMail.astro";
+import { contact } from "../data/contact";
+
+// Calculée au build : l'année change à chaque déploiement du site
+const year = new Date().getFullYear();
+
+const socials = [
+	{
+		href: contact.github,
+		label: "GitHub de Pierre Duault",
+		icon: IconCode,
+		external: true,
+	},
+	{
+		href: contact.linkedin,
+		label: "LinkedIn de Pierre Duault",
+		icon: IconLinkedin,
+		external: true,
+	},
+	{
+		href: `mailto:${contact.email}`,
+		label: "Écrire à Pierre Duault",
+		icon: IconMail,
+		external: false,
+	},
+];
+
+const shortcuts = [
+	{ href: "/about", label: "À propos" },
+	{ href: "/stack", label: "Stack" },
+	{ href: "/projects", label: "Projets" },
+	{ href: "/#contact", label: "Contact" },
+];
+
+const legal = [
+	{ href: "/privacy", label: "Politique de confidentialité" },
+	{ href: "/legal", label: "Mentions légales" },
+	{ href: "/terms", label: "CGU" },
+];
+---
+
+<footer class="mx-auto max-w-1200 px-24 pt-120 pb-40">
 	<div
-		class="flex flex-col lg:flex-row justify-center items-center space-x-0 lg:space-x-50 space-y-30 lg:space-y-0 mt-40 w-full"
+		aria-hidden="true"
+		class="h-1 bg-linear-to-r from-transparent via-white/14 to-transparent"
 	>
-		<div>
-			<div class="text-25 font-semibold text-bleu-glacier mb-10 lg:mb-30">
-				Pierre.
-			</div>
-			<div class="text-white/80 max-w-250 xl:max-w-300">
+	</div>
+
+	<div class="flex flex-wrap gap-x-48 gap-y-40 py-48">
+		<div class="min-w-0 flex-[1.4_1_260px]">
+			<p class="mb-14 text-26 font-semibold text-bleu-glacier">Pierre.</p>
+			<p class="max-w-300 text-14 leading-[1.7] text-white/70">
 				Développeur Full Stack passionné par l’informatique et la création
 				d’expériences web et logiciel.
+			</p>
+			<div class="mt-20 flex gap-8">
+				{
+					socials.map(({ href, label, icon: Icon, external }) => (
+						<a
+							href={href}
+							aria-label={label}
+							target={external ? "_blank" : undefined}
+							rel={external ? "noopener noreferrer" : undefined}
+							class="glass-btn flex size-44 items-center justify-center rounded-14 text-white/80"
+						>
+							<Icon class="size-20" />
+						</a>
+					))
+				}
 			</div>
 		</div>
-		<div>
-			<div class="text-25 font-semibold mb-10 lg:mb-30">Raccourci</div>
-			<div class="flex flex-col space-y-20 text-white/80">
-				<a href="/about">A propos</a>
-				<a href="/stack">Stack</a>
-				<a href="/projects">Projets</a>
-			</div>
-		</div>
-		<div>
-			<div class="text-25 font-semibold mb-10 lg:mb-30">Légal</div>
-			<div class="flex flex-col space-y-20 text-white/80">
-				<a href="/privacy">Politique de confidentialité</a>
-				<a href="/legal">Mentions légales</a>
-				<a href="/terms">CGU</a>
-			</div>
-		</div>
-		<div>
-			<div
-				class="text-20 font-semibold max-w-250 xl:max-w-300 mb-10 lg:mb-30"
+
+		<nav aria-label="Raccourcis" class="flex-[1_1_160px]">
+			<p class="mb-18 text-16 font-semibold">Raccourci</p>
+			<ul class="flex flex-col gap-12 text-14">
+				{
+					shortcuts.map(({ href, label }) => (
+						<li>
+							<a href={href} class="text-link text-white/70">
+								{label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+
+		<nav aria-label="Informations légales" class="flex-[1_1_200px]">
+			<p class="mb-18 text-16 font-semibold">Légal</p>
+			<ul class="flex flex-col gap-12 text-14">
+				{
+					legal.map(({ href, label }) => (
+						<li>
+							<a href={href} class="text-link text-white/70">
+								{label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+
+		<div class="min-w-0 flex-[1.2_1_240px]">
+			<p class="mb-18 text-16 font-semibold">
+				Vous pouvez me contacter à l’adresse suivante :
+			</p>
+			<a
+				href={`mailto:${contact.email}`}
+				class="text-link inline-flex items-center gap-8 text-14 text-lavande-fonce"
 			>
-				Vous pouvez me contacter à l'adresse suivante :
-			</div>
-			<div
-				class="flex items-center justify-center space-x-4 text-lavande-fonce"
-			>
-				<svg
-					class="size-30 font-light"
-					height="21"
-					viewBox="0 0 21 21"
-					width="21"
-					xmlns="http://www.w3.org/2000/svg"
-				>
-					<g
-						fill="none"
-						fill-rule="evenodd"
-						stroke="currentColor"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						transform="translate(3.5 4.5)"
-					>
-						<path
-							d="m0 2v8c0 1.1045695.8954305 2 2 2h10c1.1045695 0 2-.8954305 2-2v-8c0-1.1045695-.8954305-2-2-2h-10c-1.1045695 0-2 .8954305-2 2z"
-						></path>
-						<path d="m2 3 5 3 5-3"></path>
-					</g>
-				</svg>
-				<a href="mailto:pierre.duault.pro@gmail.com"
-					>pierre.duault.pro@gmail.com</a
-				>
-			</div>
+				<IconMail class="size-20" />
+				<span>{contact.email}</span>
+			</a>
 		</div>
 	</div>
-	<div class="flex justify-center w-full my-20 lg:my-40">
-		<div class="w-[80%] h-1 bg-white/10"></div>
-	</div>
+
+	<div aria-hidden="true" class="h-1 bg-white/8"></div>
 	<div
-		class="text-12 lg:text-15 w-full text-center pb-20 lg:pb-40 text-white/80"
+		class="flex flex-wrap items-center justify-between gap-12 pt-24 text-13 text-white/60"
 	>
-		Copyright © 2025 Pi-Code Studio. Tous droits réservés.
+		<p>Copyright © {year} Pi-Code Studio. Tous droits réservés.</p>
+		<!-- #top sans élément id="top" : le navigateur remonte tout en haut de la page -->
+		<a href="#top" class="text-link inline-flex min-h-44 items-center gap-6">
+			<span>Retour en haut</span>
+			<IconArrowUp class="size-16" />
+		</a>
 	</div>
 </footer>
