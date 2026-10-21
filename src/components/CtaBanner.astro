@@ -1,0 +1,34 @@
+---
+import IconArrowRight from "./icons/IconArrowRight.astro";
+
+// Carte d'appel à l'action en bas des pages Stack et Projets, vers la section Contact
+interface Props {
+	title: string;
+	text: string;
+}
+
+const { title, text } = Astro.props;
+---
+
+<div
+	class="relative flex flex-wrap items-center justify-between gap-24 overflow-hidden rounded-36 border border-card-border bg-card p-28 sm:p-40"
+>
+	<div
+		aria-hidden="true"
+		class="pointer-events-none absolute -top-120 left-[30%] h-300 w-420 bg-radial-[closest-side] from-amethyste/30 to-transparent"
+	>
+	</div>
+	<div class="relative min-w-0 flex-[1_1_360px]">
+		<h2 class="text-[clamp(24px,2.4vw,32px)] font-semibold tracking-[-0.02em]">
+			{title}
+		</h2>
+		<p class="mt-10 text-15 leading-[1.7] text-white/72">{text}</p>
+	</div>
+	<a
+		href="/#contact"
+		class="grad-btn relative inline-flex min-h-48 items-center gap-10 rounded-full px-24 text-15 font-medium shadow-cta"
+	>
+		<span>Me contacter</span>
+		<IconArrowRight class="size-18" />
+	</a>
+</div>
