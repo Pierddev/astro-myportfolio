@@ -16,67 +16,66 @@ const links = [
 	{ page: "about", href: "/about", label: "À propos", icon: IconAbout },
 	{ page: "stack", href: "/stack", label: "Stack", icon: IconStack },
 	{ page: "projects", href: "/projects", label: "Projets", icon: IconProject },
-];
+].map((link) => ({ ...link, isActive: link.page === currentPage }));
+
+// Style d'un onglet selon qu'il est actif ou non (pilule desktop et menu mobile)
+const tabState = (isActive: boolean) =>
+	isActive
+		? "border-white/12 bg-white/8 text-white"
+		: "border-transparent text-white/72 hover:bg-white/6 hover:text-white";
 ---
 
-<!-- NAVBAR Label -->
-<div class="pointer-events-auto fixed top-35 z-50 lg:hidden">
+<!-- NAVBAR - Mobile Version -->
+<div
+	class="pointer-events-auto relative z-10 flex w-full items-center justify-between rounded-full border border-white/10 bg-background/55 p-6 pl-18 backdrop-blur-[14px] lg:hidden"
+>
+	<a href="/" class="text-18 font-semibold tracking-[-0.01em] text-bleu-glacier"
+		>Pierre.</a
+	>
+	<!-- aria-expanded passe à "true" quand le menu est ouvert (public/js/script.js) : l'icône change via group-aria-expanded -->
 	<button
 		id="burger"
-		class="text-white bg-[#0d0c1786] px-50 py-10 rounded-full backdrop-blur-sm border border-card-border"
+		type="button"
+		aria-label="Menu"
+		aria-expanded="false"
+		aria-controls="mobileMenu"
+		class="group glass-btn flex size-44 items-center justify-center rounded-full"
 	>
-		<div class="flex items-center space-x-5">
-			<IconBurger />
-			<!-- {icon === "default" && <IconBurger />}
-			{icon === "home" && <IconHome />}
-			{icon === "about" && <IconAbout />}
-			{icon === "contact" && <IconContact />}
-			{icon === "stack" && <IconStack />}
-			{icon === "projects" && <IconProject />} -->
-			<!-- <div class="text-16 lg:text-20 font-medium">{label}</div> -->
-			<div class="text-16 lg:text-20 font-medium">Navigation</div>
-		</div>
+		<IconBurger class="size-22 group-aria-expanded:hidden" />
+		<IconClose class="hidden size-22 group-aria-expanded:block" />
 	</button>
 </div>
 
-<!-- MENU mobile -->
-<div
+<!-- MENU mobile : caché par l'attribut hidden tant que le burger ne l'a pas ouvert -->
+<nav
 	id="mobileMenu"
-	class="pointer-events-auto hidden fixed inset-0 bg-black/80 z-40 flex flex-col items-center justify-center space-y-6 text-white text-lg lg:hidden backdrop-blur-sm"
+	aria-label="Navigation principale"
+	hidden
+	class="pointer-events-auto fixed inset-0 flex flex-col items-center justify-center gap-8 bg-background/90 px-24 backdrop-blur-[14px] lg:hidden"
 >
-	<button id="closeBurger">
-		<div
-			class="text-white bg-[#0d0c1786] mb-30 p-10 rounded-full border border-card-border"
-		>
-			<IconClose class="size-40" />
-		</div>
-	</button>
+	{
+		links.map(({ href, label, icon: Icon, isActive }) => (
+			<a
+				href={href}
+				aria-current={isActive ? "page" : undefined}
+				class:list={[
+					"flex w-full max-w-320 items-center justify-center gap-10 rounded-full border px-24 py-12 text-17 transition-colors duration-200",
+					tabState(isActive),
+				]}
+			>
+				<Icon class="size-20" />
+				<span>{label}</span>
+			</a>
+		))
+	}
 	<a
-		href="/"
-		class={`navbar-item ${currentPage === "home" ? "navbar-active" : "navbar-non-active"}`}
-		>Accueil</a
+		href="/#contact"
+		class="grad-btn mt-16 flex min-h-48 w-full max-w-320 items-center justify-center gap-8 rounded-full text-15 font-medium shadow-cta"
 	>
-	<a
-		href="/about"
-		class={`navbar-item ${currentPage === "about" ? "navbar-active" : "navbar-non-active"}`}
-		>À propos</a
-	>
-	<a
-		href="/stack"
-		class={`navbar-item ${currentPage === "stack" ? "navbar-active" : "navbar-non-active"}`}
-		>Stack</a
-	>
-	<a
-		href="/projects"
-		class={`navbar-item ${currentPage === "projects" ? "navbar-active" : "navbar-non-active"}`}
-		>Projets</a
-	>
-	<a
-		href="/contact"
-		class={`navbar-item ${currentPage === "contact" ? "navbar-active" : "navbar-non-active"}`}
-		>Contact</a
-	>
-</div>
+		<IconContact class="size-18" />
+		<span>Contact</span>
+	</a>
+</nav>
 
 <!-- NAVBAR - PC Version -->
 <nav
@@ -90,24 +89,19 @@ const links = [
 	>
 	<span aria-hidden="true" class="mx-4 h-22 w-1 bg-white/12"></span>
 	{
-		links.map(({ page, href, label, icon: Icon }) => {
-			const isActive = page === currentPage;
-			return (
-				<a
-					href={href}
-					aria-current={isActive ? "page" : undefined}
-					class:list={[
-						"flex items-center gap-8 rounded-full border px-16 py-10 text-14 transition-colors duration-200",
-						isActive
-							? "border-white/12 bg-white/8 text-white"
-							: "border-transparent text-white/72 hover:bg-white/6 hover:text-white",
-					]}
-				>
-					<Icon class="size-18" />
-					<span>{label}</span>
-				</a>
-			);
-		})
+		links.map(({ href, label, icon: Icon, isActive }) => (
+			<a
+				href={href}
+				aria-current={isActive ? "page" : undefined}
+				class:list={[
+					"flex items-center gap-8 rounded-full border px-16 py-10 text-14 transition-colors duration-200",
+					tabState(isActive),
+				]}
+			>
+				<Icon class="size-18" />
+				<span>{label}</span>
+			</a>
+		))
 	}
 	<a
 		href="/#contact"
