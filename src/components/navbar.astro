@@ -8,23 +8,19 @@ import IconStack from "../components/icons/IconStack.astro";
 import IconBurger from "../components/icons/IconBurger.astro";
 
 const { currentPath } = Astro.props;
-const currentPage = (currentPath.split("/").filter(Boolean)[0] ||
-	"home") as keyof typeof pageLabels;
+const currentPage = currentPath.split("/").filter(Boolean)[0] || "home";
 
-const pageLabels = {
-	home: { label: "Accueil", icon: "home" },
-	about: { label: "À propos", icon: "about" },
-	contact: { label: "Contact", icon: "contact" },
-	stack: { label: "Stack", icon: "stack" },
-	projects: { label: "Projets", icon: "projects" },
-};
-
-const label = pageLabels[currentPage]?.label ?? "Navigation";
-const icon = pageLabels[currentPage]?.icon ?? "default";
+// Contact n'est plus un onglet : c'est le bouton en dégradé, à la fin de la pilule.
+const links = [
+	{ page: "home", href: "/", label: "Accueil", icon: IconHome },
+	{ page: "about", href: "/about", label: "À propos", icon: IconAbout },
+	{ page: "stack", href: "/stack", label: "Stack", icon: IconStack },
+	{ page: "projects", href: "/projects", label: "Projets", icon: IconProject },
+];
 ---
 
 <!-- NAVBAR Label -->
-<div class="fixed top-35 z-50 lg:hidden">
+<div class="pointer-events-auto fixed top-35 z-50 lg:hidden">
 	<button
 		id="burger"
 		class="text-white bg-[#0d0c1786] px-50 py-10 rounded-full backdrop-blur-sm border border-card-border"
@@ -46,7 +42,7 @@ const icon = pageLabels[currentPage]?.icon ?? "default";
 <!-- MENU mobile -->
 <div
 	id="mobileMenu"
-	class="hidden fixed inset-0 bg-black/80 z-40 flex flex-col items-center justify-center space-y-6 text-white text-lg lg:hidden backdrop-blur-sm"
+	class="pointer-events-auto hidden fixed inset-0 bg-black/80 z-40 flex flex-col items-center justify-center space-y-6 text-white text-lg lg:hidden backdrop-blur-sm"
 >
 	<button id="closeBurger">
 		<div
@@ -83,44 +79,41 @@ const icon = pageLabels[currentPage]?.icon ?? "default";
 </div>
 
 <!-- NAVBAR - PC Version -->
-<div
-	class="hidden lg:block lg:fixed text-white/80 mt-35 bg-[#0d0c1786] border-card-border border-1 size-fit rounded-full p-5 backdrop-blur-sm z-40"
+<nav
+	aria-label="Navigation principale"
+	class="pointer-events-auto hidden items-center gap-4 rounded-full border border-white/10 bg-background/55 p-6 backdrop-blur-[14px] lg:flex"
 >
-	<li class="flex space-x-15 text-15">
-		<a
-			href="/"
-			class={`navbar-item ${currentPage === "home" ? "navbar-active" : "navbar-non-active"}`}
-		>
-			<IconHome />
-			<span>Accueil</span>
-		</a>
-		<a
-			href="/about"
-			class={`navbar-item ${currentPage === "about" ? "navbar-active" : "navbar-non-active"}`}
-		>
-			<IconAbout />
-			<span>À propos</span>
-		</a>
-		<a
-			href="/stack"
-			class={`navbar-item ${currentPage === "stack" ? "navbar-active" : "navbar-non-active"}`}
-		>
-			<IconStack />
-			<span>Stack</span>
-		</a>
-		<a
-			href="/projects"
-			class={`navbar-item ${currentPage === "projects" ? "navbar-active" : "navbar-non-active"}`}
-		>
-			<IconProject />
-			<span>Projets</span>
-		</a>
-		<a
-			href="/contact"
-			class={`navbar-item ${currentPage === "contact" ? "navbar-active" : "navbar-non-active"}`}
-		>
-			<IconContact />
-			<span>Contact</span>
-		</a>
-	</li>
-</div>
+	<a
+		href="/"
+		class="py-8 pr-16 pl-18 text-18 font-semibold tracking-[-0.01em] text-bleu-glacier"
+		>Pierre.</a
+	>
+	<span aria-hidden="true" class="mx-4 h-22 w-1 bg-white/12"></span>
+	{
+		links.map(({ page, href, label, icon: Icon }) => {
+			const isActive = page === currentPage;
+			return (
+				<a
+					href={href}
+					aria-current={isActive ? "page" : undefined}
+					class:list={[
+						"flex items-center gap-8 rounded-full border px-16 py-10 text-14 transition-colors duration-200",
+						isActive
+							? "border-white/12 bg-white/8 text-white"
+							: "border-transparent text-white/72 hover:bg-white/6 hover:text-white",
+					]}
+				>
+					<Icon class="size-18" />
+					<span>{label}</span>
+				</a>
+			);
+		})
+	}
+	<a
+		href="/#contact"
+		class="grad-btn ml-4 flex items-center gap-8 rounded-full px-18 py-10 text-14 font-medium"
+	>
+		<IconContact class="size-18" />
+		<span>Contact</span>
+	</a>
+</nav>

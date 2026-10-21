@@ -47,6 +47,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Hauteur de la navbar sticky + une marge : une ancre (/#contact) ne finit pas cachée dessous */
+    scroll-padding-top: 112px;
   }
 
   :focus-visible {
