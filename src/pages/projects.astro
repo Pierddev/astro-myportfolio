@@ -27,7 +27,7 @@ import logoTailwindcss from "../assets/stacks/tailwindcss.webp";
 import logoDjango from "../assets/stacks/django.webp";
 
 import CardProject from "../components/CardProject.astro";
-import { MyProjects } from "../data/projects";
+import { projects } from "../data/projects";
 import { Image } from "astro:assets";
 import { Picture } from "astro:assets";
 ---
@@ -46,7 +46,7 @@ import { Picture } from "astro:assets";
 				>
 			</div>
 			<div class="flex flex-wrap gap-30 mx-20 sm:mx-30 justify-center">
-				{MyProjects.project.map((p) => <CardProject {...p} />)}
+				{projects.map((p) => <CardProject {...p} />)}
 			</div>
 			<div class="flex flex-col">
 				<span class="text-40 sm:text-50 font-semibold">À Suivre...</span>

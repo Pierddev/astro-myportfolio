@@ -1,161 +1,161 @@
-import logoVSC from "../assets/stacks/vsc.webp";
 import logoFigma from "../assets/stacks/figma.webp";
 import logoGithub from "../assets/stacks/github.webp";
-import logoHerd from "../assets/stacks/herd.webp";
-import logoWireshark from "../assets/stacks/wireshark.webp";
 import logoPycharm from "../assets/stacks/pycharm.webp";
-import LogoPhpstorm from "../assets/stacks/phpstorm.webp";
-import logoPhotoshop from "../assets/stacks/photoshop.webp";
-import logoNotion from "../assets/stacks/notion.webp";
 import logoVercel from "../assets/stacks/vercel.webp";
 import logoTrello from "../assets/stacks/trello.webp";
-import logoPhp from "../assets/stacks/php.webp";
 import logoMysql from "../assets/stacks/mysql.webp";
-import logoLaravel from "../assets/stacks/laravel.webp";
 import logoAstro from "../assets/stacks/astro.webp";
 import logoPython from "../assets/stacks/python.webp";
-import logoJavascript from "../assets/stacks/javascript.webp";
-import logoHtml from "../assets/stacks/html.webp";
-import logoCss from "../assets/stacks/css.webp";
 import logoTailwindcss from "../assets/stacks/tailwindcss.webp";
 import logoDjango from "../assets/stacks/django.webp";
-import logoTypescript from "../assets/stacks/typescript.webp";
-import logoJson from "../assets/stacks/json.webp";
-import logoAlpinejs from "../assets/stacks/alpinejs.webp";
-import logoVirtualbox from "../assets/stacks/virtualbox.webp";
-import logoPowershell from "../assets/stacks/powershell.webp";
-import logoDocker from "../assets/stacks/docker.webp";
 import logoPostgresql from "../assets/stacks/postgresql.webp";
-import logoMongodb from "../assets/stacks/mongodb.webp";
-import logoSynology from "../assets/stacks/synology.webp";
-import logoSqlite from "../assets/stacks/sqlite.webp";
+import logoFlask from "../assets/stacks/flask.webp";
+import logoJinja from "../assets/stacks/jinja.webp";
 import shopJO from "../assets/project-shopjo.webp";
 import myPortfolio from "../assets/project-portfolio.webp";
-import tableauMission from "../assets/project-tableaumission.webp";
 import SioDash from "../assets/project-siodash.webp";
 import SuperviseurDossiers from "../assets/project-superviseurdossiers.webp";
-import logoFlask from "../assets/stacks/flask.webp";
-import logoJinja from "../assets/stacks/jinja.webp"
 
-export interface ProjectItem {
-	project: {
-		title: string;
-		url: string;
-		thumbnail: typeof myPortfolio;
-		items: {
-			name: string;
-			logoSrc: typeof logoAstro;
-			colorName: string;
-			invert?: boolean;
-		}[];
-	}[];
+// Une techno affichée en badge (TechBadge) sous la description du projet
+export interface ProjectTech {
+	name: string;
+	logoSrc: ImageMetadata;
+	colorName: string;
+	invert?: boolean;
 }
 
-export const MyProjects: ProjectItem = {
-	project: [
-		{
-			title: "Superviseur Dossiers",
-			url: "https://github.com/Pierddev/SuperviseurDossiers",
-			thumbnail: SuperviseurDossiers,
-			items: [
-				{
-					name: "Python",
-					logoSrc: logoPython,
-					colorName: "python",
-				},
-				{
-					name: "MySQL",
-					logoSrc: logoMysql,
-					colorName: "pycharm",
-				},
-				{
-					name: "GitHub",
-					logoSrc: logoGithub,
-					colorName: "github",
-				},
-			],
-		},
-		{
-			title: "SioDash",
-			url: "https://siodash.fr/",
-			thumbnail: SioDash,
-			items: [
-				{
-					name: "Flask",
-					logoSrc: logoFlask,
-					colorName: "django",
-				},
-				{
-					name: "Jinja",
-					logoSrc: logoJinja,
-					colorName: "figma",
-				},
-				{
-					name: "Vercel",
-					logoSrc: logoVercel,
-					colorName: "github",
-					invert: true,
-				},
-				{
-					name: "PostgreSQL",
-					logoSrc: logoPostgresql,
-					colorName: "tailwindcss",
-				},
-			],
-		},
-		{
-			title: "Mon Portfolio",
-			url: "https://github.com/Pierddev/astro-myportfolio",
-			thumbnail: myPortfolio,
-			items: [
-				{
-					name: "Astro",
-					logoSrc: logoAstro,
-					colorName: "astro",
-				},
-				{
-					name: "GitHub",
-					logoSrc: logoGithub,
-					colorName: "github",
-				},
-				{
-					name: "TailwindCSS",
-					logoSrc: logoTailwindcss,
-					colorName: "tailwindcss",
-				},
-				{
-					name: "Figma",
-					logoSrc: logoFigma,
-					colorName: "figma",
-				},
-			],
-		},
-		{
-			title: "Billetterie JO 2024 - Studi",
-			url: "https://github.com/Pierddev/studi-billetterie-jo2024",
-			thumbnail: shopJO,
-			items: [
-				{
-					name: "Django",
-					logoSrc: logoDjango,
-					colorName: "django",
-				},
-				{
-					name: "Python",
-					logoSrc: logoPython,
-					colorName: "python",
-				},
-				{
-					name: "PyCharm",
-					logoSrc: logoPycharm,
-					colorName: "pycharm",
-				},
-				{
-					name: "Trello",
-					logoSrc: logoTrello,
-					colorName: "trello",
-				},
-			],
-		},
-	],
-};
+// linkType : "live" pour un site en ligne (« En ligne », « Voir le site »),
+// "source" pour un dépôt GitHub (« Code source », « Voir sur GitHub »).
+// domain : nom de domaine affiché sur l'accueil, pour un projet en ligne.
+// featured : projet mis en avant (badge « À la une »).
+export interface Project {
+	title: string;
+	description: string;
+	url: string;
+	linkType: "live" | "source";
+	domain?: string;
+	featured?: boolean;
+	thumbnail: ImageMetadata;
+	items: ProjectTech[];
+}
+
+export const projects: Project[] = [
+	{
+		title: "SioDash",
+		description:
+			"Une plateforme centralisée pour les étudiants en BTS SIO permettant de suivre leurs missions, compétences et parcours professionnel.",
+		url: "https://siodash.fr/",
+		linkType: "live",
+		domain: "siodash.fr",
+		featured: true,
+		thumbnail: SioDash,
+		items: [
+			{
+				name: "Flask",
+				logoSrc: logoFlask,
+				colorName: "django",
+			},
+			{
+				name: "Jinja",
+				logoSrc: logoJinja,
+				colorName: "figma",
+			},
+			{
+				name: "Vercel",
+				logoSrc: logoVercel,
+				colorName: "github",
+				invert: true,
+			},
+			{
+				name: "PostgreSQL",
+				logoSrc: logoPostgresql,
+				colorName: "tailwindcss",
+			},
+		],
+	},
+	{
+		title: "Superviseur Dossiers",
+		description:
+			"Un agent Python pour Windows Server qui suit la taille des dossiers, garde l’historique en base et alerte sur Microsoft Teams en cas de changement important.",
+		url: "https://github.com/Pierddev/SuperviseurDossiers",
+		linkType: "source",
+		thumbnail: SuperviseurDossiers,
+		items: [
+			{
+				name: "Python",
+				logoSrc: logoPython,
+				colorName: "python",
+			},
+			{
+				name: "MySQL",
+				logoSrc: logoMysql,
+				colorName: "pycharm",
+			},
+			{
+				name: "GitHub",
+				logoSrc: logoGithub,
+				colorName: "github",
+			},
+		],
+	},
+	{
+		title: "Mon Portfolio",
+		description:
+			"Le site que vous visitez : un portfolio maquetté sur Figma puis développé avec Astro et Tailwind CSS pour présenter mon parcours et mes projets.",
+		url: "https://github.com/Pierddev/astro-myportfolio",
+		linkType: "source",
+		thumbnail: myPortfolio,
+		items: [
+			{
+				name: "Astro",
+				logoSrc: logoAstro,
+				colorName: "astro",
+			},
+			{
+				name: "GitHub",
+				logoSrc: logoGithub,
+				colorName: "github",
+			},
+			{
+				name: "TailwindCSS",
+				logoSrc: logoTailwindcss,
+				colorName: "tailwindcss",
+			},
+			{
+				name: "Figma",
+				logoSrc: logoFigma,
+				colorName: "figma",
+			},
+		],
+	},
+	{
+		title: "Billetterie JO 2024 — Studi",
+		description:
+			"Une boutique en ligne de billets pour les JO de Paris 2024, avec compte client, panier, paiement simulé et billet nominatif à QR code. Projet d’examen Studi.",
+		url: "https://github.com/Pierddev/studi-billetterie-jo2024",
+		linkType: "source",
+		thumbnail: shopJO,
+		items: [
+			{
+				name: "Django",
+				logoSrc: logoDjango,
+				colorName: "django",
+			},
+			{
+				name: "Python",
+				logoSrc: logoPython,
+				colorName: "python",
+			},
+			{
+				name: "PyCharm",
+				logoSrc: logoPycharm,
+				colorName: "pycharm",
+			},
+			{
+				name: "Trello",
+				logoSrc: logoTrello,
+				colorName: "trello",
+			},
+		],
+	},
+];
