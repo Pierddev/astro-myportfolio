@@ -2,6 +2,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "tailwindcss";
 
+/* Fonds des TechBadge : la classe bg-{colorName}/30 est construite au rendu, Tailwind ne la
+   trouve pas dans le code. On la génère ici pour chaque couleur de techno du thème. */
+@source inline("bg-{astro,github,tailwindcss,figma,django,python,pycharm,trello}/30");
+
 @theme {
   --font-sans: "Poppins", sans-serif, ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";

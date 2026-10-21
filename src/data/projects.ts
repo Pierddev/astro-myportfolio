@@ -46,6 +46,7 @@ export interface ProjectItem {
 			name: string;
 			logoSrc: typeof logoAstro;
 			colorName: string;
+			invert?: boolean;
 		}[];
 	}[];
 }
@@ -93,6 +94,7 @@ export const MyProjects: ProjectItem = {
 					name: "Vercel",
 					logoSrc: logoVercel,
 					colorName: "github",
+					invert: true,
 				},
 				{
 					name: "PostgreSQL",

@@ -1,17 +1,28 @@
 ---
-const { name, logoSrc, colorName } = Astro.props;
+import { Image } from "astro:assets";
+
+// Pilule d'une techno : logo + nom, sur un fond teinté par colorName (couleur du thème à 30 %).
+// Les classes bg-{colorName}/30 sont déclarées dans global.css avec @source inline :
+// une classe construite au rendu est invisible pour Tailwind, qui lit le code sans l'exécuter.
+// invert : inverse les couleurs d'un logo sombre (Vercel) pour qu'il reste lisible.
+interface Props {
+	name: string;
+	logoSrc: ImageMetadata;
+	colorName: string;
+	invert?: boolean;
+}
+
+const { name, logoSrc, colorName, invert = false } = Astro.props;
 ---
 
-<div
-	class={`border-1 border-card-border flex items-center space-x-5 py-3 px-10 leading-none rounded-full bg-${colorName}/30`}
+<span
+	class={`inline-flex items-center gap-6 rounded-full border border-white/10 py-4 pr-10 pl-7 text-12 bg-${colorName}/30`}
 >
-	<div class="size-11 flex items-center justify-center">
-		<img
-			src={logoSrc.src}
-			alt={`Logo de ${name}`}
-			class="aspect-square h-full max-h-[1rem] w-auto object-contain mx-auto"
-			loading="lazy"
-		/>
-	</div>
-	<span>{name}</span>
-</div>
+	<Image
+		src={logoSrc}
+		alt=""
+		width={28}
+		class:list={["size-14 object-contain", invert && "invert"]}
+	/>
+	{name}
+</span>
