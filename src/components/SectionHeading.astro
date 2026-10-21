@@ -1,0 +1,22 @@
+---
+// Titre de section numéroté : sur-titre mono (« 01 — Projets »), puis le h2.
+// Le slot (optionnel) accueille un lien ou un bouton aligné à droite (« Tous les projets → »).
+interface Props {
+	eyebrow: string;
+	title: string;
+}
+
+const { eyebrow, title } = Astro.props;
+---
+
+<div class="mb-32 flex flex-wrap items-end justify-between gap-16">
+	<div>
+		<p class="mb-10 font-mono text-13 tracking-[0.04em] text-bleu-glacier">
+			{eyebrow}
+		</p>
+		<h2 class="text-[clamp(28px,3vw,40px)] font-semibold tracking-[-0.02em]">
+			{title}
+		</h2>
+	</div>
+	<slot />
+</div>

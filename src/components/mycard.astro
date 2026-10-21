@@ -1,59 +1,111 @@
 ---
 import { Image } from "astro:assets";
 import Me from "../assets/me.webp";
-import IconMail from "../components/icons/IconMail.astro";
-import IconPhone from "../components/icons/IconPhone.astro";
-import IconLocation from "../components/icons/IconLocation.astro";
+import IconGithub from "./icons/IconGithub.astro";
+import IconLinkedin from "./icons/IconLinkedin.astro";
+import IconLocation from "./icons/IconLocation.astro";
+import IconMail from "./icons/IconMail.astro";
+import { contact } from "../data/contact";
+
+// class : placement de la carte dans le hero de la page (marges, alignement…)
+const { class: className } = Astro.props;
 ---
 
-<div class="lg:ml-50 lg:mr-20 pt-120 h-fit flex justify-center">
-   <div
-      class="flex lg:flex-col space-x-10 lg:space-x-0 items-center bg-card border-card-border border-1 p-15 rounded-40 lg:w-260"
-   >
-      <Image
-         src={Me}
-         alt="Auteur du Portfolio"
-         class="w-150 lg:w-300 rounded-25 bg-card border-card-border border-1"
-         loading="eager"
-      />
-      <span class="hidden lg:inline text-20 font-semibold my-10"
-         >Pierre DUAULT</span
-      >
-      <div class="hidden lg:inline h-1 w-full bg-card"></div>
-      <div
-         class="flex flex-col space-y-5 lg:space-y-15 lg:mt-15 text-12 w-full"
-      >
-         <!-- Mail -->
-         <span class="lg:hidden text-20 text-center font-semibold my-10">
-            Pierre DUAULT
-         </span>
-         <a
-            target="_blank"
-            href="mailto:pierre.duault.pro@gmail.com"
-            class="card-item"
-         >
-            <IconMail class="size-25 lg:size-39 text-white/80 font-light" />
-            <div class="font-medium text-white/80">
-               <p class="text-white/50">MAIL</p>
-               <p class="text-11">pierre.duault.pro@gmail.com</p>
-            </div>
-         </a>
-         <!-- Phone -->
-         <div class="card-item">
-            <IconPhone class="size-25 lg:size-39 text-white/80 font-light" />
-            <div class="font-medium text-white/80">
-               <p class="text-white/50">TELEPHONE</p>
-               <p>+33 6 9X XX XX 88</p>
-            </div>
-         </div>
-         <!-- Location -->
-         <div class="card-item">
-            <IconLocation class="size-25 lg:size-39 text-white/80 font-light" />
-            <div class="font-medium text-white/80">
-               <p class="text-white/50">LOCALISATION</p>
-               <p>Acigne (35)</p>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>
+<aside
+	aria-label="Carte de contact"
+	class:list={[
+		"w-full max-w-300 rounded-36 border border-card-border bg-card p-14 backdrop-blur-[6px]",
+		className,
+	]}
+>
+	<div class="relative">
+		<!-- width : 2× la largeur affichée (272px), net sur les écrans Retina sans charger la photo d'origine -->
+		<Image
+			src={Me}
+			width={544}
+			alt="Portrait de Pierre Duault"
+			class="aspect-[4/4.4] w-full rounded-24 border border-white/10 object-cover object-[center_35%]"
+			loading="eager"
+		/>
+		<p
+			class="absolute bottom-12 left-12 flex items-center gap-8 rounded-full border border-white/14 bg-background/72 px-12 py-6 text-12 font-medium backdrop-blur-[8px]"
+		>
+			<span aria-hidden="true" class="relative flex size-8">
+				<span
+					class="absolute inset-0 animate-ping rounded-full bg-emeraude opacity-70"
+				></span>
+				<span class="relative size-8 rounded-full bg-emeraude"></span>
+			</span>
+			Disponible
+		</p>
+	</div>
+
+	<div class="px-6 pt-16 text-center">
+		<h2 class="text-20 font-semibold">Pierre Duault</h2>
+		<p class="mt-4 text-13 text-white/60">
+			Développeur Full Stack · Pi-Code Studio
+		</p>
+	</div>
+
+	<div aria-hidden="true" class="mx-4 my-14 h-1 bg-white/8"></div>
+
+	<ul class="flex flex-col gap-2">
+		<li>
+			<a
+				href={`mailto:${contact.email}`}
+				class="row-link flex items-center gap-12 rounded-16 px-10 py-8"
+			>
+				<span
+					class="flex size-38 flex-none items-center justify-center rounded-12 border border-white/10 bg-white/6 text-white/85"
+				>
+					<IconMail class="size-20" />
+				</span>
+				<span class="min-w-0">
+					<span
+						class="block text-10 font-medium tracking-[0.08em] text-white/55 uppercase"
+						>Mail</span
+					>
+					<!-- truncate : points de suspension si l'adresse dépasse -->
+					<span class="block truncate text-12 text-white/88"
+						>{contact.email}</span
+					>
+				</span>
+			</a>
+		</li>
+		<li class="flex items-center gap-12 px-10 py-8">
+			<span
+				class="flex size-38 flex-none items-center justify-center rounded-12 border border-white/10 bg-white/6 text-white/85"
+			>
+				<IconLocation class="size-20" />
+			</span>
+			<span>
+				<span
+					class="block text-10 font-medium tracking-[0.08em] text-white/55 uppercase"
+					>Localisation</span
+				>
+				<span class="block text-12 text-white/88">Acigné (35)</span>
+			</span>
+		</li>
+	</ul>
+
+	<div class="mt-12 flex gap-8">
+		<a
+			href={contact.github}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="glass-btn flex min-h-44 flex-1 items-center justify-center gap-8 rounded-14 text-13 text-white/82"
+		>
+			<IconGithub class="size-18" />
+			<span>GitHub</span>
+		</a>
+		<a
+			href={contact.linkedin}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="glass-btn flex min-h-44 flex-1 items-center justify-center gap-8 rounded-14 text-13 text-white/82"
+		>
+			<IconLinkedin class="size-18" />
+			<span>LinkedIn</span>
+		</a>
+	</div>
+</aside>

@@ -1,0 +1,33 @@
+---
+// En-tête de page : sur-titre mono (« // Stack »), h1 dont le dernier mot est en dégradé, intro.
+// Le slot (optionnel) accueille un élément aligné en bas à droite (« 4 projets »).
+// Dans le h1, {" "} est un espace explicite : sans lui, Astro colle les deux mots au retour à la ligne.
+interface Props {
+	eyebrow: string;
+	title: string;
+	highlight: string;
+	intro: string;
+}
+
+const { eyebrow, title, highlight, intro } = Astro.props;
+---
+
+<div>
+	<p class="mb-18 font-mono text-13 tracking-[0.04em] text-bleu-glacier">
+		{eyebrow}
+	</p>
+	<div class="flex flex-wrap items-end justify-between gap-24">
+		<div class="min-w-0 flex-[1_1_520px]">
+			<h1
+				class="text-[clamp(40px,5.4vw,72px)] leading-[1.06] font-semibold tracking-[-0.025em]"
+			>
+				{title}{" "}
+				<span class="gradient-text">{highlight}</span>
+			</h1>
+			<p class="mt-22 max-w-600 text-17 leading-[1.7] text-white/72">
+				{intro}
+			</p>
+		</div>
+		<slot />
+	</div>
+</div>

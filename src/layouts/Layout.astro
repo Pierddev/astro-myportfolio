@@ -65,7 +65,10 @@ const { title = "Développeur Full Stack" } = Astro.props;
 	</head>
 	<body class="relative bg-background text-white antialiased max-w-screen">
 		<BackgroundGlow />
-		<header class="flex justify-center">
+		<!-- pointer-events-none : la bande transparente autour de la pilule laisse passer les clics vers la page -->
+		<header
+			class="pointer-events-none sticky top-0 z-50 flex justify-center px-16 pt-16 lg:pt-32"
+		>
 			<Navbar currentPath={pathname} />
 		</header>
 		<main>
