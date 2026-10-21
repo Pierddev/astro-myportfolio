@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import background from "../assets/background.svg";
+import BackgroundGlow from "../components/BackgroundGlow.astro";
 import Navbar from "../components/navbar.astro";
 import Footer from "../components/footer.astro";
 
@@ -64,14 +64,7 @@ const { title = "Développeur Full Stack" } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 	</head>
 	<body class="relative bg-background text-white antialiased max-w-screen">
-		<img
-			class="blur-[100px] fixed w-full -z-10"
-			id="background"
-			src={background.src}
-			alt=""
-			fetchpriority="high"
-			aria-hidden="true"
-		/>
+		<BackgroundGlow />
 		<header class="flex justify-center">
 			<Navbar currentPath={pathname} />
 		</header>
