@@ -1,7 +1,7 @@
 # Pierre Duault — Portfolio
 
 [![Site en ligne](https://img.shields.io/badge/Site-pierre--duault.fr-0ea5e9?style=flat-square&logo=astro&logoColor=white)](https://pierre-duault.fr)
-[![Astro](https://img.shields.io/badge/Astro-6.x-BC52EE?style=flat-square&logo=astro)](https://astro.build)
+[![Astro](https://img.shields.io/badge/Astro-7.x-BC52EE?style=flat-square&logo=astro)](https://astro.build)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.x-06B6D4?style=flat-square&logo=tailwindcss)](https://tailwindcss.com)
 
 > Portfolio personnel de **Pierre Duault**, développeur web full stack & administrateur systèmes, basé à Rennes.
@@ -21,15 +21,21 @@
 ### Stack
 ![Stack](.github/screenshots/stack.png)
 
+### A propos
+![A propos](.github/screenshots/about.png)
+
+### Contact
+![Contact](.github/screenshots/contact.png)
+
 ---
 
 ## Fonctionnalites
 
-- **Page d'accueil** — Presentation, carte de profil, projet mis en avant et formulaire de contact rapide
+- **Page d'accueil** — Presentation, carte de profil, projet mis en avant, apercu de la stack et section contact
 - **Projets** — Galerie de projets personnels et professionnels avec fiches detaillees
-- **Stack** — Inventaire complet des technologies, outils et environnements maitrises
-- **A propos** — Parcours, experiences professionnelles et formations
-- **Contact** — Formulaire de contact fonctionnel
+- **Stack** — Inventaire complet des technologies, outils et environnements maitrises, avec filtres par categorie
+- **A propos** — Valeurs, chiffres cles, experiences professionnelles en timeline repliable et formations
+- **Contact** — Section de l'accueil (`/#contact`) : formulaire Formspree avec confirmation dans la page ; l'ancienne URL `/contact` y redirige
 - **Pages legales** — Mentions legales, politique de confidentialite et CGU
 - **SEO optimise** — Meta tags, Open Graph, Twitter Cards, sitemap
 - **Design responsive** — Interface adaptee mobile, tablette et desktop (Tailwind CSS)
@@ -40,7 +46,7 @@
 
 | Categorie | Technologie |
 |-----------|-------------|
-| Framework | [Astro](https://astro.build) v6 |
+| Framework | [Astro](https://astro.build) v7 |
 | Styling | [Tailwind CSS](https://tailwindcss.com) v4 |
 | Langage | TypeScript |
 | Deploiement | [Vercel](https://vercel.com) |
@@ -69,12 +75,11 @@
 │   │   ├── projects.astro
 │   │   ├── stack.astro
 │   │   ├── about.astro
-│   │   ├── contact.astro
-│   │   └── legal*.astro
+│   │   └── legal, privacy, terms.astro  # Pages legales
 │   └── styles/
-│       └── global.css
-├── astro.config.mjs
-├── tailwind.config.js
+│       ├── global.css
+│       └── tailwind.config.js
+├── astro.config.mjs      # Config Astro (sitemap, redirection /contact)
 └── package.json
 ```
 
