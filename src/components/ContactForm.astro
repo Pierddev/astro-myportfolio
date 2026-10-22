@@ -1,55 +1,195 @@
 ---
 import IconArrowRight from "./icons/IconArrowRight.astro";
+import IconMail from "./icons/IconMail.astro";
+import IconLinkedin from "./icons/IconLinkedin.astro";
+import IconLocation from "./icons/IconLocation.astro";
+import IconCheckCircle from "./icons/IconCheckCircle.astro";
+import IconAlertCircle from "./icons/IconAlertCircle.astro";
+import { contact } from "../data/contact";
+
+// Section Contact de l'accueil : coordonnées à gauche, formulaire Formspree à droite.
+// Les noms de champs (Name, Email, Sujet, Message) sont ceux reçus dans les mails Formspree.
+const fields = [
+	{
+		id: "contact-name",
+		name: "Name",
+		label: "Nom et prénom",
+		type: "text",
+		placeholder: "Jean Dupont",
+		autocomplete: "name",
+	},
+	{
+		id: "contact-email",
+		name: "Email",
+		label: "Email",
+		type: "email",
+		placeholder: "exemple@mail.com",
+		autocomplete: "email",
+		required: true,
+	},
+];
 ---
 
 <div
-	class="bloc-card flex flex-col space-y-20 sm:space-y-30 items-center px-20 sm:px-60 py-20 sm:py-30 rounded-30 sm:rounded-45 mx-20"
+	class="flex flex-wrap gap-48 rounded-40 border border-card-border bg-card p-24 sm:p-40"
 >
-	<span class="font-semibold text-20">Envoyez-moi un message !</span>
+	<div class="flex min-w-0 flex-[1_1_320px] flex-col gap-20">
+		<p class="font-mono text-13 tracking-[0.04em] text-bleu-glacier">
+			03 — Contact
+		</p>
+		<h2
+			class="text-[clamp(28px,3vw,40px)] leading-[1.15] font-semibold tracking-[-0.02em]"
+		>
+			Envoyez-moi un message !
+		</h2>
+		<p class="max-w-400 text-15 leading-[1.7] text-white/72">
+			Un projet web, une mission freelance ou une question ? Utilisez le
+			formulaire ou contactez-moi directement.
+		</p>
+		<!-- -mx-12 : le fond de survol déborde, le texte reste aligné sur le paragraphe -->
+		<ul class="mt-8 flex flex-col gap-4 text-15">
+			<li>
+				<a
+					href={`mailto:${contact.email}`}
+					class="row-link -mx-12 flex items-center gap-12 rounded-16 px-12 py-10 text-lavande-fonce"
+				>
+					<IconMail class="size-22 flex-none" />
+					<span class="min-w-0 break-all">{contact.email}</span>
+				</a>
+			</li>
+			<li>
+				<a
+					href={contact.linkedin}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="row-link -mx-12 flex items-center gap-12 rounded-16 px-12 py-10 text-white/82"
+				>
+					<IconLinkedin class="size-22 flex-none" />
+					<span>Via LinkedIn</span>
+				</a>
+			</li>
+			<li class="flex items-center gap-12 py-10 text-white/82">
+				<IconLocation class="size-22 flex-none" />
+				<span>Acigné (35) · Rennes</span>
+			</li>
+		</ul>
+	</div>
+
+	<!-- Sans JavaScript, le formulaire part en POST classique vers Formspree (page de confirmation
+	     Formspree) ; le script ci-dessous l'envoie en fetch et affiche le résultat dans la page. -->
 	<form
+		data-contact-form
 		action="https://formspree.io/f/xnndozwr"
 		method="POST"
-		class="flex flex-col space-y-20 sm:space-y-30"
+		class="flex min-w-0 flex-[1.4_1_420px] flex-col gap-18"
 	>
-		<div class="flex flex-wrap sm:flex-nowrap">
-			<label for="name" class="sr-only">Votre nom et prénom :</label>
+		<div class="flex flex-wrap gap-18">
+			{
+				fields.map(({ id, label, ...attributes }) => (
+					<div class="flex min-w-0 flex-[1_1_200px] flex-col gap-8">
+						<label for={id} class="text-13 font-medium text-white/80">
+							{label}
+						</label>
+						<input id={id} class="field" {...attributes} />
+					</div>
+				))
+			}
+		</div>
+		<div class="flex flex-col gap-8">
+			<label for="contact-subject" class="text-13 font-medium text-white/80">
+				Sujet
+			</label>
 			<input
-				id="name"
+				id="contact-subject"
 				type="text"
-				name="Name"
-				placeholder="Nom Prenom"
-				class="form-input sm:mr-40 w-full"
-			/>
-			<label for="email" class="sr-only">Votre adresse email :</label>
-			<input
-				id="email"
-				type="email"
-				name="Email"
-				placeholder="example@mail.com"
-				class="form-input w-full mt-20 sm:mt-0"
+				name="Sujet"
+				placeholder="Création d’un site vitrine"
+				class="field"
 			/>
 		</div>
-		<label for="subject" class="sr-only">Sujet de votre message :</label>
-		<input
-			id="subject"
-			type="text"
-			name="Sujet"
-			placeholder="Sujet"
-			class="form-input"
-		/>
-		<label for="message" class="sr-only">Votre message :</label>
-		<textarea
-			id="message"
-			name="Message"
-			placeholder="Message"
-			rows="6"
-			class="form-input focus:outline-none resize-y"></textarea>
-		<button
-			type="submit"
-			class="flex w-fit items-center bg-white/10 hover:bg-white/20 transition-colors px-20 py-5 space-x-10 rounded-10 border-1 cursor-pointer border-card-border"
-		>
-			<span>Envoyer</span>
-			<IconArrowRight />
-		</button>
+		<div class="flex flex-col gap-8">
+			<label for="contact-message" class="text-13 font-medium text-white/80">
+				Message
+			</label>
+			<textarea
+				id="contact-message"
+				name="Message"
+				rows="6"
+				placeholder="Bonjour Pierre, …"
+				required
+				class="field resize-y leading-[1.6]"></textarea>
+		</div>
+
+		<div class="flex flex-wrap items-center gap-16">
+			<button
+				type="submit"
+				class="grad-btn inline-flex min-h-48 cursor-pointer items-center gap-10 rounded-full px-26 text-15 font-medium shadow-cta disabled:cursor-wait disabled:opacity-60"
+			>
+				<span>Envoyer</span>
+				<IconArrowRight class="size-18" />
+			</button>
+			<!-- Les zones role="status" et role="alert" restent dans la page : un lecteur d'écran
+			     annonce le message qui y apparaît (attribut hidden retiré par le script). -->
+			<div role="status">
+				<p
+					data-contact-success
+					hidden
+					class="inline-flex items-center gap-8 text-14 text-menthe"
+				>
+					<IconCheckCircle class="size-20 flex-none" />
+					<span>Merci ! Votre message a bien été envoyé.</span>
+				</p>
+			</div>
+			<div role="alert">
+				<p
+					data-contact-error
+					hidden
+					class="inline-flex items-center gap-8 text-14 text-red-300"
+				>
+					<IconAlertCircle class="size-20 flex-none" />
+					<span>
+						L’envoi a échoué. Réessayez dans un instant ou écrivez-moi à{" "}
+						<a
+							href={`mailto:${contact.email}`}
+							class="underline underline-offset-2">{contact.email}</a
+						>.
+					</span>
+				</p>
+			</div>
+		</div>
 	</form>
 </div>
+
+<script>
+	// Envoi en fetch : Accept: application/json fait répondre Formspree en JSON au lieu de
+	// rediriger vers sa page de confirmation. Le formulaire est vidé seulement en cas de succès.
+	const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
+	const success = document.querySelector<HTMLElement>("[data-contact-success]");
+	const error = document.querySelector<HTMLElement>("[data-contact-error]");
+
+	if (form && success && error) {
+		const submit = form.querySelector<HTMLButtonElement>("[type=submit]");
+
+		form.addEventListener("submit", async (event) => {
+			event.preventDefault();
+			success.hidden = true;
+			error.hidden = true;
+			if (submit) submit.disabled = true;
+
+			try {
+				const response = await fetch(form.action, {
+					method: "POST",
+					body: new FormData(form),
+					headers: { Accept: "application/json" },
+				});
+				if (!response.ok) throw new Error(`Formspree : ${response.status}`);
+				form.reset();
+				success.hidden = false;
+			} catch {
+				error.hidden = false;
+			} finally {
+				if (submit) submit.disabled = false;
+			}
+		});
+	}
+</script>

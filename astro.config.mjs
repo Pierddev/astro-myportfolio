@@ -12,4 +12,9 @@ export default defineConfig({
 	site: "https://pierre-duault.fr",
 
 	integrations: [sitemap()],
+
+	// L'ancienne page Contact est devenue une section de l'accueil : les anciens liens y mènent
+	redirects: {
+		"/contact": "/#contact",
+	},
 });

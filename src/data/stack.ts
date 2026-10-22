@@ -267,3 +267,32 @@ export const stackCategories: StackCategory[] = [
 		items: stackCyber,
 	},
 ];
+
+// Sélection de l'accueil : quelques technos par catégorie, retrouvées par leur nom.
+// Un nom introuvable fait échouer le build plutôt que d'afficher une puce vide.
+function pick(items: StackItem[], names: string[]): StackItem[] {
+	return names.map((name) => {
+		const item = items.find((candidate) => candidate.name === name);
+		if (!item) throw new Error(`Techno introuvable dans la stack : ${name}`);
+		return item;
+	});
+}
+
+export const stackHighlights: { title: string; items: StackItem[] }[] = [
+	{
+		title: "Langages & Frameworks",
+		items: pick(stackLangages, ["PHP", "Laravel", "Astro", "Python", "JavaScript"]),
+	},
+	{
+		title: "Base de données & Serveurs",
+		items: pick(stackBDD, ["MySQL", "PostgreSQL", "Docker"]),
+	},
+	{
+		title: "Cybersécurité & Réseau",
+		items: pick(stackCyber, ["Wireshark", "VMware"]),
+	},
+	{
+		title: "Outils",
+		items: pick(stackOutils, ["Figma", "GitHub", "PyCharm"]),
+	},
+];
