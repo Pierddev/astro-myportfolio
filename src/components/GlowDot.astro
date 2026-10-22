@@ -1,0 +1,18 @@
+---
+// Point de couleur avec une lueur, devant le titre d'une catégorie de la Stack et dans ses filtres.
+// La couleur passe par une variable CSS : Tailwind ne peut pas générer une classe par couleur reçue en prop.
+interface Props {
+	color: string;
+	class?: string;
+}
+
+const { color, class: className = "size-8" } = Astro.props;
+---
+
+<span
+	aria-hidden="true"
+	class:list={[
+		"flex-none rounded-full bg-(--dot) shadow-[0_0_12px_var(--dot)]",
+		className,
+	]}
+	style={`--dot: ${color}`}></span>

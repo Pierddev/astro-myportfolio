@@ -1,26 +1,39 @@
 ---
 import { Image } from "astro:assets";
+import IconArrowTopRight from "./icons/iconArrowTopRight.astro";
+import type { StackItem } from "../data/stack";
 
-interface Props {
-	logoSrc: ImageMetadata;
-	name: string;
-	url: string;
+// Tuile d'une techno : lien vers son site officiel. Au survol, elle se soulève et pivote
+// avec l'easing ressort (ease-spring), désactivé si l'utilisateur limite les animations.
+interface Props extends StackItem {
 	loading?: "lazy" | "eager";
 }
 
-const { logoSrc, name, url, loading = "lazy" } = Astro.props;
+const { logoSrc, name, url, invert = false, loading = "lazy" } = Astro.props;
 ---
 
 <a
 	href={url}
 	target="_blank"
-	class="group flex space-x-15 items-center bloc-card rounded-full w-fit py-10 px-20 ease-spring hover:rotate-5 hover:scale-110 transition-all duration-300 hover:shadow-xl/20 hover:shadow-black"
+	rel="noopener noreferrer"
+	class="group flex min-h-64 items-center gap-12 rounded-18 border border-white/9 bg-white/4 py-10 pr-14 pl-10 transition duration-400 ease-spring hover:border-white/20 hover:bg-white/8 motion-safe:hover:-translate-y-3 motion-safe:hover:-rotate-2"
 >
-	<Image
-		src={logoSrc}
-		alt={`Logo de ${name}`}
-		class="h-20 sm:h-30 w-auto"
-		loading={loading}
-	/>
-	<span class="group-hover:text-lavande-fonce transition-all">{name}</span>
+	<span
+		class="flex size-44 flex-none items-center justify-center rounded-12 border border-white/8 bg-white/6"
+	>
+		<!-- alt vide : le nom de la techno est déjà écrit à côté du logo -->
+		<Image
+			src={logoSrc}
+			alt=""
+			width={52}
+			class:list={["size-26 object-contain", invert && "invert"]}
+			loading={loading}
+		/>
+	</span>
+	<span
+		class="min-w-0 flex-1 text-14 font-medium text-white/90 transition-colors duration-200 group-hover:text-lavande-fonce"
+	>
+		{name}
+	</span>
+	<IconArrowTopRight class="size-16 flex-none text-white/35" />
 </a>
