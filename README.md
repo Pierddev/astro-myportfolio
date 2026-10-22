@@ -52,9 +52,9 @@
 
 ```text
 /
-├── public/               # Assets statiques (favicon, fonts, images, scripts)
+├── public/               # Assets statiques (favicon, image Open Graph, scripts)
 ├── src/
-│   ├── assets/           # Images et logos (projets, stack, background)
+│   ├── assets/           # Images et logos (projets, stack, entreprises)
 │   ├── components/       # Composants Astro reutilisables
 │   │   ├── icons/        # Icones SVG custom
 │   │   ├── Card*.astro   # Cartes (projet, experience, formation, stack)

@@ -1,21 +1,38 @@
 ---
+// Sommaire des pages légales : une pilule par page, l'onglet actif marqué par aria-current.
+// Mêmes styles d'onglet que la navbar (tabState). Sur desktop, il reste visible au défilement :
+// top-112 = hauteur de la navbar sticky + une marge, comme le scroll-padding de global.css.
 const { currentPath } = Astro.props;
-const currentPage = currentPath.split("/").filter(Boolean)[0] || "home";
+const currentPage = currentPath.split("/").filter(Boolean)[0];
+
+const links = [
+	{ page: "privacy", href: "/privacy", label: "Politique de confidentialité" },
+	{ page: "legal", href: "/legal", label: "Mentions légales" },
+	{ page: "terms", href: "/terms", label: "Conditions générales d’utilisation" },
+].map((link) => ({ ...link, isActive: link.page === currentPage }));
+
+const tabState = (isActive: boolean) =>
+	isActive
+		? "border-white/12 bg-white/8 text-white"
+		: "border-transparent text-white/72 hover:bg-white/6 hover:text-white";
 ---
-<div class="md:mx-20 mt-120">
-	<div
-		class="flex flex-col text-center bg-card border-card-border border-1 p-10 rounded-30 w-350"
-	>
-		<div class="flex flex-col space-y-15 text-15 font-semibold w-full">
-			<a href="/privacy" class={`navbar-item justify-center ${currentPage === "privacy" ? "navbar-active" : "navbar-non-active"}`}>
-				Politique de Confidentialité
+
+<nav
+	aria-label="Pages légales"
+	class="flex w-full flex-none flex-col gap-4 rounded-28 border border-card-border bg-card p-6 lg:sticky lg:top-112 lg:w-300"
+>
+	{
+		links.map(({ href, label, isActive }) => (
+			<a
+				href={href}
+				aria-current={isActive ? "page" : undefined}
+				class:list={[
+					"flex min-h-44 items-center rounded-full border px-18 py-10 text-14 transition-colors duration-200",
+					tabState(isActive),
+				]}
+			>
+				{label}
 			</a>
-			<a href="/legal" class={`navbar-item justify-center ${currentPage === "legal" ? "navbar-active" : "navbar-non-active"}`}>
-				Mentions Légales
-			</a>
-			<a href="/terms" class={`navbar-item justify-center ${currentPage === "terms" ? "navbar-active" : "navbar-non-active"}`}>
-				Conditions Générales d'Utilisation
-			</a>
-		</div>
-	</div>
-</div>
+		))
+	}
+</nav>
