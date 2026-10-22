@@ -67,7 +67,9 @@
 │   │   ├── navbar.astro
 │   │   ├── footer.astro
 │   │   └── ContactForm.astro
-│   ├── data/             # Donnees statiques (experiences, formations, projets, stack)
+│   ├── content/          # Contenu editable en YAML (stack, experiences, formations)
+│   ├── data/             # Donnees statiques (projets, contact)
+│   ├── lib/              # Lecture du contenu YAML (tri, dates, filtrage)
 │   ├── layouts/
 │   │   └── Layout.astro  # Layout principal (SEO, meta, nav, footer)
 │   ├── pages/            # Routes du site
@@ -79,9 +81,74 @@
 │   └── styles/
 │       ├── global.css
 │       └── tailwind.config.js
+├── src/content.config.ts # Schema du contenu YAML (verifie a chaque build)
 ├── astro.config.mjs      # Config Astro (sitemap, redirection /contact)
 └── package.json
 ```
+
+---
+
+## Mettre a jour le contenu
+
+La stack et le parcours se modifient dans trois fichiers YAML, sans toucher au code : dans VS Code, ou directement sur GitHub (bouton crayon, puis *Commit changes*) pour un deploiement automatique.
+
+| Fichier | Contenu |
+| :------ | :------ |
+| `src/content/stack.yaml` | Technos de la page Stack, par categorie, et selection de l'accueil |
+| `src/content/experiences.yaml` | Experiences professionnelles (timeline de la page A propos) |
+| `src/content/formations.yaml` | Formations (page A propos) |
+
+Chaque fichier rappelle ses champs dans son en-tete.
+
+### Ajouter une techno
+
+1. Deposer le logo (`.webp`) dans `src/assets/stacks/`
+2. L'ajouter dans la bonne categorie de `stack.yaml`, a la position voulue (l'ordre du fichier est l'ordre d'affichage) :
+
+```yaml
+    - nom: Vue.js
+      url: https://vuejs.org/
+      logo: ../assets/stacks/vue.webp
+      accueil: true   # facultatif : l'affiche aussi sur la page d'accueil
+```
+
+Logo sombre, illisible sur le fond ? Ajouter `inverser: true`.
+
+### Ajouter une experience ou une formation
+
+Ajouter une entree n'importe ou dans le fichier : elles sont triees par date de debut, la plus recente en premier.
+
+```yaml
+- debut: 2026-09
+  fin: 2027-06          # sans fin : « AUJOURD'HUI » et badge « En cours »
+  poste: Developpeur Full Stack
+  entreprise: Exemple
+  lieu: Rennes (35)
+  logo: ../assets/logo-exemple.webp
+  logoAlt: Logo d'Exemple
+  missions:
+    - titre: Developpement d'une API
+      description: ...
+```
+
+Le libelle (« SEPT. 2026 – JUIN 2027 ») et le badge « En cours » sont calcules a partir de `debut` et `fin` (format `AAAA-MM`). Une fin a venir compte comme en cours. Comme le site est statique, cet etat est evalue au deploiement : le badge disparait au premier deploiement apres la date de fin.
+
+### Desactiver (et reactiver) une entree
+
+Ajouter `actif: false` a une techno, une experience ou une formation : elle disparait du site mais reste dans le fichier. Supprimer la ligne la reactive.
+
+- une categorie dont toutes les technos sont desactivees est masquee, avec son filtre ;
+- les chiffres cles de la page A propos ne comptent que les entrees actives.
+
+### En cas d'erreur
+
+Le build echoue avec un message explicite plutot que de publier une page incomplete :
+
+- **erreur de syntaxe YAML** (indentation, guillemet non ferme) : le fichier et la ligne sont indiques ;
+- **champ invalide** : `experiences → 4` designe la 4e entree du fichier, suivie du champ en cause (date mal formee, fin avant debut, champ manquant...) ;
+- **logo introuvable** : `ImageNotFound` avec le chemin a corriger.
+
+Lancer `npm run build` en local permet de verifier avant de pousser ; sur GitHub, la CI fait la meme verification.
 
 ---
 

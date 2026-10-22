@@ -1,0 +1,43 @@
+# Formations : section Formations de la page À propos.
+# L'ordre du fichier n'a pas d'importance : les formations sont triées par date de début, la plus récente en premier.
+#
+#   debut      mois de début, au format AAAA-MM (ex. 2025-09)
+#   fin        mois de fin, au format AAAA-MM. Sans fin (ou fin à venir) : badge « En cours ».
+#   formation, ecole, lieu
+#   actif      false pour la masquer sans la supprimer (facultatif)
+
+- debut: 2025-09
+  fin: 2027-09
+  formation: BTS SIO, Option SLAM
+  ecole: MDS (My Digital School)
+  lieu: Rennes (35)
+
+- debut: 2023-09
+  fin: 2024-08
+  formation: Bachelor Développeur Full Stack
+  ecole: Studi
+  lieu: Distanciel
+
+- debut: 2021-09
+  fin: 2023-09
+  formation: Master Achats
+  ecole: ESLI
+  lieu: Redon (35)
+
+- debut: 2020-09
+  fin: 2021-09
+  formation: Licence logistique
+  ecole: ESLI
+  lieu: Redon (35)
+
+- debut: 2017-09
+  fin: 2020-03
+  formation: Licence droit, économie & gestion
+  ecole: Université Bretagne Sud
+  lieu: Vannes (56)
+
+- debut: 2014-09
+  fin: 2017-09
+  formation: BAC Economique & Social
+  ecole: Lycée Joseph Loth
+  lieu: Pontivy (56)
