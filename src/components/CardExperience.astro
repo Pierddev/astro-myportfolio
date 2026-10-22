@@ -93,22 +93,32 @@ const missionsId = `missions-${id}`;
 			</button>
 		</div>
 
-		<!-- Repasser de hidden à visible relance l'animation reveal -->
-		<ul
+		<!-- Dépliage progressif : la ligne de grille passe de 0fr à 1fr, ce qui anime la hauteur réelle
+		     des missions. invisible (visibility) les retire du lecteur d'écran une fois repliées ; la
+		     transition de visibility les garde visibles pendant toute l'animation, dans les deux sens.
+		     data-animated n'est posé qu'après le repli initial, pour ne pas l'animer au chargement. -->
+		<div
 			id={missionsId}
-			class="mt-20 grid animate-reveal grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-12 border-t border-white/8 pt-20"
+			data-open="true"
+			class="grid grid-rows-[1fr] duration-500 ease-smooth data-animated:transition-[grid-template-rows,opacity,visibility] data-[open=false]:invisible data-[open=false]:grid-rows-[0fr] data-[open=false]:opacity-0"
 		>
-			{
-				missions.map(({ title, description }) => (
-					<li class="rounded-18 border border-white/8 bg-background/55 px-18 py-16">
-						<h4 class="text-14 leading-[1.45] font-semibold">{title}</h4>
-						<p class="mt-6 text-[13.5px] leading-[1.65] text-white/70">
-							{description}
-						</p>
-					</li>
-				))
-			}
-		</ul>
+			<div class="min-h-0 overflow-hidden">
+				<ul
+					class="mt-20 grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-12 border-t border-white/8 pt-20"
+				>
+					{
+						missions.map(({ title, description }) => (
+							<li class="rounded-18 border border-white/8 bg-background/55 px-18 py-16">
+								<h4 class="text-14 leading-[1.45] font-semibold">{title}</h4>
+								<p class="mt-6 text-[13.5px] leading-[1.65] text-white/70">
+									{description}
+								</p>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</div>
 	</article>
 </li>
 
@@ -132,7 +142,7 @@ const missionsId = `missions-${id}`;
 		const label = button.querySelector("[data-missions-label]");
 		if (!missions || !label) return;
 
-		missions.hidden = !open;
+		missions.dataset.open = String(open);
 		button.setAttribute("aria-expanded", String(open));
 		label.textContent =
 			(open ? button.dataset.labelOpen : button.dataset.labelClosed) ?? "";
@@ -147,7 +157,16 @@ const missionsId = `missions-${id}`;
 
 	toggles.forEach((button) => {
 		setOpen(button, button.dataset.defaultOpen === "true");
+	});
 
+	// Lire offsetHeight force le navigateur à appliquer le repli initial sans transition ;
+	// data-animated active ensuite la transition pour les clics.
+	void document.body.offsetHeight;
+	document
+		.querySelectorAll<HTMLElement>("[data-open]")
+		.forEach((missions) => missions.setAttribute("data-animated", ""));
+
+	toggles.forEach((button) => {
 		button.addEventListener("click", () => {
 			setOpen(button, !isOpen(button));
 			updateToggleAll();
