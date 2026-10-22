@@ -35,7 +35,6 @@
   --color-pycharm: #1AD88A;
   --color-trello: #008FE2;
   --color-flask: #CCCCCC;
-  --drop-shadow-summary: 0 0 10px rgba(255, 255, 255, 0.1);
   --shadow-cta: 0 10px 30px -10px rgb(147 51 234 / 0.6);
   --ease-smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
   --animate-reveal: reveal 0.35s ease both;
@@ -163,10 +162,6 @@
 
 .bloc-card {
   @apply bg-card border-1 border-card-border;
-}
-
-.summary-bloc {
-  @apply border-1 border-card-border py-5 px-50 bg-linear-to-r hover:drop-shadow-summary bg-white/10 hover:bg-white/20;
 }
 
 .spacer {
