@@ -1,17 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Mycard from "../components/mycard.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import CardProjectFeatured from "../components/CardProjectFeatured.astro";
+import CardProjectLink from "../components/CardProjectLink.astro";
 import IconArrowRight from "../components/icons/IconArrowRight.astro";
-import IconArrowTopRight from "../components/icons/iconArrowTopRight.astro";
 import ContactForm from "src/components/ContactForm.astro";
 import Spacer from "src/components/Spacer.astro";
 import logoAstro from "../assets/stacks/astro.webp";
 import { Image } from "astro:assets";
-import SioDashImg from "../assets/project-siodash.webp";
-import logoFlask from "../assets/stacks/flask.webp";
-import logoJinja from "../assets/stacks/jinja.webp";
-import logoVercel from "../assets/stacks/vercel.webp";
-import logoPostgresql from "../assets/stacks/postgresql.webp";
+import { projects } from "../data/projects";
 
 // « En ce moment » : les activités en cours, sur-titre en couleur
 const currently = [
@@ -34,6 +32,11 @@ const currently = [
 		color: "text-orchidee",
 	},
 ];
+
+// Le projet featured est mis en avant ; les autres remplissent « Autres réalisations ».
+// slice(0, 3) : une seule ligne de cartes, le lien « Tous les projets » mène au reste.
+const featured = projects.find((project) => project.featured);
+const others = projects.filter((project) => !project.featured).slice(0, 3);
 ---
 
 <Layout>
@@ -115,65 +118,26 @@ const currently = [
 		</div>
 	</section>
 
-	<section class="mx-auto flex max-w-1200 flex-col items-center px-24">
-		<!-- Section Projet à la une -->
-		<div class="flex flex-col w-full justify-center items-center mt-60">
-			<span class="text-30 font-semibold">Projet à la une</span>
-			<Spacer class="my-20" />
-			<!-- Card avec image en background -->
+	<section id="projets" class="mx-auto max-w-1200 px-24 pt-140">
+		<SectionHeading eyebrow="01 — Projets" title="Projet à la une">
 			<a
-				href="https://siodash.fr/"
-				target="_blank"
-				class="group bloc-card relative w-full max-w-700 h-400 lg:h-450 rounded-45 overflow-hidden cursor-pointer"
+				href="/projects"
+				class="text-link inline-flex min-h-44 items-center gap-8 text-15 text-white/70"
 			>
-				<!-- Background Image -->
-				<Image
-					class="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-					src={SioDashImg}
-					alt="Aperçu du projet SioDash"
-					loading={"eager"}
-				/>
-				<!-- Gradient Overlay -->
-				<div
-					class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"
-				>
-				</div>
-				<!-- Content -->
-				<div
-					class="absolute bottom-0 left-0 right-0 p-25 lg:p-35 flex flex-col gap-15"
-				>
-					<div>
-						<h3 class="text-25 lg:text-35 font-bold text-white">SioDash</h3>
-						<p
-							class="text-12 lg:text-14 text-white/70 mt-8 max-w-500 line-clamp-2"
-						>
-							Une plateforme centralisée pour les étudiants en BTS SIO
-							permettant de suivre leurs missions, compétences et parcours
-							professionnel.
-						</p>
-					</div>
-					<div class="flex flex-wrap gap-8">
-						{
-							[
-								{ src: logoFlask, name: "Flask" },
-								{ src: logoJinja, name: "Jinja" },
-								{ src: logoPostgresql, name: "PostgreSQL" },
-								{ src: logoVercel, name: "Vercel" },
-							].map(({ src, name }) => (
-								<div class="flex items-center gap-5 bg-white/10 border-1 border-white/20 rounded-full px-12 py-5">
-									<Image src={src} alt={name} class="size-16" />
-									<span class="text-11 text-white/90">{name}</span>
-								</div>
-							))
-						}
-					</div>
-					<div class="flex items-center gap-8 text-white/60">
-						<span class="text-12 lg:text-14 font-medium">Voir le projet</span>
-						<IconArrowTopRight class="size-18" />
-					</div>
-				</div>
+				<span>Tous les projets</span>
+				<IconArrowRight class="size-18" />
 			</a>
+		</SectionHeading>
+
+		{featured && <CardProjectFeatured {...featured} />}
+
+		<h3 class="mt-56 mb-20 text-20 font-semibold">Autres réalisations</h3>
+		<div class="flex flex-wrap gap-24">
+			{others.map((project) => <CardProjectLink {...project} />)}
 		</div>
+	</section>
+
+	<section class="mx-auto flex max-w-1200 flex-col items-center px-24">
 		<div class="flex flex-col w-full justify-center items-center mt-60">
 			<span class="text-30 font-semibold">Mon choix du moment</span>
 			<Spacer class="my-20" />

@@ -1,0 +1,61 @@
+---
+import type { Project } from "../data/projects";
+import { Image } from "astro:assets";
+import IconArrowTopRight from "./icons/iconArrowTopRight.astro";
+import StatusBadge from "./StatusBadge.astro";
+import TechBadge from "./TechBadge.astro";
+
+// Projet à la une de l'accueil, au format horizontal : visuel à gauche, contenu à droite.
+// Sous 520px + 380px, flex-wrap fait passer le contenu sous le visuel.
+type Props = Project;
+
+const { title, description, url, linkType, domain, thumbnail, items } =
+	Astro.props;
+---
+
+<article
+	class="flex flex-wrap overflow-hidden rounded-36 border border-card-border bg-card"
+>
+	<a
+		href={url}
+		target="_blank"
+		rel="noopener noreferrer"
+		aria-label={`Ouvrir ${title}`}
+		class="zoom relative block min-h-340 min-w-0 flex-[1_1_520px] overflow-hidden border-r border-white/8 bg-background"
+	>
+		<!-- 1200px : la largeur du visuel sur desktop (environ 700px), net sur les écrans haute densité -->
+		<Image
+			src={thumbnail}
+			alt={`Aperçu du projet ${title}`}
+			width={1200}
+			class="absolute inset-0 size-full object-cover"
+		/>
+		{
+			linkType === "live" && (
+				<span class="absolute top-20 left-20">
+					<StatusBadge>En ligne</StatusBadge>
+				</span>
+			)
+		}
+	</a>
+
+	<div
+		class="flex min-w-0 flex-[1_1_380px] flex-col justify-center gap-20 p-28 sm:p-40"
+	>
+		{domain && <p class="font-mono text-13 text-white/55">{domain}</p>}
+		<h3 class="text-36 font-bold tracking-[-0.02em]">{title}</h3>
+		<p class="text-16 leading-[1.7] text-white/72">{description}</p>
+		<div class="flex flex-wrap gap-8">
+			{items.map((item) => <TechBadge {...item} />)}
+		</div>
+		<a
+			href={url}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="glass-btn mt-4 inline-flex min-h-44 items-center gap-8 self-start rounded-full px-20 text-14 font-medium"
+		>
+			<span>Voir le projet</span>
+			<IconArrowTopRight class="size-18" />
+		</a>
+	</div>
+</article>
