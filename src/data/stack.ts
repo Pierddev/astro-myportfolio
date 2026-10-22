@@ -37,6 +37,18 @@ export interface StackItem {
 	logoSrc: typeof logoVSC;
 	name: string;
 	url: string;
+	// Logo sombre, illisible sur le fond de la page : on l'inverse en CSS (filter: invert(1))
+	invert?: boolean;
+}
+
+export interface StackCategory {
+	id: string;
+	title: string;
+	// Libellé du bouton de filtre, plus court que le titre quand celui-ci est long
+	shortTitle: string;
+	// Couleur du point lumineux (filtre et en-tête de carte)
+	color: string;
+	items: StackItem[];
 }
 
 export const stackLangages: StackItem[] = [
@@ -117,7 +129,7 @@ export const stackLangages: StackItem[] = [
 	},
 ];
 
-export const stackOutils = [
+export const stackOutils: StackItem[] = [
 	{
 		logoSrc: logoVSC,
 		name: "Visual Studio Code",
@@ -162,6 +174,7 @@ export const stackOutils = [
 		logoSrc: logoVercel,
 		name: "Vercel",
 		url: "https://vercel.com/",
+		invert: true,
 	},
 	{
 		logoSrc: logoTrello,
@@ -170,7 +183,7 @@ export const stackOutils = [
 	},
 ];
 
-export const stackBDD = [
+export const stackBDD: StackItem[] = [
 	{
 		logoSrc: logoMysql,
 		name: "MySQL",
@@ -185,6 +198,7 @@ export const stackBDD = [
 		logoSrc: logoSynology,
 		name: "Synology",
 		url: "https://www.synology.com/fr-fr",
+		invert: true,
 	},
 	{
 		logoSrc: logoPostgresql,
@@ -203,7 +217,7 @@ export const stackBDD = [
 	},
 ];
 
-export const stackCyber = [
+export const stackCyber: StackItem[] = [
 	{
 		logoSrc: logoWireshark,
 		name: "Wireshark",
@@ -218,5 +232,38 @@ export const stackCyber = [
 		logoSrc: logoVMware,
 		name: "VMware",
 		url: "https://vmware.com/",
+	},
+];
+
+// Catégories de la page Stack, dans l'ordre d'affichage. Les listes ci-dessus restent
+// exportées séparément : l'accueil n'en affiche qu'une sélection.
+export const stackCategories: StackCategory[] = [
+	{
+		id: "languages",
+		title: "Langages & Frameworks",
+		shortTitle: "Langages & Frameworks",
+		color: "#8ab4f8",
+		items: stackLangages,
+	},
+	{
+		id: "tools",
+		title: "Outils de développement",
+		shortTitle: "Outils",
+		color: "#b39ddb",
+		items: stackOutils,
+	},
+	{
+		id: "databases",
+		title: "Base de données & Serveurs",
+		shortTitle: "BDD & Serveurs",
+		color: "#6ee7b7",
+		items: stackBDD,
+	},
+	{
+		id: "security",
+		title: "Cybersécurité & Réseau",
+		shortTitle: "Cybersécurité & Réseau",
+		color: "#f0abfc",
+		items: stackCyber,
 	},
 ];
