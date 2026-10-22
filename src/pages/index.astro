@@ -133,7 +133,11 @@ const others = projects.filter((project) => !project.featured).slice(0, 3);
 		{featured && <CardProjectFeatured {...featured} />}
 
 		<h3 class="mt-56 mb-20 text-20 font-semibold">Autres réalisations</h3>
-		<div class="flex flex-wrap gap-24">
+		<!-- Grille plutôt que flex-wrap : sur 2 colonnes, la 3e carte garde la largeur d'une colonne
+		     au lieu de s'étirer sur toute la ligne -->
+		<div
+			class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-24"
+		>
 			{others.map((project) => <CardProjectLink {...project} />)}
 		</div>
 	</section>
