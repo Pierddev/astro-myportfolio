@@ -1,90 +1,164 @@
 ---
 import { Image } from "astro:assets";
 import IconLocation from "./icons/IconLocation.astro";
+import IconChevronDown from "./icons/IconChevronDown.astro";
+import StatusBadge from "./StatusBadge.astro";
+import type { Experience } from "../data/experiences";
 
-interface Mission {
-	title: string;
-	description: string;
-}
-
-interface Props {
-	date: string;
-	poste: string;
-	entreprise: string;
-	lieu: string;
-	logoSrc: ImageMetadata;
-	logoAlt: string;
-	missions: Mission[];
+// Entrée de la timeline des expériences (page À propos) : pastille sur la ligne, carte, missions dépliables.
+// Sans JavaScript, toutes les missions sont dépliées dans le HTML ; le script ci-dessous replie celles
+// qui ne sont pas ouvertes par défaut (defaultOpen) au chargement.
+interface Props extends Experience {
+	defaultOpen?: boolean;
 }
 
 const {
+	id,
+	isCurrent,
 	date,
 	poste,
 	entreprise,
 	lieu,
 	logoSrc,
 	logoAlt,
-	missions = [],
-} = Astro.props as Props;
+	missions,
+	defaultOpen = false,
+} = Astro.props;
+
+const missionsId = `missions-${id}`;
 ---
 
-<div class="mt-20 lg:mt-70 grid grid-cols-10 gap-20">
-	<!-- Infos à gauche -->
-	<div
-		class="col-start-1 col-end-11 md:col-span-3 top-0 flex items-center justify-center space-x-15 text-center md:text-left w-full md:w-fit"
+<li class="relative pl-44">
+	<!-- Pastille : l'anneau (shadow) à la couleur du fond coupe la ligne de la timeline -->
+	<span
+		aria-hidden="true"
+		class="absolute top-30 left-4 flex size-18 items-center justify-center rounded-full bg-white/10 shadow-[0_0_0_4px_var(--color-background)]"
 	>
-		<div class="hidden lg:flex items-center justify-center relative">
-			<div class="size-20 rounded-full bg-white/10"></div>
-			<div class="absolute size-10 rounded-full bg-white/70"></div>
-		</div>
-		<div>
-			<div class="text-12 text-white/70">{date}</div>
-			<div class="text-20 font-semibold">{poste}</div>
-			<div class="text-15 text-white/70">{entreprise}</div>
+		<span
+			class:list={[
+				"size-8 rounded-full",
+				isCurrent ? "bg-emeraude" : "bg-white/70",
+			]}
+		></span>
+	</span>
+
+	<article
+		class="rounded-28 border border-card-border bg-card p-20 transition-colors duration-300 hover:border-white/18"
+	>
+		<div class="flex flex-wrap items-center gap-20">
 			<div
-				class="flex items-center justify-center md:justify-start space-x-5"
+				class="flex size-76 flex-none items-center justify-center rounded-20 bg-white p-8"
 			>
-				<!-- Icône de localisation -->
-				<IconLocation class="size-17 -ml-2" />
-				<div class="text-12 text-white/70">{lieu}</div>
+				<Image
+					src={logoSrc}
+					alt={logoAlt}
+					width={120}
+					class="max-h-full max-w-full object-contain"
+				/>
 			</div>
-		</div>
-	</div>
 
-	<!-- Logo -->
-	<div
-		class="col-start-2 col-end-10 md:col-start-5 md:col-end-10 flex items-center justify-center w-full h-160 bg-white rounded-30 overflow-hidden"
-	>
-		<Image src={logoSrc} alt={logoAlt} width={0} height={150} class="" />
-	</div>
-
-	<div
-		class="col-start-1 col-end-11 md:col-start-4 md:col-end-11 text-15 max-w-800"
-	>
-		<!-- Bouton -->
-		<div class="flex w-full justify-center">
-			<button
-				class="group toggle-missions relative font-semibold lg:font-medium flex items-center justify-center overflow-hidden rounded-full py-10 w-200 transition"
-			>
-				<div
-					class="gradient-bg absolute gradient-button h-full w-400 -left-50 group-hover:-left-150 group-[.active]:group-hover:-left-50 transition-all ease-spring duration-400 -z-10"
-				>
+			<div class="min-w-0 flex-[1_1_280px]">
+				<div class="flex flex-wrap items-center gap-10">
+					<p class="font-mono text-12 tracking-[0.04em] text-white/60">
+						{date}
+					</p>
+					{isCurrent && <StatusBadge>En cours</StatusBadge>}
 				</div>
-				<span>En savoir plus</span>
+				<h3 class="mt-6 text-20 leading-[1.3] font-semibold">{poste}</h3>
+				<p
+					class="mt-4 flex flex-wrap items-center gap-6 text-14 text-white/70"
+				>
+					<span class="font-medium text-white/88">{entreprise}</span>
+					<span aria-hidden="true">·</span>
+					<IconLocation class="size-16" />
+					<span>{lieu}</span>
+				</p>
+			</div>
+
+			<!-- État dans aria-expanded, que lit la classe group-aria-expanded: du chevron -->
+			<button
+				type="button"
+				data-missions-toggle
+				data-default-open={String(defaultOpen)}
+				data-label-open="Masquer les missions"
+				data-label-closed={`Voir les missions (${missions.length})`}
+				aria-expanded="true"
+				aria-controls={missionsId}
+				class="glass-btn group flex min-h-44 flex-none cursor-pointer items-center gap-8 rounded-full pr-16 pl-18 text-13 text-white/85"
+			>
+				<span data-missions-label>Masquer les missions</span>
+				<IconChevronDown
+					class="size-18 transition-transform duration-300 group-aria-expanded:rotate-180"
+				/>
 			</button>
 		</div>
-		<!-- Liste des missions -->
+
+		<!-- Repasser de hidden à visible relance l'animation reveal -->
 		<ul
-			class="missions-list overflow-hidden max-h-0 transition-[max-height] duration-600 ease-in-out text-15 list-disc space-y-10 max-w-800 mt-10 mb-50 lg:mb-10"
+			id={missionsId}
+			class="mt-20 grid animate-reveal grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-12 border-t border-white/8 pt-20"
 		>
 			{
-				missions.map((mission) => (
-					<li>
-						<span class="font-medium">{mission.title} :</span>
-						<span class="text-white/70"> {mission.description}</span>
+				missions.map(({ title, description }) => (
+					<li class="rounded-18 border border-white/8 bg-background/55 px-18 py-16">
+						<h4 class="text-14 leading-[1.45] font-semibold">{title}</h4>
+						<p class="mt-6 text-[13.5px] leading-[1.65] text-white/70">
+							{description}
+						</p>
 					</li>
 				))
 			}
 		</ul>
-	</div>
-</div>
+	</article>
+</li>
+
+<script>
+	// Dépliage des missions de la timeline, et bouton « Tout déplier / Tout replier » de la page
+	// (data-missions-toggle-all). Astro n'inclut ce script qu'une fois, quel que soit le nombre de cartes.
+	const toggles = document.querySelectorAll<HTMLButtonElement>(
+		"[data-missions-toggle]",
+	);
+	const toggleAll = document.querySelector<HTMLButtonElement>(
+		"[data-missions-toggle-all]",
+	);
+
+	const isOpen = (button: HTMLButtonElement) =>
+		button.getAttribute("aria-expanded") === "true";
+
+	function setOpen(button: HTMLButtonElement, open: boolean) {
+		const missions = document.getElementById(
+			button.getAttribute("aria-controls") ?? "",
+		);
+		const label = button.querySelector("[data-missions-label]");
+		if (!missions || !label) return;
+
+		missions.hidden = !open;
+		button.setAttribute("aria-expanded", String(open));
+		label.textContent =
+			(open ? button.dataset.labelOpen : button.dataset.labelClosed) ?? "";
+	}
+
+	function updateToggleAll() {
+		if (!toggleAll) return;
+		toggleAll.textContent = [...toggles].every(isOpen)
+			? "Tout replier"
+			: "Tout déplier";
+	}
+
+	toggles.forEach((button) => {
+		setOpen(button, button.dataset.defaultOpen === "true");
+
+		button.addEventListener("click", () => {
+			setOpen(button, !isOpen(button));
+			updateToggleAll();
+		});
+	});
+
+	toggleAll?.addEventListener("click", () => {
+		const open = ![...toggles].every(isOpen);
+		toggles.forEach((button) => setOpen(button, open));
+		updateToggleAll();
+	});
+
+	updateToggleAll();
+</script>
