@@ -1,11 +1,28 @@
 ---
-const { title, description } = Astro.props;
+// Carte d'une valeur (page À propos) : titre et numéro, trait en dégradé, puis la description.
+// La couleur du trait passe par une variable CSS : Tailwind ne peut pas générer une classe par couleur reçue en prop.
+interface Props {
+	title: string;
+	description: string;
+	number: string;
+	color: string;
+}
+
+const { title, description, number, color } = Astro.props;
 ---
 
 <div
-  class="bloc-card rounded-20 flex flex-col text-center md:text-left xl:text-center justify-center h-fit md:h-250 xl:h-fit w-full md:w-200 xl:w-270 max-w-400 p-15"
+	class="lift min-w-0 flex-[1_1_280px] rounded-28 border border-card-border bg-card p-28"
 >
-  <p class="text-20 font-semibold">{title}</p>
-  <div class="h-1 w-full bg-card-border my-10"></div>
-  <p class="text-15 text-white/70">{description}</p>
+	<div class="flex items-center justify-between gap-12">
+		<h3 class="text-22 font-semibold">{title}</h3>
+		<span class="font-mono text-13 text-white/50">{number}</span>
+	</div>
+	<div
+		aria-hidden="true"
+		class="my-16 h-1 bg-linear-to-r from-(--line) to-white/8 to-40%"
+		style={`--line: ${color}`}
+	>
+	</div>
+	<p class="text-15 leading-[1.7] text-white/72">{description}</p>
 </div>
