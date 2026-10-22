@@ -160,28 +160,12 @@
   @apply flex items-center space-x-5 p-6 lg:bg-card lg:border-card-border lg:border-1 lg:rounded-full;
 }
 
-.bloc-card {
-  @apply bg-card border-1 border-card-border;
-}
-
-.spacer {
-  @apply h-1 w-full max-w-[80%] bg-card-border;
-}
-
-.spacer-choice {
-  @apply w-1 h-150 xl:h-126 bg-card-border mx-30;
-}
-
 .legal-text {
   @apply text-white/80 text-15;
 }
 
 .legal-title {
   @apply text-20 font-semibold;
-}
-
-.form-input {
-  @apply bg-background rounded-10 pl-20 py-10 border-1 border-card-border;
 }
 
 .gradient-button {
