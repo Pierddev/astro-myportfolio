@@ -4,24 +4,22 @@ import Summary from "../components/SummaryLegal.astro";
 const pathname = Astro.url.pathname;
 ---
 
-<Layout>
+<Layout title="Mentions légales">
 	<div
-		class="relative flex flex-col w-full lg:flex-row justify-center lg:items-baseline"
+		class="mx-auto flex max-w-1200 flex-col gap-40 px-24 pt-88 lg:flex-row lg:items-start lg:gap-56"
 	>
-		<div class="flex lg:inline justify-center w-full lg:w-350">
-			<Summary currentPath={pathname} />
-		</div>
+		<Summary currentPath={pathname} />
 		<section
-			class="flex flex-col space-y-20 w-full max-w-1300 pt-50 lg:pt-170 font-light px-50 text-center lg:text-left"
+			class="flex min-w-0 flex-1 flex-col space-y-20 font-light"
 		>
-			<div class="text-30 text-center font-semibold">Mentions Légales</div>
+			<h1 class="text-[clamp(32px,4vw,44px)] leading-[1.1] font-semibold tracking-[-0.02em]">Mentions Légales</h1>
 			<div class="legal-text">
 				Conformément aux articles 6-III et 19 de la Loi n° 2004-575 du 21
 				juin 2004 pour la Confiance dans l'Économie Numérique (LCEN), il est
 				précisé aux utilisateurs du site l'identité des différents
 				intervenants dans le cadre de sa réalisation et de son suivi.
 			</div>
-			<div class="legal-title">1. Éditeur du site</div>
+			<h2 class="legal-title">1. Éditeur du site</h2>
 			<div class="legal-text">
 				<ul class="list-inside list-disc ml-20">
 					<li>Nom de la structure : Pi-Code Studio</li>
@@ -32,7 +30,7 @@ const pathname = Astro.url.pathname;
 					<li>Adresse e-mail : picode.studio@gmail.com</li>
 				</ul>
 			</div>
-			<div class="legal-title">2. Hébergement</div>
+			<h2 class="legal-title">2. Hébergement</h2>
 			<div class="legal-text">
 				<ul class="list-inside list-disc ml-20">
 					<li>Hébergeur : Vercel, Inc.</li>
@@ -50,7 +48,7 @@ const pathname = Astro.url.pathname;
 					</li>
 				</ul>
 			</div>
-			<div class="legal-title">3. Propriété intellectuelle</div>
+			<h2 class="legal-title">3. Propriété intellectuelle</h2>
 			<div class="legal-text">
 				Le contenu du site (textes, images, graphismes, logos, icônes, etc.)
 				est la propriété exclusive de Pi-Code Studio sauf mention contraire,
@@ -63,23 +61,21 @@ const pathname = Astro.url.pathname;
 				moyen ou le procédé utilisé, est interdite sans l’autorisation
 				écrite préalable de Pi-Code Studio.
 			</div>
-			<div class="legal-title">4. Données personnelles</div>
+			<h2 class="legal-title">4. Données personnelles</h2>
 			<div class="legal-text">
 				Ce site ne collecte pas de données personnelles sans votre
 				consentement explicite. Pour plus d'informations, veuillez consulter
-				notre
-				<a class="underline" href="/privacy">Politique de Confidentialité</a
-				>
-				(#).
+				notre{" "}
+				<a class="underline" href="/privacy">politique de confidentialité</a>.
 			</div>
-			<div class="legal-title">5. Responsabilité</div>
+			<h2 class="legal-title">5. Responsabilité</h2>
 			<div class="legal-text">
 				Pi-Code Studio s'efforce de fournir sur ce site des informations
 				aussi précises que possible. Toutefois, l’éditeur ne pourra être
 				tenu responsable des omissions, des inexactitudes ou des carences
 				dans la mise à jour.
 			</div>
-			<div class="legal-title">6. Contact</div>
+			<h2 class="legal-title">6. Contact</h2>
 			<div class="legal-text">
 				Pour toute question concernant les mentions légales, vous pouvez
 				nous contacter à l’adresse suivante : picode.studio@gmail.com
