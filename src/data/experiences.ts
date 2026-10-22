@@ -5,9 +5,30 @@ import logoLAG from "@assets/logo-lag.webp";
 import logoPythagore from "@assets/logo-pythagore.webp";
 import logoBretim from "@assets/logo-bretim.webp";
 
-export const experiences = [
+export interface Mission {
+  title: string;
+  description: string;
+}
+
+// id : identifiant unique, sert à relier le bouton « Voir les missions » à sa liste (aria-controls).
+// isCurrent : expérience en cours (pastille verte et badge « En cours » dans la timeline).
+export interface Experience {
+  id: string;
+  isCurrent: boolean;
+  date: string;
+  poste: string;
+  entreprise: string;
+  lieu: string;
+  logoSrc: ImageMetadata;
+  logoAlt: string;
+  missions: Mission[];
+}
+
+export const experiences: Experience[] = [
   {
-    date: "SEPTEMBRE 2025 - AUJOURD'HUI",
+    id: "bretim",
+    isCurrent: true,
+    date: "SEPT. 2025 – AUJOURD’HUI",
     poste: "Assistant Service Informatique (Alternance)",
     entreprise: "BRETIM",
     lieu: "Pluméliau (56)",
@@ -42,7 +63,9 @@ export const experiences = [
     ],
   },
   {
-    date: "AVRIL 2025 - AUJOURD'HUI",
+    id: "picode",
+    isCurrent: true,
+    date: "AVRIL 2025 – AUJOURD’HUI",
     poste: "Développeur Web Freelance",
     entreprise: "Pi-Code Studio",
     lieu: "Acigné (35)",
@@ -72,7 +95,9 @@ export const experiences = [
     ],
   },
   {
-    date: "SEPTEMBRE 2024 - MARS 2025",
+    id: "credit-agricole",
+    isCurrent: false,
+    date: "SEPT. 2024 – MARS 2025",
     poste: "Conseiller des particuliers",
     entreprise: "Crédit Agricole",
     lieu: "Noyal-sur-Vilaine (35)",
@@ -112,7 +137,9 @@ export const experiences = [
     ],
   },
   {
-    date: "FEVRIER 2024 - AVRIL 2024",
+    id: "kingup",
+    isCurrent: false,
+    date: "FÉV. 2024 – AVRIL 2024",
     poste: "Développeur Full Stack",
     entreprise: "King UP",
     lieu: "Plescop (56)",
@@ -137,7 +164,9 @@ export const experiences = [
     ],
   },
   {
-    date: "SEPTEMBRE 2022 - SEPTEMBRE 2023",
+    id: "pythagore-achats",
+    isCurrent: false,
+    date: "SEPT. 2022 – SEPT. 2023",
     poste: "Acheteur (Alternance)",
     entreprise: "Pythagore",
     lieu: "Laniscat (22)",
@@ -168,7 +197,9 @@ export const experiences = [
     ],
   },
   {
-    date: "SEPTEMBRE 2021 - SEPTEMBRE 2022",
+    id: "ateliers-du-gout",
+    isCurrent: false,
+    date: "SEPT. 2021 – SEPT. 2022",
     poste: "Acheteur (Alternance)",
     entreprise: "Les Ateliers du Goût",
     lieu: "Noyal-Pontivy (56)",
@@ -208,7 +239,9 @@ export const experiences = [
     ],
   },
   {
-    date: "SEPTEMBRE 2020 - SEPTEMBRE 2021",
+    id: "pythagore-logistique",
+    isCurrent: false,
+    date: "SEPT. 2020 – SEPT. 2021",
     poste: "Assistant Logistique (Alternance)",
     entreprise: "Pythagore",
     lieu: "Laniscat (22)",
