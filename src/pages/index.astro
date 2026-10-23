@@ -1,223 +1,240 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Mycard from "../components/mycard.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import CardProjectFeatured from "../components/CardProjectFeatured.astro";
+import CardProjectLink from "../components/CardProjectLink.astro";
 import IconArrowRight from "../components/icons/IconArrowRight.astro";
 import IconArrowTopRight from "../components/icons/iconArrowTopRight.astro";
-import ContactForm from "src/components/ContactForm.astro";
-import Spacer from "src/components/Spacer.astro";
-import logoAstro from "../assets/stacks/astro.webp";
+import ContactForm from "../components/ContactForm.astro";
+import logoNuxt from "../assets/stacks/nuxt.svg";
 import { Image } from "astro:assets";
-import SioDashImg from "../assets/project-siodash.webp";
-import logoFlask from "../assets/stacks/flask.webp";
-import logoJinja from "../assets/stacks/jinja.webp";
-import logoVercel from "../assets/stacks/vercel.webp";
-import logoPostgresql from "../assets/stacks/postgresql.webp";
+import { projects } from "../data/projects";
+import { stackHighlights } from "../lib/stack";
+
+// « En ce moment » : les activités en cours, sur-titre en couleur
+const currently = [
+	{
+		label: "Freelance",
+		title: "Pi-Code Studio",
+		detail: "Développeur web · depuis 2025",
+		color: "text-bleu-glacier",
+	},
+	{
+		label: "Alternance",
+		title: "BRETIM",
+		detail: "Assistant service informatique",
+		color: "text-lavande-fonce",
+	},
+	{
+		label: "Formation",
+		title: "BTS SIO · SLAM",
+		detail: "MDS Rennes · 2025 – 2027",
+		color: "text-orchidee",
+	},
+];
+
+// Le projet featured est mis en avant ; les autres remplissent « Autres réalisations ».
+// slice(0, 3) : une seule ligne de cartes, le lien « Tous les projets » mène au reste.
+const featured = projects.find((project) => project.featured);
+const others = projects.filter((project) => !project.featured).slice(0, 3);
 ---
 
 <Layout>
-    <!-- Peut être utiliser Grid au lieu de Flex, pour plus de souplesse vis à vis de la page About -->
-    <section class="flex flex-col lg:flex-row justify-center w-full">
-        <Mycard />
-        <div
-            class="flex flex-col items-center w-full lg:w-1200 mt-20 lg:mt-170"
-        >
-            <p
-                class="text-32 sm:text-40 md:text-50 lg:text-60 xl:text-80 font-semibold text-center"
-            >
-                Développeur Web &<br />Administrateur Systèmes
-            </p>
-            <p
-                class="text-15 text-white/80 text-center pt-40 w-600 max-w-[80%]"
-            >
-                Passionné d’informatique, je me spécialise en informatique
-                réseau et cybersécurité. Curieux et rigoureux, j’aime comprendre
-                et optimiser les systèmes. Découvrez mon parcours !
-            </p>
-            <a
-                href="/contact"
-                class="group order-first lg:order-0 flex space-x-15 items-center bg-card border-card-border border-1 hover:text-white text-white/60 mt-20 lg:mt-60 mb-20 lg:mb-0 px-20 rounded-full transition-colors"
-            >
-                <span class="relative flex size-10">
-                    <span
-                        class="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"
-                    ></span>
-                    <span
-                        class="relative inline-flex size-10 rounded-full bg-red-600"
-                    ></span>
-                </span>
-                <p class="text-12 lg:text-16">
-                    Vous pouvez me contacter à tout moment
-                </p>
-                <div class="flex items-center relative size-20">
-                    <IconArrowRight
-                        class="absolute size-20 left-0 group-hover:left-10 transition-all ease-in-out"
-                    />
-                </div>
-            </a>
-            <!-- Section Projet à la une -->
-            <div
-                class="flex flex-col w-full justify-center items-center mt-60 px-20 xl:px-0"
-            >
-                <span class="text-30 font-semibold">Projet à la une</span>
-                <Spacer class="my-20" />
-                <!-- Card avec image en background -->
-                <a
-                    href="https://siodash.fr/"
-                    target="_blank"
-                    class="group bloc-card relative w-full max-w-700 h-400 lg:h-450 rounded-45 overflow-hidden cursor-pointer"
-                >
-                    <!-- Background Image -->
-                    <Image
-                        class="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                        src={SioDashImg}
-                        alt="Aperçu du projet SioDash"
-                        loading={"eager"}
-                    />
-                    <!-- Gradient Overlay -->
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"
-                    >
-                    </div>
-                    <!-- Glow effect on hover -->
-                    <div
-                        class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-t from-purple-900/30 via-transparent to-transparent transition-opacity duration-500"
-                    >
-                    </div>
-                    <!-- Content -->
-                    <div
-                        class="absolute bottom-0 left-0 right-0 p-25 lg:p-35 flex flex-col gap-15"
-                    >
-                        <!-- Title & Description -->
-                        <div>
-                            <h3
-                                class="text-25 lg:text-35 font-bold text-white group-hover:text-purple-200 transition-colors"
-                            >
-                                SioDash
-                            </h3>
-                            <p
-                                class="text-12 lg:text-14 text-white/70 mt-8 max-w-500 line-clamp-2"
-                            >
-                                Une plateforme centralisée pour les étudiants en
-                                BTS SIO permettant de suivre leurs missions,
-                                compétences et parcours professionnel.
-                            </p>
-                        </div>
-                        <!-- Tech Stack -->
-                        <div class="flex flex-wrap gap-8">
-                            <div
-                                class="flex items-center gap-5 bg-white/10 backdrop-blur-sm border-1 border-white/20 rounded-full px-12 py-5"
-                            >
-                                <Image
-                                    src={logoFlask}
-                                    alt="Flask"
-                                    class="size-16"
-                                />
-                                <span class="text-11 text-white/90">Flask</span>
-                            </div>
-                            <div
-                                class="flex items-center gap-5 bg-white/10 backdrop-blur-sm border-1 border-white/20 rounded-full px-12 py-5"
-                            >
-                                <Image
-                                    src={logoJinja}
-                                    alt="Jinja"
-                                    class="size-16"
-                                />
-                                <span class="text-11 text-white/90">Jinja</span>
-                            </div>
-                            <div
-                                class="flex items-center gap-5 bg-white/10 backdrop-blur-sm border-1 border-white/20 rounded-full px-12 py-5"
-                            >
-                                <Image
-                                    src={logoPostgresql}
-                                    alt="PostgreSQL"
-                                    class="size-16"
-                                />
-                                <span class="text-11 text-white/90"
-                                    >PostgreSQL</span
-                                >
-                            </div>
-                            <div
-                                class="flex items-center gap-5 bg-white/10 backdrop-blur-sm border-1 border-white/20 rounded-full px-12 py-5"
-                            >
-                                <Image
-                                    src={logoVercel}
-                                    alt="Vercel"
-                                    class="size-16"
-                                />
-                                <span class="text-11 text-white/90">Vercel</span
-                                >
-                            </div>
-                        </div>
-                        <!-- CTA indicator -->
-                        <div
-                            class="flex items-center gap-8 text-white/60 group-hover:text-white transition-colors"
-                        >
-                            <span class="text-12 lg:text-14 font-medium"
-                                >Voir le projet</span
-                            >
-                            <IconArrowTopRight
-                                class="size-18 group-hover:translate-x-[3px] group-hover:-translate-y-[3px] transition-transform"
-                            />
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="flex flex-col w-full justify-center items-center mt-60">
-                <span class="text-30 font-semibold">Mon choix du moment</span>
-                <Spacer class="my-20" />
-                <div
-                    class="bloc-card relative flex items-center space-y-20 lg:space-y-0 rounded-45 p-15 xl:p-30 mx-20 xl:mx-0"
-                >
-                    <Image
-                        class="w-50 h-63 xl:w-100 xl:h-auto ml-15 xl:ml-0"
-                        src={logoAstro}
-                        alt="Logo du Framework Astro"
-                        loading={"eager"}
-                    />
-                    <div class="spacer-choice"></div>
-                    <div
-                        class="flex flex-col lg:flex-row items-center justify-center space-y-30 lg:space-y-0"
-                    >
-                        <div class="text-center">
-                            <div
-                                class="text-20 lg:text-25 xl:text-30 font-semibold"
-                            >
-                                Astro
-                            </div>
-                            <div
-                                class="text-12 lg:text-15 max-w-320 xl:max-w-500"
-                            >
-                                <div>
-                                    Un framework ultra rapide, simple et moderne
-                                    pour créer des sites performants avec une
-                                    structure propre et flexible.
-                                </div>
-                                <div>
-                                    Mon portfolio est entièrement construit avec
-                                    Astro.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="spacer-choice hidden lg:inline"></div>
-                        <a
-                            href="https://astro.build/"
-                            class="flex lg:flex-col justify-center items-center text-white/50 hover:text-white transition bg-card border-1 border-card-border lg:border-none lg:bg-transparent rounded-full pr-20 lg:pr-0 pl-10 lg:pl-0"
-                            target="_blank"
-                        >
-                            <IconArrowTopRight
-                                class="size-30 lg:size-50 xl:size-75"
-                            />
-                            <span class="text-12 xl:text-15"
-                                >En savoir plus</span
-                            >
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <Spacer class="mt-20" />
-            <div class="mt-50">
-                <ContactForm />
-            </div>
-        </div>
-    </section>
+	<!-- Carte de profil à gauche et texte à droite (l'inverse de la page À propos). flex 999 : le texte
+	     prend toute la place restante ; sous 520px + 300px, il passe sous la carte. -->
+	<section
+		id="top"
+		class="mx-auto flex max-w-1200 flex-wrap items-center gap-56 px-24 pt-80"
+	>
+		<Mycard class="mx-auto flex-[0_1_300px]" />
+
+		<div class="flex min-w-0 flex-[999_1_520px] flex-col items-start gap-28">
+			<a
+				href="#contact"
+				class="glass-btn inline-flex items-center gap-12 rounded-full px-14 py-8 text-14 text-white/75"
+			>
+				<span aria-hidden="true" class="relative flex size-10">
+					<span
+						class="absolute inset-0 animate-ping rounded-full bg-emeraude opacity-70"
+					></span>
+					<span class="relative size-10 rounded-full bg-emeraude-fonce"></span>
+				</span>
+				<span>Vous pouvez me contacter à tout moment</span>
+				<IconArrowRight class="size-18 flex-none" />
+			</a>
+
+			<h1
+				class="text-[clamp(38px,5.2vw,72px)] leading-[1.06] font-semibold tracking-[-0.025em]"
+			>
+				Développeur Web &<br />
+				<span class="gradient-text">Administrateur Systèmes</span>
+			</h1>
+
+			<p class="max-w-560 text-17 leading-[1.7] text-white/72">
+				Passionné d’informatique, je me spécialise en informatique réseau et
+				cybersécurité. Curieux et rigoureux, j’aime comprendre et optimiser les
+				systèmes. Découvrez mon parcours !
+			</p>
+
+			<div class="flex flex-wrap gap-12">
+				<a
+					href="#contact"
+					class="grad-btn inline-flex min-h-48 items-center gap-10 rounded-full px-24 text-15 font-medium shadow-cta"
+				>
+					<span>Me contacter</span>
+					<IconArrowRight class="size-18" />
+				</a>
+				<a
+					href="#projets"
+					class="glass-btn inline-flex min-h-48 items-center rounded-full px-24 text-15 font-medium text-white/88"
+				>
+					Voir mes projets
+				</a>
+			</div>
+
+			<div class="mt-12 w-full">
+				<p class="mb-12 font-mono text-12 tracking-[0.06em] text-white/55">
+					EN CE MOMENT
+				</p>
+				<ul class="flex flex-wrap gap-12">
+					{
+						currently.map(({ label, title, detail, color }) => (
+							<li class="flex-[1_1_180px] rounded-20 border border-white/9 bg-white/4 px-18 py-16">
+								<p
+									class:list={[
+										"text-11 font-medium tracking-[0.08em] uppercase",
+										color,
+									]}
+								>
+									{label}
+								</p>
+								<p class="mt-6 text-15 font-semibold">{title}</p>
+								<p class="mt-2 text-13 text-white/60">{detail}</p>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section id="projets" class="mx-auto max-w-1200 px-24 pt-140">
+		<SectionHeading eyebrow="01 — Projets" title="Projet à la une">
+			<a
+				href="/projects"
+				class="text-link inline-flex min-h-44 items-center gap-8 text-15 text-white/70"
+			>
+				<span>Tous les projets</span>
+				<IconArrowRight class="size-18" />
+			</a>
+		</SectionHeading>
+
+		{featured && <CardProjectFeatured {...featured} />}
+
+		<h3 class="mt-56 mb-20 text-20 font-semibold">Autres réalisations</h3>
+		<!-- Grille plutôt que flex-wrap : sur 2 colonnes, la 3e carte garde la largeur d'une colonne
+		     au lieu de s'étirer sur toute la ligne -->
+		<div
+			class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-24"
+		>
+			{others.map((project) => <CardProjectLink {...project} />)}
+		</div>
+	</section>
+
+	<section id="stack" class="mx-auto max-w-1200 px-24 pt-140">
+		<SectionHeading
+			eyebrow="02 — Stack"
+			title="Stack technique & choix du moment"
+		/>
+
+		<div class="flex flex-wrap items-stretch gap-24">
+			<div
+				class="flex min-w-0 flex-[1.5_1_520px] flex-col gap-24 rounded-36 border border-card-border bg-card p-24 sm:p-32"
+			>
+				<p class="max-w-560 text-15 leading-[1.7] text-white/72">
+					Un aperçu des technologies que j’utilise ou ai utilisées pour
+					développer des applications web efficaces et actuelles.
+				</p>
+				<div
+					class="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-x-28 gap-y-24"
+				>
+					{
+						stackHighlights.map(({ title, items }) => (
+							<div>
+								<h3 class="mb-10 text-12 font-medium tracking-[0.06em] text-white/55 uppercase">
+									{title}
+								</h3>
+								<ul class="flex flex-wrap gap-8">
+									{items.map(({ logoSrc, name, invert }) => (
+										<li class="inline-flex items-center gap-8 rounded-12 border border-white/10 bg-white/6 py-6 pr-12 pl-8 text-13">
+											<Image
+												src={logoSrc}
+												alt=""
+												width={36}
+												class:list={["size-18 object-contain", invert && "invert"]}
+											/>
+											{name}
+										</li>
+									))}
+								</ul>
+							</div>
+						))
+					}
+				</div>
+				<a
+					href="/stack"
+					class="text-link mt-auto inline-flex min-h-44 items-center gap-8 self-start text-14 text-white/70"
+				>
+					<span>Voir toute la stack</span>
+					<IconArrowRight class="size-18" />
+				</a>
+			</div>
+
+			<div
+				class="relative flex min-w-0 flex-[1_1_340px] flex-col gap-20 overflow-hidden rounded-36 border border-card-border bg-card p-24 sm:p-32"
+			>
+				<div
+					aria-hidden="true"
+					class="pointer-events-none absolute -top-80 -right-80 size-260 bg-radial-[closest-side] from-emeraude/35 to-transparent"
+				>
+				</div>
+				<p
+					class="relative text-12 font-medium tracking-[0.06em] text-white/55 uppercase"
+				>
+					Mon choix du moment
+				</p>
+				<div class="relative flex items-center gap-18">
+					<span
+						class="flex size-72 flex-none items-center justify-center rounded-20 border border-white/12 bg-white/6"
+					>
+						<Image
+							src={logoNuxt}
+							alt="Logo du framework Nuxt"
+							width={68}
+							class="size-44 object-contain"
+						/>
+					</span>
+					<h3 class="text-30 font-semibold tracking-[-0.02em]">Nuxt</h3>
+				</div>
+				<p class="relative text-15 leading-[1.7] text-white/72">
+					Le framework Vue tout-en-un : rendu hybride, routes et composants prêts
+					à l’emploi pour créer des applications web rapides et modernes.
+				</p>
+				<a
+					href="https://nuxt.com/"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="glass-btn relative mt-auto inline-flex min-h-44 items-center gap-8 self-start rounded-full px-18 text-14 text-white/85"
+				>
+					<span>En savoir plus</span>
+					<IconArrowTopRight class="size-18" />
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section id="contact" class="mx-auto max-w-1200 px-24 pt-140">
+		<ContactForm />
+	</section>
 </Layout>

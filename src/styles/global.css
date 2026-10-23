@@ -1,10 +1,15 @@
 @config "./tailwind.config.js";
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "tailwindcss";
+
+/* Fonds des TechBadge : la classe bg-{colorName}/30 est construite au rendu, Tailwind ne la
+   trouve pas dans le code. On la génère ici pour chaque couleur de techno du thème. */
+@source inline("bg-{astro,github,tailwindcss,figma,django,python,pycharm,trello}/30");
 
 @theme {
   --font-sans: "Poppins", sans-serif, ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
   --color-background: #0d0c17;
   --color-gradient-pink: #350e35;
   --color-gradient-blue: #070045;
@@ -12,6 +17,15 @@
   --color-card-border: #ffffff1a;
   --color-bleu-glacier: #8ab4f8;
   --color-lavande-fonce: #b39ddb;
+  --color-orchidee: #f0abfc;
+  --color-menthe: #6ee7b7;
+  --color-emeraude: #34d399;
+  --color-emeraude-fonce: #10b981;
+  --color-indigo-electrique: #4f46e5;
+  --color-amethyste: #9333ea;
+  --color-framboise: #db2777;
+  --color-halo-rose: #7d004b;
+  --color-halo-bleu: #241496;
   --color-astro: #E03671;
   --color-github: #752E9C;
   --color-tailwindcss: #33BEF8;
@@ -21,68 +35,85 @@
   --color-pycharm: #1AD88A;
   --color-trello: #008FE2;
   --color-flask: #CCCCCC;
-  --drop-shadow-summary: 0 0 10px rgba(255, 255, 255, 0.1);
-}
+  --shadow-cta: 0 10px 30px -10px rgb(147 51 234 / 0.6);
+  --ease-smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --animate-reveal: reveal 0.35s ease both;
 
-
-@layer utilities {
-  @keyframes gradientBorder {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
     }
   }
+}
 
-  .animate-gradient-border {
-    animation: gradientBorder 5s ease infinite;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Hauteur de la navbar sticky + une marge : une ancre (/#contact) ne finit pas cachée dessous */
+    scroll-padding-top: 112px;
   }
 
-  @keyframes glowGradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  :focus-visible {
+    outline: 2px solid var(--color-bleu-glacier);
+    outline-offset: 3px;
   }
 
-  .animate-glow {
-    animation: glowGradient 4s ease infinite;
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0s !important;
+    }
   }
 }
 
-.navbar-item {
-  @apply flex items-center space-x-10 py-8 px-15 hover:bg-card/50 hover:border-card-border/50 border-1 rounded-full transition-colors duration-75 ease-in-out;
+@utility glass-btn {
+  @apply border border-white/12 bg-white/6 transition-colors duration-200 hover:border-white/22 hover:bg-white/12 hover:text-white;
 }
 
-.navbar-active {
-  @apply bg-card/100 border-card-border/100;
+@utility grad-btn {
+  background-image: linear-gradient(90deg, var(--color-indigo-electrique), var(--color-amethyste), var(--color-framboise));
+  @apply transition duration-200 hover:brightness-112 motion-safe:hover:-translate-y-1;
 }
 
-.navbar-non-active {
-  @apply bg-white/0 border-white/0;
+@utility lift {
+  @apply transition duration-300 ease-smooth hover:border-white/20 hover:bg-white/7 motion-safe:hover:-translate-y-4;
 }
 
-.card-item {
-  @apply flex items-center space-x-5 p-6 lg:bg-card lg:border-card-border lg:border-1 lg:rounded-full;
+@utility zoom {
+  & img {
+    @apply transition-transform duration-700 ease-smooth;
+  }
+
+  @variant hover {
+    & img {
+      @apply motion-safe:scale-104;
+    }
+  }
 }
 
-.bloc-card {
-  @apply bg-card border-1 border-card-border;
+@utility row-link {
+  @apply transition-colors duration-200 hover:bg-white/5;
 }
 
-.summary-bloc {
-  @apply border-1 border-card-border py-5 px-50 bg-linear-to-r hover:drop-shadow-summary bg-white/10 hover:bg-white/20;
+@utility text-link {
+  @apply transition-colors duration-200 hover:text-white;
 }
 
-.spacer {
-  @apply h-1 w-full max-w-[80%] bg-card-border;
+@utility field {
+  @apply min-h-48 w-full rounded-14 border border-white/12 bg-background px-16 py-12 text-15 text-white transition-[border-color,box-shadow] duration-200 placeholder:text-white/38 focus:border-bleu-glacier focus:ring-3 focus:ring-bleu-glacier/18 focus:outline-hidden;
 }
 
-.spacer-choice {
-  @apply w-1 h-150 xl:h-126 bg-card-border mx-30;
+@utility gradient-text {
+  background-image: linear-gradient(90deg, var(--color-bleu-glacier), var(--color-lavande-fonce) 70%);
+  @apply bg-clip-text text-transparent;
 }
 
 .legal-text {
@@ -91,12 +122,4 @@
 
 .legal-title {
   @apply text-20 font-semibold;
-}
-
-.form-input {
-  @apply bg-background rounded-10 pl-20 py-10 border-1 border-card-border;
-}
-
-.gradient-button {
-  @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500;
 }

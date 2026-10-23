@@ -4,25 +4,23 @@ import Summary from "../components/SummaryLegal.astro";
 const pathname = Astro.url.pathname;
 ---
 
-<Layout>
+<Layout title="Politique de confidentialité">
 	<div
-		class="relative flex flex-col lg:flex-row justify-center lg:items-baseline"
+		class="mx-auto flex max-w-1200 flex-col gap-40 px-24 pt-88 lg:flex-row lg:items-start lg:gap-56"
 	>
-		<div class="flex lg:inline justify-center w-full lg:w-350">
-			<Summary currentPath={pathname} />
-		</div>
+		<Summary currentPath={pathname} />
 		<section
-			class="flex flex-col space-y-20 w-full max-w-1300 pt-50 lg:pt-170 font-light px-50 text-center lg:text-left"
+			class="flex min-w-0 flex-1 flex-col space-y-20 font-light"
 		>
-			<div class="text-30 text-center font-semibold">
+			<h1 class="text-[clamp(32px,4vw,44px)] leading-[1.1] font-semibold tracking-[-0.02em]">
 				Politique de confidentialité
-			</div>
+			</h1>
 			<div class="legal-text">
 				Cette politique de confidentialité décrit comment vos informations
 				personnelles sont collectées, utilisées et protégées lorsque vous
 				visitez le site de Pi-Code Studio.
 			</div>
-			<div class="legal-title">1. Informations collectées</div>
+			<h2 class="legal-title">1. Informations collectées</h2>
 			<div class="legal-text">
 				<div>
 					Ce site ne collecte aucune donnée personnelle sans votre
@@ -47,7 +45,7 @@ const pathname = Astro.url.pathname;
 					personnellement sans votre accord.
 				</div>
 			</div>
-			<div class="legal-title">2. Utilisation des données</div>
+			<h2 class="legal-title">2. Utilisation des données</h2>
 			<div class="legal-text">
 				<div>
 					Les données collectées automatiquement sont utilisées uniquement
@@ -66,7 +64,7 @@ const pathname = Astro.url.pathname;
 					Aucune donnée n’est utilisée à des fins commerciales.
 				</div>
 			</div>
-			<div class="legal-title">3. Partage des données</div>
+			<h2 class="legal-title">3. Partage des données</h2>
 			<div class="legal-text">
 				<div>
 					Les données collectées ne sont ni vendues, ni partagées avec des
@@ -77,7 +75,7 @@ const pathname = Astro.url.pathname;
 					<li>De détection d’un comportement malveillant</li>
 				</ul>
 			</div>
-			<div class="legal-title">4. Cookies</div>
+			<h2 class="legal-title">4. Cookies</h2>
 			<div class="legal-text">
 				Ce site utilise des cookies techniques pour garantir son bon
 				fonctionnement ainsi que des cookies de mesure d’audience.
@@ -91,13 +89,13 @@ const pathname = Astro.url.pathname;
 				Vous pouvez désactiver les cookies dans les paramètres de votre
 				navigateur à tout moment.
 			</div>
-			<div class="legal-title">5. Sécurité des données</div>
+			<h2 class="legal-title">5. Sécurité des données</h2>
 			<div class="legal-text">
 				Toutes les mesures techniques raisonnables sont mises en œuvre pour
 				protéger les données contre tout accès non autorisé. Néanmoins,
 				aucune transmission sur Internet n’est totalement sécurisée.
 			</div>
-			<div class="legal-title">6. Droits des utilisateurs (RGPD)</div>
+			<h2 class="legal-title">6. Droits des utilisateurs (RGPD)</h2>
 			<div class="legal-text">
 				<div>
 					Conformément au Règlement Général sur la Protection des Données
@@ -113,7 +111,7 @@ const pathname = Astro.url.pathname;
 					suivante : picode.studio@gmail.com
 				</div>
 			</div>
-			<div class="legal-title">7. Modifications</div>
+			<h2 class="legal-title">7. Modifications</h2>
 			<div class="legal-text">
 				Cette politique peut être mise à jour à tout moment. La date de la
 				dernière mise à jour figure ci-dessous.

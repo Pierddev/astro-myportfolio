@@ -1,74 +1,133 @@
 ---
-import CardExperience from "../components/CardExperience.astro";
-import CardValue from "../components/CardValue.astro";
-import Mycard from "../components/mycard.astro";
-import Spacer from "../components/Spacer.astro";
 import Layout from "../layouts/Layout.astro";
-import { experiences } from "../data/experiences";
-import { formations } from "../data/formations";
+import PageHeader from "../components/PageHeader.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Mycard from "../components/mycard.astro";
+import CardValue from "../components/CardValue.astro";
+import CardExperience from "../components/CardExperience.astro";
 import CardFormation from "../components/CardFormation.astro";
+import { experiences, formations } from "../lib/parcours";
+
+// Chiffres clés de l'en-tête : les deux premiers sont calculés à partir des données
+const keyFigures = [
+	{ value: experiences.length, label: "Expériences professionnelles" },
+	{ value: formations.length, label: "Formations" },
+	{ value: 2025, label: "Lancement de Pi-Code Studio" },
+];
+
+const summary = [
+	{ number: "01", label: "Mes valeurs", href: "#valeurs" },
+	{ number: "02", label: "Expériences professionnelles", href: "#pro" },
+	{ number: "03", label: "Formations", href: "#formations" },
+];
+
+const values = [
+	{
+		title: "Rigueur",
+		description:
+			"Je sais garder mon sang-froid et faire preuve de professionnalisme en toutes circonstances.",
+		color: "#8ab4f8",
+	},
+	{
+		title: "Ouverture d’esprit",
+		description:
+			"J’aime me tenir informé des dernières nouveautés et enrichir continuellement mes connaissances.",
+		color: "#b39ddb",
+	},
+	{
+		title: "Agilité",
+		description:
+			"Je fais preuve d’une grande adaptabilité et suis capable de m’ajuster rapidement à toute nouvelle situation.",
+		color: "#f0abfc",
+	},
+];
 ---
 
 <Layout title="À propos">
-	<section class="flex justify-center w-full">
-		<div class="hidden lg:inline">
-			<Mycard />
+	<!-- Texte à gauche et carte de profil à droite (l'inverse de l'accueil). flex 999 : le texte
+	     prend toute la place restante ; sous 520px + 300px, la carte passe en dessous. -->
+	<section
+		id="top"
+		class="mx-auto flex max-w-1200 flex-wrap items-center gap-56 px-24 pt-88"
+	>
+		<div class="flex min-w-0 flex-[999_1_520px] flex-col gap-24">
+			<PageHeader
+				eyebrow="// À propos"
+				title="Développeur"
+				highlight="Full Stack"
+				intro="Développeur Full Stack passionné par l’informatique et la création d’expériences web et logiciel."
+			/>
+
+			<ul class="flex w-full max-w-620 flex-wrap gap-12">
+				{
+					keyFigures.map(({ value, label }) => (
+						<li class="flex-[1_1_140px] rounded-20 border border-white/9 bg-white/4 px-18 py-16">
+							<p class="text-30 font-semibold tracking-[-0.02em]">{value}</p>
+							<p class="mt-2 text-13 text-white/60">{label}</p>
+						</li>
+					))
+				}
+			</ul>
+
+			<nav aria-label="Sommaire" class="flex flex-wrap gap-10">
+				{
+					summary.map(({ number, label, href }) => (
+						<a
+							href={href}
+							class="glass-btn inline-flex min-h-44 items-center gap-8 rounded-full px-18 text-14 text-white/85"
+						>
+							<span class="font-mono text-12 text-bleu-glacier">{number}</span>
+							<span>{label}</span>
+						</a>
+					))
+				}
+			</nav>
 		</div>
-		<div class="flex flex-col items-center w-full lg:w-1200 px-20">
-			<div class="mt-135">
-				<ul class="flex flex-col space-y-10 text-center text-15 mx-20">
-					<a
-						href="#valeurs"
-						class="summary-bloc transition-colors rounded-10"
-						>Mes valeurs</a
-					>
-					<a href="#pro" class="summary-bloc rounded-10"
-						>Expériences professionnelles</a
-					>
-					<a href="#formations" class="summary-bloc rounded-10"
-						>Formations</a
-					>
-				</ul>
-			</div>
-			<Spacer id="valeurs" />
-			<div class="mx-20">
-				<h2
-					class="text-30 md:text-40 lg:text-50 text-center font-semibold mb-30"
-				>
-					Mes valeurs
-				</h2>
-				<div
-					class="flex flex-col md:flex-row items-center md:space-x-20 xl:space-x-40 space-y-20 md:space-y-0"
-				>
-					<CardValue
-						title="Rigueur"
-						description="Je sais garder mon sang-froid et faire preuve de professionnalisme en toutes circonstances."
-					/>
-					<CardValue
-						title="Ouverture d’esprit"
-						description="J’aime me tenir informé des dernières nouveautés et enrichir continuellement mes connaissances."
-					/>
-					<CardValue
-						title="Agilité"
-						description="Je fais preuve d’une grande adaptabilité et suis capable de m’ajuster rapidement à toute nouvelle situation."
-					/>
-				</div>
-			</div>
-			<Spacer id="pro" />
-			<div>
-				<h2 class="text-30 md:text-40 lg:text-50 text-center font-semibold">
-					Expériences professionnelles
-				</h2>
-				{experiences.map((exp) => <CardExperience {...exp} />)}
-			</div>
-			<Spacer id="formations" />
-			<h2 class="text-30 md:text-40 lg:text-50 text-center font-semibold">
-				Formations
-			</h2>
-			<div class="flex flex-col space-y-40 mt-20 lg:mt-50">
-				{formations.map((formation) => <CardFormation {...formation} />)}
-			</div>
+
+		<Mycard class="mx-auto flex-[0_1_300px]" />
+	</section>
+
+	<section id="valeurs" class="mx-auto max-w-1200 px-24 pt-140">
+		<SectionHeading eyebrow="01 — Valeurs" title="Mes valeurs" />
+		<div class="flex flex-wrap gap-24">
+			{
+				values.map((value, index) => (
+					<CardValue {...value} number={String(index + 1).padStart(2, "0")} />
+				))
+			}
+		</div>
+	</section>
+
+	<section id="pro" class="mx-auto max-w-1200 px-24 pt-140">
+		<SectionHeading eyebrow="02 — Parcours" title="Expériences professionnelles">
+			<!-- Sans JavaScript, tout est déplié : le script de CardExperience met ce libellé à jour -->
+			<button
+				type="button"
+				data-missions-toggle-all
+				class="glass-btn inline-flex min-h-44 cursor-pointer items-center rounded-full px-18 text-14 text-white/85"
+			>
+				Tout replier
+			</button>
+		</SectionHeading>
+
+		<!-- Ligne de la timeline (before:) : de la première à la dernière pastille -->
+		<ol
+			class="relative flex flex-col gap-16 before:absolute before:top-24 before:bottom-24 before:left-12 before:w-2 before:bg-linear-to-b before:from-bleu-glacier/50 before:via-white/8 before:via-30% before:to-white/4"
+		>
+			{
+				experiences.map((experience, index) => (
+					<CardExperience {...experience} defaultOpen={index === 0} />
+				))
+			}
+		</ol>
+	</section>
+
+	<section id="formations" class="mx-auto max-w-1200 px-24 pt-140">
+		<SectionHeading eyebrow="03 — Diplômes" title="Formations" />
+		<div
+			class="grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-20"
+		>
+			{formations.map((formation) => <CardFormation {...formation} />)}
 		</div>
 	</section>
 </Layout>
-<script type="module" src="/js/exp-toggle.js" defer></script>

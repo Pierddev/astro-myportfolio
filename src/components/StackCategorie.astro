@@ -1,65 +1,42 @@
 ---
-import Spacer from "./Spacer.astro";
-import CardStack from "src/components/CardStack.astro";
-import IconArrowDown from "./icons/IconArrowDown.astro";
+import CardStack from "./CardStack.astro";
+import GlowDot from "./GlowDot.astro";
+import type { StackCategory } from "../lib/stack";
 
-import type { StackItem } from "../data/stack"; // ou le chemin exact si besoin
-
-interface Props {
-	title: string;
-	items: StackItem[];
+// Carte d'une catégorie de la page Stack. data-stack-category sert aux filtres de la page :
+// ils masquent la carte avec l'attribut hidden et rejouent l'animation reveal à son retour.
+interface Props extends StackCategory {
 	loading?: "lazy" | "eager";
 }
 
-const { title, items, loading = "lazy" } = Astro.props as Props;
-
-const visibleCount = 5;
-
-function slugify(text: string) {
-	return text
-		.toLowerCase()
-		.normalize("NFD")
-		.replace(/[\u0300-\u036f]/g, "")
-		.replace(/\s+/g, "-")
-		.replace(/[^\w\-]+/g, "")
-		.replace(/\-\-+/g, "-")
-		.replace(/^-+/, "")
-		.replace(/-+$/, "");
-}
-
-const id = slugify(title);
+const { id, title, color, items, loading = "lazy" } = Astro.props;
+const count = items.length;
 ---
 
-<div class="flex flex-col items-center mt-50" id={`stack-${id}`}>
-	<span class="text-25 sm:text-30 font-semibold">{title}</span>
-	<Spacer class="my-20" />
+<div
+	data-stack-category={id}
+	class="animate-reveal rounded-32 border border-card-border bg-card p-28"
+>
+	<div class="mb-22 flex flex-wrap items-center justify-between gap-12">
+		<h2 class="flex items-center gap-12 text-22 font-semibold">
+			<GlowDot color={color} class="size-10" />
+			<span>{title}</span>
+		</h2>
+		<span
+			class="rounded-full border border-card-border bg-card px-12 py-4 font-mono text-12 text-white/65"
+		>
+			{count} technologie{count > 1 && "s"}
+		</span>
+	</div>
 
-	<ul class="flex flex-wrap justify-center gap-15 transition-all duration-300">
+	<!-- auto-fill + minmax : autant de colonnes de 190px minimum que la carte le permet -->
+	<ul class="grid grid-cols-[repeat(auto-fill,minmax(190px,1fr))] gap-12">
 		{
-			items.map((item, index) => (
-				<li
-					class={`stack-item-${id} ${
-						index >= visibleCount
-							? "hidden opacity-0 scale-90 transition-all duration-300"
-							: ""
-					}`}
-				>
+			items.map((item) => (
+				<li class="grid">
 					<CardStack {...item} loading={loading} />
 				</li>
 			))
 		}
 	</ul>
-
-	{
-		items.length > visibleCount && (
-			<button
-				type="button"
-				class="bloc-card group flex space-x-5 rounded-full w-fit py-10 pl-20 pr-15 cursor-pointer hover:opacity-80 hover:scale-105 transition mt-15"
-				data-stack-toggle={id}
-			>
-				<span>Voir plus</span>
-				<IconArrowDown class="transition-transform ease-spring duration-400 group-data-[expanded=true]:rotate-180 group-hover:rotate-180 group-data-[expanded=true]:group-hover:rotate-0" />
-			</button>
-		)
-	}
 </div>

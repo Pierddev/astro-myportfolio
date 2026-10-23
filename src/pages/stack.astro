@@ -1,47 +1,106 @@
 ---
-import Spacer from "src/components/Spacer.astro";
-import Mycard from "../components/mycard.astro";
 import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
-import {
-	stackOutils,
-	stackLangages,
-	stackBDD,
-	stackCyber,
-} from "../data/stack";
-import logoVSC from "../assets/stacks/vsc.webp";
-import CardStack from "src/components/CardStack.astro";
-import StackCategorie from "src/components/StackCategorie.astro";
+import PageHeader from "../components/PageHeader.astro";
+import StackCategorie from "../components/StackCategorie.astro";
+import GlowDot from "../components/GlowDot.astro";
+import CtaBanner from "../components/CtaBanner.astro";
+import { stackCategories } from "../lib/stack";
+
+// Filtres : « Tout » en premier (point blanc), puis un bouton par catégorie.
+// L'état actif passe uniquement par aria-pressed, que les classes aria-pressed: lisent.
+const total = stackCategories.reduce((sum, { items }) => sum + items.length, 0);
+const filters = [
+	{ id: "all", label: "Tout", color: "#ffffff", count: total },
+	...stackCategories.map(({ id, shortTitle, color, items }) => ({
+		id,
+		label: shortTitle,
+		color,
+		count: items.length,
+	})),
+];
 ---
 
 <Layout title="Stack">
-	<section class="flex flex-col lg:flex-row justify-center w-full">
-		<div class="hidden lg:inline">
-			<Mycard />
-		</div>
+	<section class="mx-auto max-w-1200 px-24 pt-88">
+		<PageHeader
+			eyebrow="// Stack"
+			title="Stack"
+			highlight="Technique"
+			intro="Un aperçu des technologies que j’utilise ou ai utilisées pour développer des applications web efficaces et actuelles."
+		/>
+
 		<div
-			class="flex flex-col space-y-30 items-center text-center w-full lg:w-1200 pt-100 lg:pt-150"
+			role="group"
+			aria-label="Filtrer par catégorie"
+			class="mt-40 flex flex-wrap gap-10"
 		>
-			<div class="flex flex-col">
-				<span class="text-40 sm:text-50 font-semibold">Stack Technique</span>
-				<span class="text-12 sm:text-15 font-medium max-w-600"
-					>Un aperçu des technologies que j’utilise ou ai utilisées pour
-					développer des applications web efficaces et actuelles.</span
-				>
-			</div>
-			<StackCategorie
-				title="Langages & Frameworks"
-				loading="eager"
-				items={stackLangages}
-			/>
-			<StackCategorie
-				title="Outils de développement"
-				loading="eager"
-				items={stackOutils}
-			/>
-			<StackCategorie title="Base de données & Serveurs" items={stackBDD} />
-			<StackCategorie title="Cybersécurité & Réseau" items={stackCyber} />
+			{
+				filters.map(({ id, label, color, count }) => (
+					<button
+						type="button"
+						data-stack-filter={id}
+						aria-pressed={id === "all" ? "true" : "false"}
+						class="flex min-h-44 cursor-pointer items-center gap-10 rounded-full border border-white/10 bg-white/4 px-18 text-14 text-white/72 transition-colors duration-200 not-aria-pressed:hover:border-white/22 not-aria-pressed:hover:text-white aria-pressed:border-white/24 aria-pressed:bg-white/12 aria-pressed:text-white"
+					>
+						<GlowDot color={color} class="size-8" />
+						<span>{label}</span>
+						<span class="font-mono text-12 text-white/55">{count}</span>
+					</button>
+				))
+			}
 		</div>
 	</section>
-	<script type="module" src="/js/stack-toggle.js" defer></script>
+
+	<section class="mx-auto flex max-w-1200 flex-col gap-24 px-24 pt-32">
+		{
+			stackCategories.map((category, index) => (
+				<StackCategorie
+					{...category}
+					loading={index < 2 ? "eager" : "lazy"}
+				/>
+			))
+		}
+	</section>
+
+	<section class="mx-auto max-w-1200 px-24 pt-120">
+		<CtaBanner
+			title="Un projet qui utilise l’une de ces technologies ?"
+			text="Parlons-en : décrivez votre besoin et je vous propose une solution adaptée."
+		/>
+	</section>
 </Layout>
+
+<script>
+	// Filtres de la page Stack : n'affiche que la catégorie choisie (« Tout » les affiche toutes).
+	// Sans JavaScript, les boutons restent sans effet et toutes les catégories restent visibles.
+	const filters = document.querySelectorAll<HTMLButtonElement>(
+		"[data-stack-filter]",
+	);
+	const categories = document.querySelectorAll<HTMLElement>(
+		"[data-stack-category]",
+	);
+
+	filters.forEach((filter) => {
+		filter.addEventListener("click", () => {
+			const selected = filter.dataset.stackFilter;
+
+			filters.forEach((other) => {
+				other.setAttribute("aria-pressed", String(other === filter));
+			});
+
+			categories.forEach((category) => {
+				const visible =
+					selected === "all" || category.dataset.stackCategory === selected;
+				category.hidden = !visible;
+
+				if (visible) {
+					// Retirer puis remettre la classe rejoue l'animation ; lire offsetWidth
+					// entre les deux force le navigateur à prendre le retrait en compte.
+					category.classList.remove("animate-reveal");
+					void category.offsetWidth;
+					category.classList.add("animate-reveal");
+				}
+			});
+		});
+	});
+</script>

@@ -6,13 +6,15 @@
     "dev": "astro dev --host",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "logos": "node scripts/logos.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
     "@tailwindcss/vite": "^4.1.6",
-    "astro": "^7.3.2",
+    "astro": "^7.4.2",
     "concurrently": "^9.1.2",
+    "js-yaml": "^4.3.2",
     "tailwindcss": "^4.1.6"
   },
   "allowScripts": {
@@ -20,5 +22,9 @@
     "sharp@0.35.4": true,
     "esbuild@0.25.4": true,
     "esbuild@0.28.2": true
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "sharp": "^0.35.5"
   }
 }

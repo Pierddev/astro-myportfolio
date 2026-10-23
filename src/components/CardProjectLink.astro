@@ -1,0 +1,38 @@
+---
+import type { Project } from "../data/projects";
+import { Image } from "astro:assets";
+import IconArrowTopRight from "./icons/iconArrowTopRight.astro";
+import TechBadge from "./TechBadge.astro";
+
+// Carte compacte d'un projet (« Autres réalisations » de l'accueil) : toute la carte est
+// le lien. Visuel 16/9, titre avec une flèche, puis les technos.
+type Props = Project;
+
+const { title, url, thumbnail, items } = Astro.props;
+---
+
+<a
+	href={url}
+	target="_blank"
+	rel="noopener noreferrer"
+	class="lift zoom flex min-w-0 flex-col gap-14 rounded-28 border border-card-border bg-card p-14 pb-20"
+>
+	<div
+		class="aspect-video overflow-hidden rounded-18 border border-white/10 bg-background"
+	>
+		<!-- 760px : deux fois la largeur d'une carte sur desktop (environ 380px) -->
+		<Image
+			src={thumbnail}
+			alt={`Aperçu du projet ${title}`}
+			width={760}
+			class="size-full object-cover"
+		/>
+	</div>
+	<div class="flex items-center justify-between gap-12 px-6">
+		<h4 class="text-18 font-semibold">{title}</h4>
+		<IconArrowTopRight class="size-20 flex-none text-white/60" />
+	</div>
+	<div class="flex flex-wrap gap-6 px-6">
+		{items.map((item) => <TechBadge {...item} />)}
+	</div>
+</a>

@@ -1,0 +1,28 @@
+---
+// Halos flous du fond (maquette v2) : deux grands en haut, deux plus discrets en bas.
+// Ils sont placés dans un cadre centré de 1440px (la largeur de la maquette)
+// pour rester près du contenu sur les écrans très larges.
+// overflow-anchor: none : les halos du bas (bottom-*) descendent quand la page s'allonge. Sans lui,
+// le navigateur les prend pour repère de défilement (scroll anchoring) et fait défiler la page
+// quand un contenu se déplie (missions de la page À propos), qui semble alors s'ouvrir vers le haut.
+---
+
+<div
+	aria-hidden="true"
+	class="pointer-events-none absolute inset-0 -z-10 overflow-hidden [overflow-anchor:none]"
+>
+	<div class="relative mx-auto h-full max-w-1440">
+		<div
+			class="absolute -top-160 -right-180 h-660 w-820 bg-radial-[closest-side] from-halo-rose to-transparent opacity-55 blur-[70px]"
+		></div>
+		<div
+			class="absolute top-120 -left-260 h-640 w-760 bg-radial-[closest-side] from-halo-bleu to-transparent opacity-50 blur-[70px]"
+		></div>
+		<div
+			class="absolute bottom-520 -right-200 h-600 w-700 bg-radial-[closest-side] from-halo-bleu to-transparent opacity-40 blur-[70px]"
+		></div>
+		<div
+			class="absolute bottom-1500 -left-220 h-560 w-640 bg-radial-[closest-side] from-halo-rose to-transparent opacity-35 blur-[70px]"
+		></div>
+	</div>
+</div>

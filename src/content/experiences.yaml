@@ -1,0 +1,133 @@
+# Expériences professionnelles : timeline de la page À propos.
+# L'ordre du fichier n'a pas d'importance : la timeline est triée par date de début, la plus récente en haut.
+#
+#   debut      mois de début, au format AAAA-MM (ex. 2025-09)
+#   fin        mois de fin, au format AAAA-MM. Sans fin (ou fin à venir) : badge « En cours ».
+#   poste, entreprise, lieu
+#   logo       chemin du logo depuis ce fichier, ex. ../assets/logo-bretim.webp
+#   logoAlt    texte alternatif du logo
+#   missions   liste de { titre, description }
+#   actif      false pour la masquer sans la supprimer (facultatif)
+
+- debut: 2025-09
+  poste: Assistant Service Informatique (Alternance)
+  entreprise: BRETIM
+  lieu: Pluméliau (56)
+  logo: ../assets/logo-bretim.webp
+  logoAlt: Logo de Bretim
+  missions:
+    - titre: Maintenance et développement ERP
+      description: Assister le responsable informatique dans le maintien et le développement de l'ERP interne avec l'AGL Windev. (Modules pour postes de travail Windows et mobiles Android)
+    - titre: Documentation technique et utilisateur
+      description: Rédiger des documents techniques et des guides utilisateurs pour faciliter l'utilisation de l'ERP.
+    - titre: Maintenance préventive (systèmes & antivirus)
+      description: Mettre en place des procédures de maintenance préventive pour les systèmes et les antivirus afin d'assurer la sécurité et la performance des postes de travail.
+    - titre: Résolution d’incidents techniques (N2)
+      description: Diagnostiquer et résoudre les incidents techniques de niveau 2 pour garantir la continuité des services informatiques.
+    - titre: Déploiement et configuration de matériel
+      description: Assurer le déploiement et la configuration du matériel informatique (postes de travail, imprimantes, etc.) pour les utilisateurs.
+
+- debut: 2025-04
+  poste: Développeur Web Freelance
+  entreprise: Pi-Code Studio
+  lieu: Acigné (35)
+  logo: ../assets/logo-picodestudio.webp
+  logoAlt: Logo de Pi-Code Studio
+  missions:
+    - titre: Analyse des besoins clients
+      description: Recueil des attentes, étude de faisabilité et rédaction de cahiers des charges adaptés à chaque projet.
+    - titre: Conception et développement d’applications web
+      description: Réalisation de solutions sur mesure (applications métier, sites vitrines, outils internes), de la structure technique au design responsive.
+    - titre: Développement Full Stack
+      description: Maîtrise des technologies front-end et back-end pour assurer la cohérence et la performance des projets du début à la mise en production.
+    - titre: Suivi de projet et relation client
+      description: Communication régulière avec les clients, accompagnement, ajustements et mise en ligne des livrables.
+
+- debut: 2024-09
+  fin: 2025-03
+  poste: Conseiller des particuliers
+  entreprise: Crédit Agricole
+  lieu: Noyal-sur-Vilaine (35)
+  logo: ../assets/logo-creditagricole.webp
+  logoAlt: Logo du Crédit Agricole
+  missions:
+    - titre: Gestion et développement d’un portefeuille clients
+      description: Accompagner une clientèle de particuliers dans la gestion de leurs comptes et de leurs projets financiers.
+    - titre: Conseil et vente de produits bancaires
+      description: Proposer des solutions adaptées (épargne, crédits, assurances, etc...) en fonction des besoins et du profil des clients.
+    - titre: Analyse et gestion des risques
+      description: Etudier les demandes de financement, analyser la solvabilité des clients et veiller au respect des procédures réglementaires.
+    - titre: Suivi et fidélisation
+      description: Assurer un suivi personnalisé, répondre aux sollicitations et anticiper les besoins pour renforcer la relation client.
+    - titre: Prospection et développement commercial
+      description: Identifier de nouvelles opportunités, attirer de nouveaux clients et participer aux actions commerciales de l’agence.
+    - titre: Accueil et accompagnement des clients
+      description: Assurer l’accueil physique et téléphonique, identifier rapidement leurs besoins et leur apporter une réponse immédiate ou les orienter vers le bon interlocuteur.
+
+- debut: 2024-02
+  fin: 2024-04
+  poste: Développeur Full Stack
+  entreprise: King UP
+  lieu: Plescop (56)
+  logo: ../assets/logo-kingup.webp
+  logoAlt: Logo de King UP SAS
+  missions:
+    - titre: Refonte et mise à jour d’un site web
+      description: Développement de la version 4 d’un site (kingmods.com) en utilisant Visual Studio Code, Laravel, Tailwind CSS, JavaScript, Alpine.js, Figma et GitHub. Intégration des maquettes Figma pour assurer une cohérence avec la nouvelle interface.
+    - titre: Automatisation de récupération de données
+      description: Création d’un script Python permettant d’extraire automatiquement des informations (textes et images) sur les véhicules et matériels du jeu Farming Simulator. Formatage et structuration des données en JSON pour une exploitation optimisée.
+    - titre: Développement d’un site vitrine
+      description: Conception et développement complet à partir d’une maquette figma du site internet de l’entreprise, en appliquant les mêmes technologies que pour le site kingmods.com, dans le but de présenter les projets et compétences de la société.
+
+- debut: 2022-09
+  fin: 2023-09
+  poste: Acheteur (Alternance)
+  entreprise: Pythagore
+  lieu: Laniscat (22)
+  logo: ../assets/logo-pythagore.webp
+  logoAlt: Logo de Pythagore
+  missions:
+    - titre: Création et structuration du service achats
+      description: Mise en place d’un service achats inexistant, définition des processus et des bonnes pratiques pour optimiser les approvisionnements.
+    - titre: Développement d’indicateurs et d’outils de suivi
+      description: Élaboration d’indicateurs de performance et d’outils permettant un meilleur pilotage des achats (tableaux de suivi, reporting, analyses de coûts).
+    - titre: Gestion des achats de consommables et d’outils pour l’atelier
+      description: Identification des besoins, sélection des fournisseurs et gestion des commandes pour garantir un approvisionnement efficace.
+    - titre: Relation et négociation avec les fournisseurs
+      description: Rencontres avec les fournisseurs pour présenter la nouvelle stratégie d’achats, négocier des conditions avantageuses et assurer leur engagement dans la transition du service achats.
+
+- debut: 2021-09
+  fin: 2022-09
+  poste: Acheteur (Alternance)
+  entreprise: Les Ateliers du Goût
+  lieu: Noyal-Pontivy (56)
+  logo: ../assets/logo-lag.webp
+  logoAlt: Logo des Ateliers du Goût
+  missions:
+    - titre: Participation à la gestion des achats indirects
+      description: Contribution aux activités du service achats, suivi des dossiers et support aux équipes en place.
+    - titre: Mise en place d’indicateurs de suivi
+      description: Développement d’outils pour surveiller l’évolution des prix du gaz et de l’électricité et aider à la prise de décision.
+    - titre: Animation et participation aux réunions
+      description: Organisation et animation de certaines réunions, élaboration de comptes rendus pour assurer le suivi des décisions prises.
+    - titre: Sourcing et évaluation des fournisseurs
+      description: Identification de nouveaux fournisseurs, élaboration de grilles de notation pour comparer et sélectionner les partenaires les plus adaptés.
+    - titre: Négociation et contractualisation
+      description: Rencontres avec les fournisseurs pour négocier les conditions d’achat avant la mise en place des contrats.
+    - titre: Gestion des contrats
+      description: Suivi des échéances, analyse des durées, gestion des renouvellements tacites ou non.
+
+- debut: 2020-09
+  fin: 2021-09
+  poste: Assistant Logistique (Alternance)
+  entreprise: Pythagore
+  lieu: Laniscat (22)
+  logo: ../assets/logo-pythagore.webp
+  logoAlt: Logo de Pythagore
+  missions:
+    - titre: Mise en place d’une gestion des stocks
+      description: Développement d’outils et de méthodes pour optimiser le suivi des stocks et améliorer leur gestion.
+    - titre: Collaboration avec un développeur
+      description: Participation à la création d’un système de calepinage permettant de calculer la consommation de matière première par commande client.
+    - titre: Optimisation du suivi des stocks
+      description: Conception et mise en place d’étiquettes améliorées pour assurer une traçabilité plus efficace des produits.
