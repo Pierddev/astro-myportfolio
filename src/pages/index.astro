@@ -7,7 +7,7 @@ import CardProjectLink from "../components/CardProjectLink.astro";
 import IconArrowRight from "../components/icons/IconArrowRight.astro";
 import IconArrowTopRight from "../components/icons/iconArrowTopRight.astro";
 import ContactForm from "../components/ContactForm.astro";
-import logoAstro from "../assets/stacks/astro.webp";
+import logoNuxt from "../assets/stacks/nuxt.svg";
 import { Image } from "astro:assets";
 import { projects } from "../data/projects";
 import { stackHighlights } from "../lib/stack";
@@ -196,7 +196,7 @@ const others = projects.filter((project) => !project.featured).slice(0, 3);
 			>
 				<div
 					aria-hidden="true"
-					class="pointer-events-none absolute -top-80 -right-80 size-260 bg-radial-[closest-side] from-astro/35 to-transparent"
+					class="pointer-events-none absolute -top-80 -right-80 size-260 bg-radial-[closest-side] from-emeraude/35 to-transparent"
 				>
 				</div>
 				<p
@@ -209,21 +209,20 @@ const others = projects.filter((project) => !project.featured).slice(0, 3);
 						class="flex size-72 flex-none items-center justify-center rounded-20 border border-white/12 bg-white/6"
 					>
 						<Image
-							src={logoAstro}
-							alt="Logo du framework Astro"
+							src={logoNuxt}
+							alt="Logo du framework Nuxt"
 							width={68}
-							class="h-43 w-34 object-contain"
+							class="size-44 object-contain"
 						/>
 					</span>
-					<h3 class="text-30 font-semibold tracking-[-0.02em]">Astro</h3>
+					<h3 class="text-30 font-semibold tracking-[-0.02em]">Nuxt</h3>
 				</div>
 				<p class="relative text-15 leading-[1.7] text-white/72">
-					Un framework ultra rapide, simple et moderne pour créer des sites
-					performants avec une structure propre et flexible. Mon portfolio est
-					entièrement construit avec Astro.
+					Le framework Vue tout-en-un : rendu hybride, routes et composants prêts
+					à l’emploi pour créer des applications web rapides et modernes.
 				</p>
 				<a
-					href="https://astro.build/"
+					href="https://nuxt.com/"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="glass-btn relative mt-auto inline-flex min-h-44 items-center gap-8 self-start rounded-full px-18 text-14 text-white/85"
