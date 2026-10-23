@@ -5,6 +5,7 @@
 // (silhouette dans la couleur de la marque). Il enregistre le SVG dans src/assets/stacks/,
 // puis écrit « logo: » dans le YAML, et « inverser: true » si le logo est trop sombre pour le
 // fond du site. Le reste du fichier (commentaires, ordre) n'est pas modifié.
+// « couleur: "#ffffff" » recolore un logo d'une seule couleur (utile quand il est trop sombre).
 // Relancer le script est sans risque : les technos qui ont déjà un logo sont ignorées.
 
 import { readFile, writeFile } from "node:fs/promises";
@@ -73,6 +74,7 @@ function findTechnos(lines) {
 			fieldIndent: " ".repeat(indent + 2),
 			logo: field("logo"),
 			icone: field("icone"),
+			couleur: field("couleur"),
 			inverser: field("inverser"),
 		});
 	});
@@ -142,13 +144,52 @@ async function downloadSvg({ source, icon, variant: chosen }) {
 	return { file: `${icon.slug}.svg`, svg: svg.replace("<svg ", `<svg fill="#${icon.hex}" `) };
 }
 
-// Luminosité moyenne (pondérée par l'opacité) et saturation moyenne des pixels visibles du logo
-async function measure(svg) {
+// Pixels RGBA du logo rendu en 64 × 64
+async function render(svg) {
 	const { data } = await sharp(Buffer.from(svg), { density: 144 })
 		.resize(64, 64, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
 		.ensureAlpha()
 		.raw()
 		.toBuffer({ resolveWithObject: true });
+	return data;
+}
+
+// Couleurs déclarées dans le SVG : attributs fill, stroke, stop-color, et leur équivalent dans style
+const COLOR = /(fill|stroke|stop-color)(\s*[:=]\s*"?\s*)(#[0-9a-f]{3,8}|rgba?\([^)]*\)|[a-z]+)/gi;
+const NOT_A_COLOR = ["none", "transparent", "currentcolor", "url", "inherit"];
+
+// Remplace l'unique couleur du logo par « color ». Un logo à plusieurs couleurs est refusé :
+// le recolorer en aplat le rendrait méconnaissable.
+async function recolor(svg, color) {
+	const used = new Set(
+		[...svg.matchAll(COLOR)].map(([, , , value]) => value.toLowerCase()).filter((value) => !NOT_A_COLOR.includes(value)),
+	);
+	if (used.size > 1) throw new Error(`logo à plusieurs couleurs (${[...used].join(", ")}), « couleur » impossible`);
+
+	const recolored =
+		used.size === 0
+			? svg.replace("<svg ", `<svg fill="${color}" `) // aucune couleur déclarée : noir par défaut
+			: svg.replace(COLOR, (match, property, separator, value) =>
+					used.has(value.toLowerCase()) ? `${property}${separator}${color}` : match,
+				);
+
+	// Vérification sur le rendu : une forme sans couleur déclarée (noire par défaut) aurait échappé au remplacement
+	const target = [1, 3, 5].map((i) => parseInt(color.slice(i, i + 2), 16));
+	const data = await render(recolored);
+	let visible = 0;
+	let off = 0;
+	for (let i = 0; i < data.length; i += 4) {
+		if (data[i + 3] < 128) continue;
+		visible++;
+		if (target.some((channel, c) => Math.abs(data[i + c] - channel) > 40)) off++;
+	}
+	if (off > visible * 0.05) throw new Error("logo à plusieurs couleurs, « couleur » impossible");
+	return recolored;
+}
+
+// Luminosité moyenne (pondérée par l'opacité) et saturation moyenne des pixels visibles du logo
+async function measure(svg) {
+	const data = await render(svg);
 
 	let weight = 0;
 	let luminance = 0;
@@ -200,14 +241,29 @@ for (const techno of missing) {
 		continue;
 	}
 
-	const { file, svg } = await downloadSvg(found);
+	// YAML lit « couleur: #ffffff » sans guillemets comme un commentaire : la valeur arrive vide
+	if (techno.couleur !== undefined && !/^#[0-9a-f]{6}$/i.test(techno.couleur)) {
+		failures.push({ techno, message: `couleur attendue au format "#rrggbb", entre guillemets` });
+		continue;
+	}
+
+	let { file, svg } = await downloadSvg(found);
+	if (techno.couleur) {
+		try {
+			svg = await recolor(svg, techno.couleur);
+		} catch (error) {
+			failures.push({ techno, message: error.message });
+			continue;
+		}
+	}
 	await writeFile(new URL(file, LOGOS_DIR), svg);
 
+	// Une couleur choisie à la main n'est ni inversée ni signalée comme sombre
 	const { luminance, chroma } = await measure(svg);
-	const dark = luminance < DARK_LUMINANCE;
+	const dark = luminance < DARK_LUMINANCE && !techno.couleur;
 	// Inverser un logo coloré changerait sa couleur (rouge → cyan) : seuls les logos gris ou noirs le sont
 	const invert = dark && chroma < 0.15 && techno.inverser === undefined;
-	if (dark && !invert && techno.inverser === undefined) warnings.push(`${techno.nom} : logo sombre et coloré, peu lisible sur le fond du site`);
+	if (dark && !invert && techno.inverser === undefined) warnings.push(`${techno.nom} : logo sombre et coloré, peu lisible sur le fond du site (essayer « couleur: "#ffffff" »)`);
 
 	const added = [`${techno.fieldIndent}logo: ${LOGO_PATH(file)}`];
 	if (invert) added.push(`${techno.fieldIndent}inverser: true`);
@@ -215,7 +271,7 @@ for (const techno of missing) {
 	const urlLine = lines.slice(techno.line, techno.end).findIndex((l) => l.trim().startsWith("url:"));
 	inserts.push({ at: techno.line + (urlLine === -1 ? 1 : urlLine + 1), added });
 
-	console.log(`  ✓ ${techno.nom} → ${file} (${found.source}${invert ? ", inversé" : ""})`);
+	console.log(`  ✓ ${techno.nom} → ${file} (${found.source}${techno.couleur ? `, ${techno.couleur}` : ""}${invert ? ", inversé" : ""})`);
 }
 
 // Insertions du bas vers le haut, pour ne pas décaler les lignes restantes
@@ -225,9 +281,13 @@ await writeFile(STACK_FILE, lines.join(eol));
 for (const warning of warnings) console.warn(`  ! ${warning}`);
 
 if (failures.length > 0) {
-	console.error(`\n${failures.length} logo(s) introuvable(s) :`);
-	for (const { techno, candidates } of failures) {
-		const hint = candidates.length > 0 ? `essayer « icone: ${candidates[0]} » (proches : ${candidates.join(", ")})` : "aucun logo proche : déposer le fichier à la main et renseigner « logo: »";
+	console.error(`\n${failures.length} logo(s) non récupéré(s) :`);
+	for (const { techno, candidates = [], message } of failures) {
+		const hint =
+			message ??
+			(candidates.length > 0
+				? `essayer « icone: ${candidates[0]} » (proches : ${candidates.join(", ")})`
+				: "aucun logo proche : déposer le fichier à la main et renseigner « logo: »");
 		console.error(`  ✗ ${techno.nom}${techno.icone ? ` (icone: ${techno.icone})` : ""} : ${hint}`);
 	}
 	process.exit(1);

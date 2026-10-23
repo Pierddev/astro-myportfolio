@@ -123,7 +123,9 @@ Si le nom ne suffit pas, le script propose des noms proches ; les indiquer avec 
 | `icone: astro-plain` | variante precise d'un logo devicon (`original`, `plain`, `line`...) |
 | `icone: simple-icons:astro` | impose Simple Icons quand devicon a le meme nom (`devicon:` impose devicon) |
 
-Pour changer de logo : supprimer la ligne `logo:`, ajuster `icone:` et relancer `npm run logos`. Pour un logo introuvable (Herd, VMware), deposer le fichier a la main dans `src/assets/stacks/` et renseigner `logo:`.
+Logo d'une seule couleur trop sombre pour le fond (le script le signale) : `couleur: "#ffffff"` le recolore a son telechargement. Les guillemets sont obligatoires (sans eux, YAML lit `#` comme un commentaire). Un logo a plusieurs couleurs est refuse, pour ne pas le rendre meconnaissable.
+
+Pour changer de logo : supprimer la ligne `logo:`, ajuster `icone:` ou `couleur:` et relancer `npm run logos`. Pour un logo introuvable (Herd, VMware), deposer le fichier a la main dans `src/assets/stacks/` et renseigner `logo:`.
 
 Une techno sans logo fait echouer le build avec « Logo manquant pour ... : lancer npm run logos ».
 

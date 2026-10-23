@@ -11,6 +11,8 @@
 #              et ajoute cette ligne (ainsi que « inverser » si le logo est trop sombre).
 #   icone      aide « npm run logos » quand le nom ne suffit pas : html5, astro-plain,
 #              simple-icons:astro… (facultatif, voir le README)
+#   couleur    recolore à son téléchargement un logo d'une seule couleur trop sombre,
+#              ex. couleur: "#ffffff" (guillemets obligatoires, facultatif)
 #   inverser   true si le logo est sombre : il est inversé pour rester lisible (facultatif)
 #   accueil    true pour l'afficher aussi sur la page d'accueil (facultatif)
 #   actif      false pour la masquer partout sans la supprimer (facultatif)
@@ -138,6 +140,7 @@
     - nom: MariaDB
       url: https://mariadb.org/
       logo: ../assets/stacks/mariadb.svg
+      couleur: "#ffffff"
       accueil: true
     - nom: MySQL
       url: https://www.mysql.com/fr/
