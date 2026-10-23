@@ -81,6 +81,7 @@
 │   └── styles/
 │       ├── global.css
 │       └── tailwind.config.js
+├── scripts/logos.mjs     # npm run logos : recupere les logos de la stack
 ├── src/content.config.ts # Schema du contenu YAML (verifie a chaque build)
 ├── astro.config.mjs      # Config Astro (sitemap, redirection /contact)
 └── package.json
@@ -102,17 +103,29 @@ Chaque fichier rappelle ses champs dans son en-tete.
 
 ### Ajouter une techno
 
-1. Deposer le logo (`.webp`) dans `src/assets/stacks/`
-2. L'ajouter dans la bonne categorie de `stack.yaml`, a la position voulue (l'ordre du fichier est l'ordre d'affichage) :
+1. L'ajouter dans la bonne categorie de `stack.yaml`, a la position voulue (l'ordre du fichier est l'ordre d'affichage), **sans logo** :
 
 ```yaml
     - nom: Vue.js
       url: https://vuejs.org/
-      logo: ../assets/stacks/vue.webp
       accueil: true   # facultatif : l'affiche aussi sur la page d'accueil
 ```
 
-Logo sombre, illisible sur le fond ? Ajouter `inverser: true`.
+2. Lancer `npm run logos` : le script recupere le logo en SVG (fond transparent) dans `src/assets/stacks/` et ajoute la ligne `logo:` dans le YAML.
+
+Le logo est cherche par son nom dans [devicon](https://devicon.dev) (logos officiels en couleurs), sinon dans [Simple Icons](https://simpleicons.org) (silhouette dans la couleur de la marque). Un logo trop sombre pour le fond du site recoit automatiquement `inverser: true`. Le script ne traite que les technos sans `logo:` : on peut le relancer sans risque.
+
+Si le nom ne suffit pas, le script propose des noms proches ; les indiquer avec `icone:` puis relancer :
+
+| Valeur | Effet |
+| :----- | :---- |
+| `icone: html5` | nom du logo dans devicon ou Simple Icons |
+| `icone: astro-plain` | variante precise d'un logo devicon (`original`, `plain`, `line`...) |
+| `icone: simple-icons:astro` | impose Simple Icons quand devicon a le meme nom (`devicon:` impose devicon) |
+
+Pour changer de logo : supprimer la ligne `logo:`, ajuster `icone:` et relancer `npm run logos`. Pour un logo introuvable (Herd, VMware), deposer le fichier a la main dans `src/assets/stacks/` et renseigner `logo:`.
+
+Une techno sans logo fait echouer le build avec « Logo manquant pour ... : lancer npm run logos ».
 
 ### Ajouter une experience ou une formation
 
@@ -145,6 +158,7 @@ Ajouter `actif: false` a une techno, une experience ou une formation : elle disp
 Le build echoue avec un message explicite plutot que de publier une page incomplete :
 
 - **erreur de syntaxe YAML** (indentation, guillemet non ferme) : le fichier et la ligne sont indiques ;
+- **logo manquant** : la techno n'a pas encore de `logo:`, lancer `npm run logos` ;
 - **champ invalide** : `experiences → 4` designe la 4e entree du fichier, suivie du champ en cause (date mal formee, fin avant debut, champ manquant...) ;
 - **logo introuvable** : `ImageNotFound` avec le chemin a corriger.
 
@@ -162,6 +176,7 @@ Toutes les commandes s'executent depuis la racine du projet :
 | `npm run dev`       | Lance le serveur de dev (`localhost:4321`)  |
 | `npm run build`     | Build le site de production (`./dist/`)     |
 | `npm run preview`   | Preview du build en local                   |
+| `npm run logos`     | Recupere les logos manquants de la stack    |
 | `npm run astro ...` | Commandes CLI Astro (`add`, `check`, etc.)  |
 
 ---

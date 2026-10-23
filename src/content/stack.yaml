@@ -6,7 +6,11 @@
 #
 # Une techno :
 #   nom, url (site officiel)
-#   logo       chemin du logo depuis ce fichier, ex. ../assets/stacks/php.webp
+#   logo       chemin du logo depuis ce fichier, ex. ../assets/stacks/php.svg.
+#              Pour une nouvelle techno, ne pas l'écrire : « npm run logos » récupère le logo
+#              et ajoute cette ligne (ainsi que « inverser » si le logo est trop sombre).
+#   icone      aide « npm run logos » quand le nom ne suffit pas : html5, astro-plain,
+#              simple-icons:astro… (facultatif, voir le README)
 #   inverser   true si le logo est sombre : il est inversé pour rester lisible (facultatif)
 #   accueil    true pour l'afficher aussi sur la page d'accueil (facultatif)
 #   actif      false pour la masquer partout sans la supprimer (facultatif)
@@ -18,59 +22,62 @@
   technos:
     - nom: Nuxt
       url: https://nuxt.com/
-      logo: ../assets/stacks/nuxt.webp
+      logo: ../assets/stacks/nuxt.svg
       accueil: true
     - nom: NestJS
       url: https://nestjs.com/
-      logo: ../assets/stacks/nestjs.webp
+      logo: ../assets/stacks/nestjs.svg
       accueil: true
     - nom: PHP
       url: https://www.php.net/
-      logo: ../assets/stacks/php.webp
+      logo: ../assets/stacks/php.svg
     - nom: Laravel
       url: https://laravel.com/
-      logo: ../assets/stacks/laravel.webp
+      logo: ../assets/stacks/laravel.svg
       accueil: true
     - nom: Astro
       url: https://astro.build/
-      logo: ../assets/stacks/astro.webp
+      logo: ../assets/stacks/astro.svg
+      icone: simple-icons:astro
     - nom: Python
       url: https://www.python.org/
-      logo: ../assets/stacks/python.webp
+      logo: ../assets/stacks/python.svg
     - nom: JavaScript
       url: https://developer.mozilla.org/fr/docs/Web/JavaScript
-      logo: ../assets/stacks/javascript.webp
+      logo: ../assets/stacks/javascript.svg
     - nom: HTML
       url: https://developer.mozilla.org/fr/docs/Web/HTML
-      logo: ../assets/stacks/html.webp
+      logo: ../assets/stacks/html5.svg
     - nom: CSS
       url: https://developer.mozilla.org/fr/docs/Web/CSS
-      logo: ../assets/stacks/css.webp
+      logo: ../assets/stacks/css3.svg
     - nom: TailwindCSS
       url: https://tailwindcss.com/
-      logo: ../assets/stacks/tailwindcss.webp
+      logo: ../assets/stacks/tailwindcss.svg
     - nom: Django
       url: https://www.djangoproject.com/
-      logo: ../assets/stacks/django.webp
+      logo: ../assets/stacks/django.svg
+      inverser: true
     - nom: TypeScript
       url: https://www.typescriptlang.org/
-      logo: ../assets/stacks/typescript.webp
+      logo: ../assets/stacks/typescript.svg
       accueil: true
     - nom: JSON
       url: https://www.json.org/json-fr.html
-      logo: ../assets/stacks/json.webp
+      logo: ../assets/stacks/json.svg
     - nom: AlpineJS
       url: https://alpinejs.dev/
-      logo: ../assets/stacks/alpinejs.webp
+      logo: ../assets/stacks/alpinejs.svg
     - nom: PowerShell
       url: https://learn.microsoft.com/fr-fr/powershell/scripting/overview?view=powershell-7.5
-      logo: ../assets/stacks/powershell.webp
+      logo: ../assets/stacks/powershell.svg
     - nom: Flask
       url: https://flask.palletsprojects.com/en/stable/
-      logo: ../assets/stacks/flask.webp
+      logo: ../assets/stacks/flask.svg
+      inverser: true
     - nom: Jinja
       url: https://jinja.palletsprojects.com/en/stable/
-      logo: ../assets/stacks/jinja.webp
+      logo: ../assets/stacks/jinja.svg
 
 - id: tools
   titre: Outils de développement
@@ -79,38 +86,39 @@
   technos:
     - nom: Visual Studio Code
       url: https://code.visualstudio.com/
-      logo: ../assets/stacks/vsc.webp
+      logo: ../assets/stacks/vscode.svg
     - nom: Figma
       url: https://www.figma.com/fr-fr/
-      logo: ../assets/stacks/figma.webp
+      logo: ../assets/stacks/figma.svg
       accueil: true
     - nom: GitHub
       url: https://github.com/
-      logo: ../assets/stacks/github.webp
+      logo: ../assets/stacks/github.svg
+      inverser: true
       accueil: true
     - nom: Herd
       url: https://herd.laravel.com/
       logo: ../assets/stacks/herd.webp
     - nom: PyCharm
       url: https://www.jetbrains.com/pycharm/
-      logo: ../assets/stacks/pycharm.webp
+      logo: ../assets/stacks/pycharm.svg
       accueil: true
     - nom: PhpStorm
       url: https://www.jetbrains.com/phpstorm/
-      logo: ../assets/stacks/phpstorm.webp
+      logo: ../assets/stacks/phpstorm.svg
     - nom: Photoshop
       url: https://www.adobe.com/fr/products/photoshop.html
-      logo: ../assets/stacks/photoshop.webp
+      logo: ../assets/stacks/photoshop.svg
     - nom: Notion
       url: https://www.notion.com/fr
-      logo: ../assets/stacks/notion.webp
+      logo: ../assets/stacks/notion.svg
     - nom: Vercel
       url: https://vercel.com/
-      logo: ../assets/stacks/vercel.webp
+      logo: ../assets/stacks/vercel.svg
       inverser: true
     - nom: Trello
       url: https://trello.com/fr
-      logo: ../assets/stacks/trello.webp
+      logo: ../assets/stacks/trello.svg
 
 - id: databases
   titre: Base de données & Serveurs
@@ -119,25 +127,24 @@
   technos:
     - nom: MySQL
       url: https://www.mysql.com/fr/
-      logo: ../assets/stacks/mysql.webp
+      logo: ../assets/stacks/mysql.svg
       accueil: true
     - nom: SQLite
       url: https://www.sqlite.org/
-      logo: ../assets/stacks/sqlite.webp
+      logo: ../assets/stacks/sqlite.svg
     - nom: Synology
       url: https://www.synology.com/fr-fr
-      logo: ../assets/stacks/synology.webp
-      inverser: true
+      logo: ../assets/stacks/synology.svg
     - nom: PostgreSQL
       url: https://www.postgresql.org/
-      logo: ../assets/stacks/postgresql.webp
+      logo: ../assets/stacks/postgresql.svg
       accueil: true
     - nom: MongoDB
       url: https://www.mongodb.com/
-      logo: ../assets/stacks/mongodb.webp
+      logo: ../assets/stacks/mongodb.svg
     - nom: Docker
       url: https://www.docker.com/
-      logo: ../assets/stacks/docker.webp
+      logo: ../assets/stacks/docker.svg
       accueil: true
 
 - id: security
@@ -147,11 +154,11 @@
   technos:
     - nom: Wireshark
       url: https://www.wireshark.org/
-      logo: ../assets/stacks/wireshark.webp
+      logo: ../assets/stacks/wireshark.svg
       accueil: true
     - nom: VirtualBox
       url: https://www.virtualbox.org/
-      logo: ../assets/stacks/virtualbox.webp
+      logo: ../assets/stacks/virtualbox.svg
     - nom: VMware
       url: https://vmware.com/
       logo: ../assets/stacks/vmware.webp

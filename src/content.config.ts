@@ -62,14 +62,29 @@ const stack = defineCollection({
 			titreCourt: z.string(),
 			couleur: z.string().regex(/^#[0-9a-f]{6}$/i, "Couleur attendue au format #rrggbb"),
 			technos: z.array(
-				z.object({
-					nom: z.string(),
-					url: z.url(),
-					logo: image(),
-					inverser: z.boolean().default(false),
-					accueil: z.boolean().default(false),
-					actif: z.boolean().default(true),
-				}),
+				z
+					.object({
+						nom: z.string(),
+						url: z.url(),
+						// Absent tant que « npm run logos » n'est pas passé (voir scripts/logos.mjs)
+						logo: image().optional(),
+						// Indication pour npm run logos quand le nom ne suffit pas à trouver le logo
+						icone: z.string().optional(),
+						inverser: z.boolean().default(false),
+						accueil: z.boolean().default(false),
+						actif: z.boolean().default(true),
+					})
+					.transform(({ logo, ...techno }, ctx) => {
+						if (!logo) {
+							ctx.addIssue({
+								code: "custom",
+								message: `Logo manquant pour ${techno.nom} : lancer « npm run logos »`,
+								path: ["logo"],
+							});
+							return z.NEVER;
+						}
+						return { ...techno, logo };
+					}),
 			),
 		}),
 });

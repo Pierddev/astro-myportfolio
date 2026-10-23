@@ -1,16 +1,16 @@
-import logoFigma from "../assets/stacks/figma.webp";
-import logoGithub from "../assets/stacks/github.webp";
-import logoPycharm from "../assets/stacks/pycharm.webp";
-import logoVercel from "../assets/stacks/vercel.webp";
-import logoTrello from "../assets/stacks/trello.webp";
-import logoMysql from "../assets/stacks/mysql.webp";
-import logoAstro from "../assets/stacks/astro.webp";
-import logoPython from "../assets/stacks/python.webp";
-import logoTailwindcss from "../assets/stacks/tailwindcss.webp";
-import logoDjango from "../assets/stacks/django.webp";
-import logoPostgresql from "../assets/stacks/postgresql.webp";
-import logoFlask from "../assets/stacks/flask.webp";
-import logoJinja from "../assets/stacks/jinja.webp";
+import logoFigma from "../assets/stacks/figma.svg";
+import logoGithub from "../assets/stacks/github.svg";
+import logoPycharm from "../assets/stacks/pycharm.svg";
+import logoVercel from "../assets/stacks/vercel.svg";
+import logoTrello from "../assets/stacks/trello.svg";
+import logoMysql from "../assets/stacks/mysql.svg";
+import logoAstro from "../assets/stacks/astro.svg";
+import logoPython from "../assets/stacks/python.svg";
+import logoTailwindcss from "../assets/stacks/tailwindcss.svg";
+import logoDjango from "../assets/stacks/django.svg";
+import logoPostgresql from "../assets/stacks/postgresql.svg";
+import logoFlask from "../assets/stacks/flask.svg";
+import logoJinja from "../assets/stacks/jinja.svg";
 import shopJO from "../assets/project-shopjo.webp";
 import myPortfolio from "../assets/project-portfolio.webp";
 import SioDash from "../assets/project-siodash.webp";
@@ -54,6 +54,7 @@ export const projects: Project[] = [
 				name: "Flask",
 				logoSrc: logoFlask,
 				colorName: "django",
+				invert: true,
 			},
 			{
 				name: "Jinja",
@@ -95,6 +96,7 @@ export const projects: Project[] = [
 				name: "GitHub",
 				logoSrc: logoGithub,
 				colorName: "github",
+				invert: true,
 			},
 		],
 	},
@@ -115,6 +117,7 @@ export const projects: Project[] = [
 				name: "GitHub",
 				logoSrc: logoGithub,
 				colorName: "github",
+				invert: true,
 			},
 			{
 				name: "TailwindCSS",
@@ -140,6 +143,7 @@ export const projects: Project[] = [
 				name: "Django",
 				logoSrc: logoDjango,
 				colorName: "django",
+				invert: true,
 			},
 			{
 				name: "Python",
