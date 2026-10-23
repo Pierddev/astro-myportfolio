@@ -70,6 +70,11 @@ const stack = defineCollection({
 						logo: image().optional(),
 						// Indication pour npm run logos quand le nom ne suffit pas à trouver le logo
 						icone: z.string().optional(),
+						// Recoloration d'un logo d'une seule couleur par npm run logos
+						couleur: z
+							.string()
+							.regex(/^#[0-9a-f]{6}$/i, 'Couleur attendue au format "#rrggbb", entre guillemets')
+							.optional(),
 						inverser: z.boolean().default(false),
 						accueil: z.boolean().default(false),
 						actif: z.boolean().default(true),

@@ -11,6 +11,8 @@
 #              et ajoute cette ligne (ainsi que « inverser » si le logo est trop sombre).
 #   icone      aide « npm run logos » quand le nom ne suffit pas : html5, astro-plain,
 #              simple-icons:astro… (facultatif, voir le README)
+#   couleur    recolore à son téléchargement un logo d'une seule couleur trop sombre,
+#              ex. couleur: "#ffffff" (guillemets obligatoires, facultatif)
 #   inverser   true si le logo est sombre : il est inversé pour rester lisible (facultatif)
 #   accueil    true pour l'afficher aussi sur la page d'accueil (facultatif)
 #   actif      false pour la masquer partout sans la supprimer (facultatif)
@@ -28,9 +30,10 @@
       url: https://nestjs.com/
       logo: ../assets/stacks/nestjs.svg
       accueil: true
-    - nom: PHP
-      url: https://www.php.net/
-      logo: ../assets/stacks/php.svg
+    - nom: TypeScript
+      url: https://www.typescriptlang.org/
+      logo: ../assets/stacks/typescript.svg
+      accueil: true
     - nom: Laravel
       url: https://laravel.com/
       logo: ../assets/stacks/laravel.svg
@@ -54,20 +57,21 @@
     - nom: TailwindCSS
       url: https://tailwindcss.com/
       logo: ../assets/stacks/tailwindcss.svg
+    - nom: PHP
+      url: https://www.php.net/
+      logo: ../assets/stacks/php.svg
     - nom: Django
       url: https://www.djangoproject.com/
       logo: ../assets/stacks/django.svg
       inverser: true
-    - nom: TypeScript
-      url: https://www.typescriptlang.org/
-      logo: ../assets/stacks/typescript.svg
-      accueil: true
+      actif: false
     - nom: JSON
       url: https://www.json.org/json-fr.html
       logo: ../assets/stacks/json.svg
     - nom: AlpineJS
       url: https://alpinejs.dev/
       logo: ../assets/stacks/alpinejs.svg
+      actif: false
     - nom: PowerShell
       url: https://learn.microsoft.com/fr-fr/powershell/scripting/overview?view=powershell-7.5
       logo: ../assets/stacks/powershell.svg
@@ -75,37 +79,50 @@
       url: https://flask.palletsprojects.com/en/stable/
       logo: ../assets/stacks/flask.svg
       inverser: true
+      actif: false
     - nom: Jinja
       url: https://jinja.palletsprojects.com/en/stable/
       logo: ../assets/stacks/jinja.svg
+      actif: false
 
 - id: tools
   titre: Outils de développement
   titreCourt: Outils
   couleur: "#b39ddb"
   technos:
-    - nom: Visual Studio Code
-      url: https://code.visualstudio.com/
-      logo: ../assets/stacks/vscode.svg
-    - nom: Figma
-      url: https://www.figma.com/fr-fr/
-      logo: ../assets/stacks/figma.svg
-      accueil: true
     - nom: GitHub
       url: https://github.com/
       logo: ../assets/stacks/github.svg
       inverser: true
       accueil: true
+    - nom: Visual Studio Code
+      url: https://code.visualstudio.com/
+      logo: ../assets/stacks/vscode.svg
+    - nom: Claude
+      url: https://claude.com/
+      logo: ../assets/stacks/claude.svg
+      accueil: true
+    - nom: Penpot
+      url: https://penpot.app/
+      logo: ../assets/stacks/penpot.svg
+      inverser: true
+      accueil: true
+    - nom: Figma
+      url: https://www.figma.com/fr-fr/
+      logo: ../assets/stacks/figma.svg
+      accueil: true
     - nom: Herd
       url: https://herd.laravel.com/
       logo: ../assets/stacks/herd.webp
+      actif: false
     - nom: PyCharm
       url: https://www.jetbrains.com/pycharm/
       logo: ../assets/stacks/pycharm.svg
-      accueil: true
+      accueil: false
     - nom: PhpStorm
       url: https://www.jetbrains.com/phpstorm/
       logo: ../assets/stacks/phpstorm.svg
+      actif: false
     - nom: Photoshop
       url: https://www.adobe.com/fr/products/photoshop.html
       logo: ../assets/stacks/photoshop.svg
@@ -125,33 +142,43 @@
   titreCourt: BDD & Serveurs
   couleur: "#6ee7b7"
   technos:
+    - nom: Docker
+      url: https://www.docker.com/
+      logo: ../assets/stacks/docker.svg
+      accueil: true
+    - nom: PostgreSQL
+      url: https://www.postgresql.org/
+      logo: ../assets/stacks/postgresql.svg
+      accueil: true
+    - nom: MariaDB
+      url: https://mariadb.org/
+      logo: ../assets/stacks/mariadb.svg
+      couleur: "#ffffff"
+      accueil: true
     - nom: MySQL
       url: https://www.mysql.com/fr/
       logo: ../assets/stacks/mysql.svg
-      accueil: true
+      accueil: false
     - nom: SQLite
       url: https://www.sqlite.org/
       logo: ../assets/stacks/sqlite.svg
     - nom: Synology
       url: https://www.synology.com/fr-fr
       logo: ../assets/stacks/synology.svg
-    - nom: PostgreSQL
-      url: https://www.postgresql.org/
-      logo: ../assets/stacks/postgresql.svg
-      accueil: true
     - nom: MongoDB
       url: https://www.mongodb.com/
       logo: ../assets/stacks/mongodb.svg
-    - nom: Docker
-      url: https://www.docker.com/
-      logo: ../assets/stacks/docker.svg
-      accueil: true
+      actif: false
 
 - id: security
   titre: Cybersécurité & Réseau
   titreCourt: Cybersécurité & Réseau
   couleur: "#f0abfc"
   technos:
+    - nom: VMware
+      url: https://vmware.com/
+      logo: ../assets/stacks/vmware.webp
+      accueil: true
     - nom: Wireshark
       url: https://www.wireshark.org/
       logo: ../assets/stacks/wireshark.svg
@@ -159,7 +186,3 @@
     - nom: VirtualBox
       url: https://www.virtualbox.org/
       logo: ../assets/stacks/virtualbox.svg
-    - nom: VMware
-      url: https://vmware.com/
-      logo: ../assets/stacks/vmware.webp
-      accueil: true
