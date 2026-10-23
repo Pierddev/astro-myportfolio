@@ -18,6 +18,8 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: 22
+          # La version en cache sur le runner peut être en retard : Astro exige une version minimale précise
+          check-latest: true
           cache: 'npm'
 
       - name: Install dependencies
