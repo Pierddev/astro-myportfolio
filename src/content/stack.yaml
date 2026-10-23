@@ -58,6 +58,7 @@
       url: https://www.djangoproject.com/
       logo: ../assets/stacks/django.svg
       inverser: true
+      actif: false
     - nom: TypeScript
       url: https://www.typescriptlang.org/
       logo: ../assets/stacks/typescript.svg
@@ -68,6 +69,7 @@
     - nom: AlpineJS
       url: https://alpinejs.dev/
       logo: ../assets/stacks/alpinejs.svg
+      actif: false
     - nom: PowerShell
       url: https://learn.microsoft.com/fr-fr/powershell/scripting/overview?view=powershell-7.5
       logo: ../assets/stacks/powershell.svg
@@ -75,9 +77,11 @@
       url: https://flask.palletsprojects.com/en/stable/
       logo: ../assets/stacks/flask.svg
       inverser: true
+      actif: false
     - nom: Jinja
       url: https://jinja.palletsprojects.com/en/stable/
       logo: ../assets/stacks/jinja.svg
+      actif: false
 
 - id: tools
   titre: Outils de développement
@@ -99,6 +103,7 @@
     - nom: Herd
       url: https://herd.laravel.com/
       logo: ../assets/stacks/herd.webp
+      actif: false
     - nom: PyCharm
       url: https://www.jetbrains.com/pycharm/
       logo: ../assets/stacks/pycharm.svg
@@ -106,6 +111,7 @@
     - nom: PhpStorm
       url: https://www.jetbrains.com/phpstorm/
       logo: ../assets/stacks/phpstorm.svg
+      actif: false
     - nom: Photoshop
       url: https://www.adobe.com/fr/products/photoshop.html
       logo: ../assets/stacks/photoshop.svg
@@ -125,23 +131,28 @@
   titreCourt: BDD & Serveurs
   couleur: "#6ee7b7"
   technos:
+    - nom: PostgreSQL
+      url: https://www.postgresql.org/
+      logo: ../assets/stacks/postgresql.svg
+      accueil: true
+    - nom: MariaDB
+      url: https://mariadb.org/
+      logo: ../assets/stacks/mariadb.svg
+      accueil: true
     - nom: MySQL
       url: https://www.mysql.com/fr/
       logo: ../assets/stacks/mysql.svg
-      accueil: true
+      accueil: false
     - nom: SQLite
       url: https://www.sqlite.org/
       logo: ../assets/stacks/sqlite.svg
     - nom: Synology
       url: https://www.synology.com/fr-fr
       logo: ../assets/stacks/synology.svg
-    - nom: PostgreSQL
-      url: https://www.postgresql.org/
-      logo: ../assets/stacks/postgresql.svg
-      accueil: true
     - nom: MongoDB
       url: https://www.mongodb.com/
       logo: ../assets/stacks/mongodb.svg
+      actif: false
     - nom: Docker
       url: https://www.docker.com/
       logo: ../assets/stacks/docker.svg
