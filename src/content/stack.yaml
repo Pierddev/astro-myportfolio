@@ -1,0 +1,153 @@
+# Stack technique : page Stack et sélection de l'accueil.
+# Ordre du fichier = ordre d'affichage (catégories, puis technos dans chaque catégorie).
+#
+# Une catégorie : id (filtre de la page, sans espace), titre, titreCourt (bouton de filtre
+# et accueil), couleur (#rrggbb), technos. Une catégorie sans techno active est masquée.
+#
+# Une techno :
+#   nom, url (site officiel)
+#   logo       chemin du logo depuis ce fichier, ex. ../assets/stacks/php.webp
+#   inverser   true si le logo est sombre : il est inversé pour rester lisible (facultatif)
+#   accueil    true pour l'afficher aussi sur la page d'accueil (facultatif)
+#   actif      false pour la masquer partout sans la supprimer (facultatif)
+
+- id: languages
+  titre: Langages & Frameworks
+  titreCourt: Langages & Frameworks
+  couleur: "#8ab4f8"
+  technos:
+    - nom: PHP
+      url: https://www.php.net/
+      logo: ../assets/stacks/php.webp
+      accueil: true
+    - nom: Laravel
+      url: https://laravel.com/
+      logo: ../assets/stacks/laravel.webp
+      accueil: true
+    - nom: Astro
+      url: https://astro.build/
+      logo: ../assets/stacks/astro.webp
+      accueil: true
+    - nom: Python
+      url: https://www.python.org/
+      logo: ../assets/stacks/python.webp
+      accueil: true
+    - nom: JavaScript
+      url: https://developer.mozilla.org/fr/docs/Web/JavaScript
+      logo: ../assets/stacks/javascript.webp
+      accueil: true
+    - nom: HTML
+      url: https://developer.mozilla.org/fr/docs/Web/HTML
+      logo: ../assets/stacks/html.webp
+    - nom: CSS
+      url: https://developer.mozilla.org/fr/docs/Web/CSS
+      logo: ../assets/stacks/css.webp
+    - nom: TailwindCSS
+      url: https://tailwindcss.com/
+      logo: ../assets/stacks/tailwindcss.webp
+    - nom: Django
+      url: https://www.djangoproject.com/
+      logo: ../assets/stacks/django.webp
+    - nom: TypeScript
+      url: https://www.typescriptlang.org/
+      logo: ../assets/stacks/typescript.webp
+    - nom: JSON
+      url: https://www.json.org/json-fr.html
+      logo: ../assets/stacks/json.webp
+    - nom: AlpineJS
+      url: https://alpinejs.dev/
+      logo: ../assets/stacks/alpinejs.webp
+    - nom: PowerShell
+      url: https://learn.microsoft.com/fr-fr/powershell/scripting/overview?view=powershell-7.5
+      logo: ../assets/stacks/powershell.webp
+    - nom: Flask
+      url: https://flask.palletsprojects.com/en/stable/
+      logo: ../assets/stacks/flask.webp
+    - nom: Jinja
+      url: https://jinja.palletsprojects.com/en/stable/
+      logo: ../assets/stacks/jinja.webp
+
+- id: tools
+  titre: Outils de développement
+  titreCourt: Outils
+  couleur: "#b39ddb"
+  technos:
+    - nom: Visual Studio Code
+      url: https://code.visualstudio.com/
+      logo: ../assets/stacks/vsc.webp
+    - nom: Figma
+      url: https://www.figma.com/fr-fr/
+      logo: ../assets/stacks/figma.webp
+      accueil: true
+    - nom: GitHub
+      url: https://github.com/
+      logo: ../assets/stacks/github.webp
+      accueil: true
+    - nom: Herd
+      url: https://herd.laravel.com/
+      logo: ../assets/stacks/herd.webp
+    - nom: PyCharm
+      url: https://www.jetbrains.com/pycharm/
+      logo: ../assets/stacks/pycharm.webp
+      accueil: true
+    - nom: PhpStorm
+      url: https://www.jetbrains.com/phpstorm/
+      logo: ../assets/stacks/phpstorm.webp
+    - nom: Photoshop
+      url: https://www.adobe.com/fr/products/photoshop.html
+      logo: ../assets/stacks/photoshop.webp
+    - nom: Notion
+      url: https://www.notion.com/fr
+      logo: ../assets/stacks/notion.webp
+    - nom: Vercel
+      url: https://vercel.com/
+      logo: ../assets/stacks/vercel.webp
+      inverser: true
+    - nom: Trello
+      url: https://trello.com/fr
+      logo: ../assets/stacks/trello.webp
+
+- id: databases
+  titre: Base de données & Serveurs
+  titreCourt: BDD & Serveurs
+  couleur: "#6ee7b7"
+  technos:
+    - nom: MySQL
+      url: https://www.mysql.com/fr/
+      logo: ../assets/stacks/mysql.webp
+      accueil: true
+    - nom: SQLite
+      url: https://www.sqlite.org/
+      logo: ../assets/stacks/sqlite.webp
+    - nom: Synology
+      url: https://www.synology.com/fr-fr
+      logo: ../assets/stacks/synology.webp
+      inverser: true
+    - nom: PostgreSQL
+      url: https://www.postgresql.org/
+      logo: ../assets/stacks/postgresql.webp
+      accueil: true
+    - nom: MongoDB
+      url: https://www.mongodb.com/
+      logo: ../assets/stacks/mongodb.webp
+    - nom: Docker
+      url: https://www.docker.com/
+      logo: ../assets/stacks/docker.webp
+      accueil: true
+
+- id: security
+  titre: Cybersécurité & Réseau
+  titreCourt: Cybersécurité & Réseau
+  couleur: "#f0abfc"
+  technos:
+    - nom: Wireshark
+      url: https://www.wireshark.org/
+      logo: ../assets/stacks/wireshark.webp
+      accueil: true
+    - nom: VirtualBox
+      url: https://www.virtualbox.org/
+      logo: ../assets/stacks/virtualbox.webp
+    - nom: VMware
+      url: https://vmware.com/
+      logo: ../assets/stacks/vmware.webp
+      accueil: true
