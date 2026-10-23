@@ -16,10 +16,17 @@
   titreCourt: Langages & Frameworks
   couleur: "#8ab4f8"
   technos:
+    - nom: Nuxt
+      url: https://nuxt.com/
+      logo: ../assets/stacks/nuxt.webp
+      accueil: true
+    - nom: NestJS
+      url: https://nestjs.com/
+      logo: ../assets/stacks/nestjs.webp
+      accueil: true
     - nom: PHP
       url: https://www.php.net/
       logo: ../assets/stacks/php.webp
-      accueil: true
     - nom: Laravel
       url: https://laravel.com/
       logo: ../assets/stacks/laravel.webp
@@ -27,15 +34,12 @@
     - nom: Astro
       url: https://astro.build/
       logo: ../assets/stacks/astro.webp
-      accueil: true
     - nom: Python
       url: https://www.python.org/
       logo: ../assets/stacks/python.webp
-      accueil: true
     - nom: JavaScript
       url: https://developer.mozilla.org/fr/docs/Web/JavaScript
       logo: ../assets/stacks/javascript.webp
-      accueil: true
     - nom: HTML
       url: https://developer.mozilla.org/fr/docs/Web/HTML
       logo: ../assets/stacks/html.webp
@@ -51,6 +55,7 @@
     - nom: TypeScript
       url: https://www.typescriptlang.org/
       logo: ../assets/stacks/typescript.webp
+      accueil: true
     - nom: JSON
       url: https://www.json.org/json-fr.html
       logo: ../assets/stacks/json.webp
