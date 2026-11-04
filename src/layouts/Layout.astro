@@ -56,9 +56,23 @@ const shareImageUrl = new URL("/og-image.jpg", Astro.site).href;
 
 		<!-- Générateur (Astro) -->
 		<meta name="generator" content={Astro.generator} />
+
+		<!-- Marque la page comme animée par JS : les éléments [data-reveal] ne sont cachés que dans ce cas,
+		     sans JS le contenu reste visible (voir global.css) -->
+		<script is:inline>
+			document.documentElement.classList.add("js");
+		</script>
 	</head>
 	<body class="relative bg-background text-white antialiased max-w-screen">
 		<BackgroundGlow />
+		<!-- Barre de progression de lecture : sa largeur suit le défilement (public/js/script.js) -->
+		<div
+			id="scrollProgress"
+			aria-hidden="true"
+			style="transform: scaleX(0)"
+			class="pointer-events-none fixed top-0 left-0 z-60 h-3 w-full origin-left bg-linear-to-r from-indigo-electrique via-amethyste to-framboise will-change-transform"
+		>
+		</div>
 		<!-- pointer-events-none : la bande transparente autour de la pilule laisse passer les clics vers la page -->
 		<header
 			class="pointer-events-none sticky top-0 z-50 flex justify-center px-16 pt-16 lg:pt-32"

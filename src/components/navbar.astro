@@ -54,9 +54,10 @@ const tabState = (isActive: boolean) =>
 	class="pointer-events-auto fixed inset-0 flex flex-col items-center justify-center gap-8 bg-background/90 px-24 backdrop-blur-[14px] lg:hidden"
 >
 	{
-		links.map(({ href, label, icon: Icon, isActive }) => (
+		links.map(({ page, href, label, icon: Icon, isActive }) => (
 			<a
 				href={href}
+				data-tab={page}
 				aria-current={isActive ? "page" : undefined}
 				class:list={[
 					"flex w-full max-w-320 items-center justify-center gap-10 rounded-full border px-24 py-12 text-17 transition-colors duration-200",
@@ -89,9 +90,10 @@ const tabState = (isActive: boolean) =>
 	>
 	<span aria-hidden="true" class="mx-4 h-22 w-1 bg-white/12"></span>
 	{
-		links.map(({ href, label, icon: Icon, isActive }) => (
+		links.map(({ page, href, label, icon: Icon, isActive }) => (
 			<a
 				href={href}
+				data-tab={page}
 				aria-current={isActive ? "page" : undefined}
 				class:list={[
 					"flex items-center gap-8 rounded-full border px-16 py-10 text-14 transition-colors duration-200",
