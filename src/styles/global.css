@@ -123,3 +123,52 @@
 .legal-title {
   @apply text-20 font-semibold;
 }
+/* Apparition au scroll : public/js/script.js ajoute .is-visible quand l'élément entre à l'écran.
+   Le fond « backwards » : l'animation ne garde pas de transform après coup, donc elle ne gêne
+   ni les effets au survol (lift, tilt) ni les transitions de l'élément. */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.js [data-reveal],
+.js [data-reveal-group] > * {
+  opacity: 0;
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  animation: reveal-up 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) var(--reveal-delay, 0ms) backwards;
+}
+
+/* Effet machine à écrire : chaque lettre est cachée puis révélée une à une (script.js).
+   visibility plutôt qu'opacity : avec gradient-text, le dégradé appartient au parent et est
+   découpé selon la forme des lettres, même à opacity 0. Une lettre hidden n'est plus dessinée. */
+.typer-char {
+  visibility: hidden;
+}
+
+.typer-char.is-typed {
+  visibility: visible;
+}
+
+/* position absolute sans top/left : le curseur reste à sa place dans le texte mais sort du flux.
+   En inline-block, il pousserait les lettres et permettrait une coupure de ligne en plein mot. */
+.typer-caret {
+  position: absolute;
+  display: inline-block;
+  width: 2px;
+  height: 0.85em;
+  margin-left: 2px;
+  vertical-align: -0.05em;
+  background: var(--color-bleu-glacier);
+  animation: caret-blink 0.9s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
